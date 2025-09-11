@@ -1,0 +1,62 @@
+.verify-container {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  height: 100vh;
+  background-color: #0d1b2a;
+  overflow: hidden;
+  position: relative;
+}
+
+.verify-card {
+  text-align: center;
+  max-width: 500px;
+  padding: 30px;
+  border-top-left-radius: 200px;
+  border-bottom-right-radius: 200px;
+  z-index: 1;
+  position: relative;
+  background-color: #ffffff;
+}
+
+.verify-card-title {
+  color: rgb(0, 0, 0) !important;
+  margin-bottom: 16px;
+}
+
+.verify-card-paragraph {
+  color: rgb(0, 0, 0) !important;
+}
+
+.bubble {
+  position: absolute;
+  bottom: 0;
+  border-radius: 50%;
+  opacity: 0.7;
+  cursor: pointer;
+  animation: rise linear forwards;
+  transform-origin: center;
+  transition: transform 0.3s, opacity 0.3s, filter 0.3s, box-shadow 0.3s;
+}
+
+.bubble:hover,
+.bubble.active {
+  transform: scale(1.5) rotate(20deg);
+  opacity: 1;
+  filter: brightness(1.5);
+  box-shadow: 0 0 15px white;
+}
+
+@keyframes rise {
+  0% {
+    transform: translateY(0) scale(1);
+    opacity: 0.7;
+  }
+  50% {
+    opacity: 0.9;
+  }
+  100% {
+    transform: translateY(-100vh) scale(1.3);
+    opacity: 0.8;
+  }
+}
