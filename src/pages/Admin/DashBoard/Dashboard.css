@@ -1,0 +1,175 @@
+.main-dashboard {
+  background-color: var(--BgPrimary);
+}
+
+.top-statictis {
+  margin-bottom: 10px;
+  .container-top-statictis {
+    .card-total-users-top-statictis {
+      background: var(--gradientBlue);
+      box-shadow: 0 8px 12px rgba(0, 0, 0, 0.2);
+    }
+    .card-today-users-top-statictis {
+      background: var(--gradientGreen);
+      box-shadow: 0 8px 12px rgba(0, 0, 0, 0.2);
+    }
+    .card-total-chatsession-top-statictis {
+      background: var(--gradientPurple);
+      box-shadow: 0 8px 12px rgba(0, 0, 0, 0.2);
+    }
+    .card-total-chatsession-top-statictis {
+      background: var(--gradientPurple);
+      box-shadow: 0 8px 12px rgba(0, 0, 0, 0.2);
+    }
+    .card-total-newchatsession-top-statictis {
+      background: var(--gradientOrange);
+      box-shadow: 0 8px 12px rgba(0, 0, 0, 0.2);
+    }
+    .title-top-statictis,
+    .value-top-statictis,
+    .number-value-top-statictis {
+      color: var(--textTopStatictis);
+    }
+  }
+  .render-percent-top-statictis {
+    display: inline-flex;
+    align-items: center;
+    gap: 10;
+    margin-left: 10px;
+    font-size: 25px;
+    font-weight: 500;
+  }
+}
+.middle-card-statistic {
+  .container-middle-card-statistic {
+    .card-middle-card-statistic {
+      background: var(--BgPrimary);
+      color: var(--colorText);
+      box-shadow: 0 8px 12px rgba(0, 0, 0, 0.2);
+      height: 200px;
+    }
+  }
+}
+.chart-tabs-dashboard {
+  margin-top: 24px;
+  background: linear-gradient(180deg, #9f9e9e41, #ffffff);
+  box-shadow: 0 8px 12px rgba(0, 0, 0, 0.2);
+  .container-Dashboard-Style {
+    display: flex;
+    justify-content: space-between;
+    width: 100%;
+    margin-right: 10px;
+  }
+}
+/* tabs */
+.chart-tabs-dashboard .ant-tabs-tab.ant-tabs-tab-active .ant-tabs-tab-btn {
+  background: var(--gradientPrimary);
+  -webkit-background-clip: text;
+  -webkit-text-fill-color: transparent;
+  font-weight: bold;
+  color: transparent !important;
+}
+
+.chart-tabs-dashboard .ant-tabs-tab:hover .ant-tabs-tab-btn {
+  background: var(--gradientPrimary);
+  -webkit-background-clip: text;
+  -webkit-text-fill-color: transparent;
+  color: transparent !important;
+}
+
+.chart-tabs-dashboard .ant-tabs-ink-bar {
+  background: var(--gradientPrimary);
+  height: 3px;
+  border-radius: 3px;
+}
+
+/* Button */
+.chart-tabs-dashboard .container-Dashboard-Style .ant-btn-default {
+  transition: all 0.3s;
+  color: var(--gradientPrimary);
+  background: var(--BgPrimary);
+  border-color: var(--sidebarText) !important;
+}
+
+/* Hover*/
+.chart-tabs-dashboard .container-Dashboard-Style .ant-btn-default:hover {
+  background: var(--gradientPrimary);
+  -webkit-background-clip: text;
+  color: transparent !important;
+  font-weight: bold;
+}
+
+/* active*/
+.chart-tabs-dashboard .container-Dashboard-Style .ant-btn-primary {
+  background: var(--gradientPrimary) !important;
+  border: none !important;
+  /* color: #fff !important; */
+  font-weight: bold;
+}
+
+/* RangePicker*/
+.chart-tabs-dashboard .container-Dashboard-Style .ant-picker {
+  border: 1px solid var(--colorText);
+  background-color: var(--BgPrimary);
+  color: var(--colorText) !important;
+  transition: all 0.3s;
+}
+.chart-tabs-dashboard
+  .container-Dashboard-Style
+  .ant-picker-input
+  > input::placeholder {
+  color: var(--colorText) !important;
+}
+/* Hover*/
+.chart-tabs-dashboard .container-Dashboard-Style .ant-picker:hover {
+  border: 1px solid transparent;
+  background: linear-gradient(#fff, #fff) padding-box,
+    var(--gradientPrimary) border-box;
+  background-clip: padding-box, border-box;
+}
+
+.chart-tabs-dashboard
+  .container-Dashboard-Style
+  .ant-picker:hover
+  .ant-picker-input
+  > input {
+  background: var(--gradientPrimary);
+  -webkit-background-clip: text;
+  -webkit-text-fill-color: transparent;
+}
+/* Icon*/
+.chart-tabs-dashboard
+  .container-Dashboard-Style
+  .ant-picker
+  .ant-picker-suffix {
+  color: var(--colorText) !important;
+  transition: color 0.3s;
+}
+
+/* Hover*/
+.chart-tabs-dashboard
+  .container-Dashboard-Style
+  .ant-picker:hover
+  .ant-picker-suffix {
+  background: var(--gradientPrimary);
+  -webkit-background-clip: text;
+  -webkit-text-fill-color: transparent;
+}
+
+/* (x)  */
+.chart-tabs-dashboard .container-Dashboard-Style .ant-picker .ant-picker-clear {
+  color: var(--colorTextSecondary) !important;
+  opacity: 0.6;
+  transition: all 0.3s;
+}
+
+/* Hover */
+.chart-tabs-dashboard
+  .container-Dashboard-Style
+  .ant-picker
+  .ant-picker-clear:hover {
+  background: var(--gradientPrimary);
+  -webkit-background-clip: text;
+  -webkit-text-fill-color: transparent;
+  opacity: 1;
+}

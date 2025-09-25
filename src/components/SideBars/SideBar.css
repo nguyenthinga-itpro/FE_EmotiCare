@@ -1,0 +1,45 @@
+.sidebar .ant-menu-light {
+  background: var(--sidebarBg) !important;
+}
+.sidebar .ant-menu-light a {
+  color: var(--sidebarText) !important;
+}
+.sidebar .ant-menu-light .ant-menu-item:hover,
+.sidebar .ant-menu-light .ant-menu-submenu-title:hover {
+  background: var(--sidebarHoverBg) !important;
+}
+.sidebar .ant-menu-light .ant-menu-item:hover a,
+.sidebar .ant-menu-light .ant-menu-submenu-title:hover {
+  color: var(--sidebarHoverText) !important;
+}
+.sidebar .ant-menu-light .ant-menu-item-selected a {
+  color: var(--sidebarActiveText) !important;
+}
+.sidebar .sidebarGroup {
+  color: var(--sidebarText);
+  font-weight: bold;
+}
+.sidebar .sidebarLogout {
+  cursor: "pointer";
+  color: var(--sidebarText);
+  font-weight: 600;
+}
+.sidebar {
+  background: var(--sidebarBg);
+  min-height: 100vh;
+  border-right: 1px solid var(--sidebarBorder);
+  transition: all 0.3s;
+}
+.sidebar .sidebarTitle {
+  height: 64px;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  font-weight: bold;
+  font-size: 16px;
+  color: var(--colorText);
+  transition: all 0.3s;
+}
+.sidebar .sidebarLogoTitle {
+  margin-right: 20px;
+}

@@ -1,0 +1,57 @@
+/* Header của table */
+.table-header {
+  margin-bottom: 10px;
+  text-align: right;
+  margin-right: 25px;
+}
+
+/* Tạo kiểu cho input tìm kiếm */
+.table-header .search-input {
+  width: 200px;
+  margin-right: 10px;
+  box-shadow: 0 4px 12px rgba(0, 0, 0, 0.1);
+  border-radius: 6px;
+}
+
+.table-header .search-input .ant-input::placeholder {
+  color: var(--labelStyleProfileDeatail);
+}
+
+/* Sửa màu của nút tìm kiếm trong input */
+.table-header
+  .search-input
+  .ant-input-search-button:not(.ant-btn-color-primary) {
+  color: var(--labelStyleProfileDeatail) !important;
+}
+
+/* Định dạng cho các nút disabled */
+.table-header .search-input .ant-btn-variant-link.ant-btn-disabled {
+  color: var(--labelStyleProfileDeatail);
+}
+
+/* Dropdown được chọn sẽ có màu chủ đạo */
+.table-header .ant-dropdown .ant-dropdown-menu .ant-dropdown-menu-item-selected,
+.table-header
+  .ant-dropdown
+  .ant-dropdown-menu
+  .ant-dropdown-menu-submenu-title-selected {
+  color: var(--colorPrimary);
+  background: var(--colorPrimary);
+}
+
+/* Nút thêm mới */
+.table-header .add-button {
+  background: var(--gradientBlue) !important;
+  border: none;
+  color: #fff;
+  padding: 6px 16px;
+  border-radius: 6px;
+  cursor: pointer;
+  font-weight: 600;
+  box-shadow: 0 4px 12px rgba(0, 0, 0, 0.2);
+  transition: all 0.3s ease;
+}
+
+.table-header .add-button:hover {
+  filter: brightness(1.1);
+}
