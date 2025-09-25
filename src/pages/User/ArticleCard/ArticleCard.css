@@ -1,0 +1,89 @@
+.article-breadcrumb {
+  margin: 16px 0;
+  font-size: 18px;
+  background: linear-gradient(90deg, #667ce7, #754da5);
+  -webkit-background-clip: text;
+  -webkit-text-fill-color: transparent;
+  background-clip: text;
+  margin-left: 150px;
+  margin-top: 30px;
+  margin-bottom: 30px;
+}
+
+.article-card {
+  max-width: 600px;
+  margin: 0 auto;
+  text-align: center;
+  margin-bottom: 200px;
+  margin-top: 20px;
+}
+
+.article-image img {
+  width: 100%;
+  border-radius: 8px;
+}
+
+.article-header {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  margin-top: 12px;
+}
+
+.article-title {
+  font-size: 18px;
+  font-weight: 600;
+  background: linear-gradient(90deg, #667ce7, #754da5);
+  -webkit-background-clip: text;
+  -webkit-text-fill-color: transparent;
+  background-clip: text; /* fallback */
+  margin-left: 240px;
+}
+
+.article-save {
+  width: 30px;
+  height: 30px;
+  cursor: pointer;
+}
+
+.article-description {
+  margin-top: 8px;
+  font-size: 16px;
+  background: linear-gradient(90deg, #667ce7, #754da5);
+  -webkit-background-clip: text;
+  -webkit-text-fill-color: transparent;
+  background-clip: text; /* fallback */
+}
+
+
+
+
+/* --- Responsive cho mobile (<=768px) --- */
+@media (max-width: 768px) {
+  .article-breadcrumb {
+    font-size: 14px;
+    margin: 12px auto;
+    text-align: center;
+  }
+
+  .article-card {
+    max-width: 95%;
+    margin: 12px auto;
+    padding: 8px;
+  }
+
+  .article-title {
+    font-size: 15px;
+    text-align: center;
+  }
+
+  .article-description {
+    font-size: 13px;
+    line-height: 1.4;
+  }
+
+  .article-save {
+    width: 20px;
+    height: 20px;
+  }
+}

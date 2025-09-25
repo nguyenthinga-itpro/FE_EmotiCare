@@ -1,0 +1,231 @@
+body,html{
+  overflow-x:hidden
+}
+.video-container {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  width: 100%;
+}
+
+.video-player {
+  width: 600px;      /* chỉnh kích thước theo ý */
+  border-radius: 12px;
+  box-shadow: 0px 4px 15px rgba(0,0,0,0.2);
+  outline: none;
+  margin-top: 100px;
+  margin-bottom: 100px;
+}
+
+
+
+
+.stories-section {
+  padding: 60px 0;
+  background: #f3f2fc; /* màu nền nhẹ */
+  text-align: center;
+}
+.stories-section {
+  padding: 60px 0;
+  text-align: center;
+}
+.stories-header {
+  margin-bottom: 40px;
+}
+
+.stories-title {
+  font-size: 32px;
+  line-height:1.6;
+  background:linear-gradient(90deg,#6f82e4,#754da5);
+  -webkit-background-clip:text;
+  -webkit-text-fill-color:transparent;
+  font-weight:700
+}
+
+
+.stories-subtitle {
+  font-size: 16px;
+
+  background:linear-gradient(90deg,#6f82e4,#754da5);
+  -webkit-background-clip:text;
+  -webkit-text-fill-color:transparent;
+  font-weight:700
+}
+
+.stories-grid {
+  display: flex;
+  justify-content: center;
+  gap: 30px;
+}
+
+.story-card {
+  border-radius: 12px;
+  overflow: hidden;
+  width: 250px;
+}
+
+
+.story-video {
+  width: 100%;
+  height: 400px;
+  object-fit: cover;
+  border: none;
+  outline: none;
+}
+
+
+.stories-section {
+  text-align: center;
+  padding: 60px 40px;
+}
+
+.stories-title {
+    font-size: 48px;
+  font-weight: 700;
+  background: linear-gradient(90deg, #6366f1, #744ea6);
+  -webkit-background-clip: text;
+  -webkit-text-fill-color: transparent;
+  background-clip: text; 
+  margin-bottom: 5px;
+
+}
+.stories-titles {
+  font-size: 50px;
+  font-weight: 700;
+  background: linear-gradient(90deg, #6366f1, #744EA6);
+  -webkit-background-clip: text;
+  -webkit-text-fill-color: transparent;
+  background-clip: text; 
+  padding-bottom: 10px;
+  margin-bottom: 5px;
+  text-align: center;   
+  margin-top: 50px;
+}
+/* Hover gradient effect */
+.stories-titles:hover {
+  background: linear-gradient(
+    90deg,
+    #ff6ec7,
+    #ff9a8b,
+    #fad0c4,
+    #a18cd1,
+    #fbc2eb,
+    #8fd3f4
+  );
+  background-size: 400% 400%;
+  -webkit-background-clip: text;
+  -webkit-text-fill-color: transparent;
+  animation: rainbow 4s linear infinite;
+}
+
+.stories-subtitle {
+  font-size: 14px;
+  background: linear-gradient(90deg, #6c6eeb, #8f50e3);
+  -webkit-background-clip: text;
+  -webkit-text-fill-color: transparent;
+  margin-bottom: 30px;
+  text-align: center;   
+}
+
+.stories-grid {
+  display: flex;
+  justify-content: center;
+  gap: 20px;
+  flex-wrap: wrap;
+}
+
+
+.stories-grids {
+  display: flex;
+  justify-content: center;
+  gap: 20px;
+  flex-wrap: wrap; /* Cho mobile tự xuống dòng */
+  margin-top: 20px;
+}
+
+.story-cards {
+  width: 200px;
+  height: 200px;
+  background: #b2bef4; /* màu nền xanh nhạt */
+  border-radius: 12px;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  transition: transform 0.3s ease, box-shadow 0.3s ease;
+}
+.story-cardss {
+  width: 200px;
+  height: 200px;
+  background: #e6e6fa; /* màu nền xanh nhạt */
+  border-radius: 12px;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  transition: transform 0.3s ease, box-shadow 0.3s ease;
+}
+
+.story-cards:hover {
+  transform: translateY(-6px);
+  box-shadow: 0px 6px 15px rgba(0, 0, 0, 0.15);
+}
+.story-cardss:hover {
+  transform: translateY(-6px);
+  box-shadow: 0px 6px 15px rgba(0, 0, 0, 0.15);
+}
+.story-icon {
+  width: 60px;
+  height: 60px;
+  object-fit: contain;
+}
+
+
+.stories-sections{
+margin-top: 100px;
+margin-bottom: 100px;
+}
+
+
+
+/* 🔹 Mobile: hiển thị 1 video / dòng */
+@media (max-width: 768px) {
+  .stories-grid {
+    flex-direction: column;
+    align-items: center;
+    gap: 30px;
+  }
+
+  .story-video {
+    width: 90%;   /* gần full màn hình */
+    height: auto; /* tự co chiều cao theo tỷ lệ */
+  }
+ .stories-grids {
+    justify-content: center;
+    gap: 12px;
+  }
+
+  .story-cards {
+    width: 100%; /* 2 card trên 1 hàng */
+    max-width: 150px;
+    height: 120px;
+  }
+    .story-cardss {
+    width: 100%; /* 2 card trên 1 hàng */
+    max-width: 150px;
+    height: 120px;
+  }
+
+  .story-icon {
+    width: 50px;
+    height: 50px;
+  }
+
+  .stories-titles {
+    font-size: 24px;
+  }
+
+  .stories-subtitle {
+    font-size: 12px;
+  }
+
+
+}
