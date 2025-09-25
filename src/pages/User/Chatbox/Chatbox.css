@@ -1,0 +1,255 @@
+body,html{
+  overflow-x:hidden
+}
+.profile-section {
+  padding: 40px;
+}
+
+.profile-containers {
+  display: flex;
+  border: 2px solid #dedef7; 
+  border-radius: 12px;
+  overflow: hidden;
+  width: 100%;
+  max-width: 1200px; 
+  margin: 0 auto; 
+}
+
+.profile-image {
+  flex: 1;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  background: #fff;
+  min-height: 500px; /* tăng chiều cao */
+}
+
+.profile-image img {
+  width: 100%;
+  height: 100%;
+  object-fit: cover;
+}
+
+.profile-info {
+  flex: 1;
+  padding: 40px; /* tăng padding */
+  background: #f8f9ff;
+  font-size: 18px; /* chữ to hơn */
+  line-height: 1.8;
+    flex-direction: column;
+  min-height: 100%;   /* đảm bảo chiếm hết chiều cao container */
+  position : relative;
+}
+
+.profile-buttons {
+  display: flex;
+justify-content: space-around;
+gap:120px;
+  position: absolute;
+  bottom: 20px;
+}
+
+
+.profile-info ul {
+  margin: 0;
+  padding-left: 25px;
+  font-size: 18px; /* to hơn */
+}
+
+.profile-info h3 {
+  margin-top: 20px;
+  margin-bottom: 12px;
+  font-size: 22px;
+  color: #222;
+  
+}
+
+
+
+
+
+
+
+.btn-more {
+  background: transparent;
+  border: 2px solid transparent;
+  background: linear-gradient(90deg, #667ce7, #754da5);
+  -webkit-background-clip: text;
+  -webkit-text-fill-color: transparent;
+  cursor: pointer;
+  font-size: 16px;
+  font-weight: 600;
+  padding: 10px 50px;
+  position: relative;
+  transition: all 0.3s ease; /* hiệu ứng mượt */
+}
+
+.btn-more {
+  background: transparent;
+  border: 2px solid transparent;
+  background: linear-gradient(90deg, #667ce7, #754da5);
+  -webkit-background-clip: text;
+  -webkit-text-fill-color: transparent;
+  cursor: pointer;
+  font-size: 16px;
+  font-weight: 600;
+  padding: 10px 90px;
+  border-radius: 10px;
+  position: relative;
+  transition: all 0.3s ease;
+  box-shadow: 0 4px 10px rgba(102, 124, 231, 0.2); /* bóng nhẹ */
+}
+
+/* Hiệu ứng hover giống btn-chat */
+.btn-more:hover {
+  transform: translateY(-3px); /* nổi lên */
+  box-shadow: 0 6px 15px rgba(102, 124, 231, 0.4); /* bóng đậm hơn */
+  background: linear-gradient(90deg, #754da5, #667ce7);
+  -webkit-background-clip: text;
+  -webkit-text-fill-color: transparent;
+}
+
+.btn-chat {
+  background: linear-gradient(90deg, #6366f1, #744ea6);
+  border: none;
+  border-radius: 10px;
+  padding: 10px 90px;
+  color: #fff;
+  font-size: 16px;
+  font-weight: 600;
+  cursor: pointer;
+  transition: all 0.3s ease; /* hiệu ứng mượt */
+  box-shadow: 0 4px 10px rgba(99, 102, 241, 0.3); /* đổ bóng nhẹ */
+}
+
+/* Hiệu ứng hover cho btn-chat */
+.btn-chat:hover {
+  transform: translateY(-3px); /* nổi lên */
+  box-shadow: 0 6px 15px rgba(99, 102, 241, 0.5); /* bóng đậm hơn */
+  background: linear-gradient(90deg, #744ea6, #6366f1); /* đảo màu gradient */
+}
+
+
+.more-sections {
+  text-align: center;
+  margin-top: 40px; /* cách phía trên */
+}
+
+.btn-mores {
+  background: linear-gradient(90deg, #667ce7, #754da5);
+  border: none;
+  border-radius: 30px;
+  padding: 12px 40px;
+  color: #fff;
+  font-size: 16px;
+  font-weight: 600;
+  cursor: pointer;
+  transition: all 0.3s ease;
+  box-shadow: 0 4px 10px rgba(102, 124, 231, 0.3);
+  margin-bottom: 100px;
+}
+
+/* Hover */
+.btn-mores:hover {
+  transform: translateY(-3px);
+  box-shadow: 0 6px 18px rgba(102, 124, 231, 0.5);
+  background: linear-gradient(90deg, #754da5, #667ce7);
+}
+
+/* Khi click */
+.btn-mores:active {
+  transform: translateY(1px);
+  box-shadow: 0 3px 8px rgba(102, 124, 231, 0.4);
+}
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+/* Responsive cho tablet và mobile */
+@media (max-width: 1024px) {
+  .profile-container {
+    max-width: 95%; /* container nhỏ hơn */
+  }
+
+  .profile-info {
+    padding: 25px;
+    font-size: 16px;
+    line-height: 1.6;
+  }
+
+  .profile-info ul {
+    font-size: 16px;
+    padding-left: 20px;
+  }
+
+  .btn-more,
+  .btn-chat {
+    padding: 8px 30px;
+    font-size: 14px;
+  }
+}
+
+@media (max-width: 768px) {
+  .profile-container {
+    flex-direction: column; /* xếp dọc */
+  }
+
+  .profile-image {
+    min-height: 300px; /* giảm chiều cao ảnh */
+  }
+
+  .profile-info {
+    padding: 20px;
+    text-align: center; /* căn giữa chữ */
+  }
+
+  .profile-info h3 {
+    font-size: 18px;
+  }
+
+  .profile-info ul {
+    text-align: left; /* danh sách vẫn căn trái */
+    padding-left: 15px;
+  }
+
+  .profile-buttons {
+    justify-content: center; /* căn giữa 2 nút */
+    gap: 10px;
+  }
+
+  .btn-more,
+  .btn-chat {
+    padding: 8px 20px;
+    font-size: 14px;
+  }
+} 
+
+@media (max-width: 480px) {
+  .profile-info {
+    font-size: 14px;
+    line-height: 1.5;
+    padding: 15px;
+  }
+
+  .profile-info ul {
+    font-size: 14px;
+    padding-left: 12px;
+  }
+
+  .btn-more,
+  .btn-chat {
+    padding: 6px 15px;
+    font-size: 13px;
+  }
+}

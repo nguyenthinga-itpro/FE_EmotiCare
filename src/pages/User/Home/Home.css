@@ -1,0 +1,550 @@
+.hero-section {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  padding: 60px 10%;
+  background: #fff;
+}
+
+.hero-text {
+  flex: 1;
+  max-width: 500px;
+  
+}
+
+.hero-text h1 {
+  font-size: 59px;
+  font-weight: 700;
+  line-height: 1.2;
+  color: #111827; 
+}
+
+
+.hero-text .highlight {
+  display: inline-block;
+  background: linear-gradient(
+    90deg,
+    #6366f1,
+    #744EA6,
+    #ec4899,
+    #f59e0b,
+    #10b981,
+    #3b82f6
+  );
+   font-size: 59px;
+  background-size: 400% 400%;
+  -webkit-background-clip: text;
+  -webkit-text-fill-color: transparent;
+  animation: gradientText 6s ease infinite;
+  /* text-shadow: 0px 8px 6px rgba(0, 0, 0, 0.3); */
+}
+
+/* .hero-text .highlights {
+  text-shadow: 0px 8px 6px rgba(0, 0, 0, 0.3);
+} */
+.hero-text p {
+  margin-top: 16px;
+  font-size: 16px;
+  background: linear-gradient(90deg, #6366f1, #744EA6);
+  -webkit-background-clip: text;
+  -webkit-text-fill-color: transparent;
+  text-align: left;
+  
+}
+
+/* Animation gradient */
+@keyframes gradientText {
+  0% {
+    background-position: 0% 50%;
+  }
+  50% {
+    background-position: 100% 50%;
+  }
+  100% {
+    background-position: 0% 50%;
+  }
+}
+
+.highlight-margin-left{
+  margin-top: 16px;
+  font-size: 14px;
+  margin-left: 50px;
+  background: linear-gradient(90deg, #6366f1, #744EA6);
+  -webkit-background-clip: text;
+  -webkit-text-fill-color: transparent;
+  text-align: left;
+  /* text-shadow: 0px 8px 6px rgba(0, 0, 0, 0.3); */
+}
+.cta-button:hover {
+  transform: translateY(-2px);
+  box-shadow: 0 8px 20px rgba(99, 102, 241, 0.4); 
+}
+
+.cta-button {
+  margin-top: 24px;
+  padding: 12px 32px;
+  font-size: 16px;
+  font-weight: 600;
+  color: white;
+  border: none;
+  border-radius: 8px;
+  margin-left: 100px;
+  background: linear-gradient(90deg, #6366f1, #744EA6);
+  cursor: pointer;
+  transition: all 0.3s ease;
+  display: inline-block; 
+}
+
+.cta-button:hover {
+  opacity: 0.9;
+}
+
+.hero-image {
+  flex: 1;
+  display: flex;
+  justify-content: center;
+}
+
+.hero-image img {
+  max-width: 550px;
+  border-radius: 16px;
+  margin-left: 100px;
+  box-shadow: 0 10px 25px rgba(0, 0, 0, 0.25); 
+  transition: transform 0.3s ease, box-shadow 0.3s ease;
+}
+
+.hero-image img:hover {
+  transform: translateY(-5px); 
+  box-shadow: 0 15px 35px rgba(0, 0, 0, 0.3); 
+}
+
+.menu-section {
+width: 100%;
+  min-height: 200px;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  text-align: center;
+  background: #fff;    
+
+}
+.hero-image {
+  margin-bottom: 60px;
+}
+
+
+.menu-section .content {
+  max-width: 600px;
+}
+
+.postcards-section .subtitle {
+    background: linear-gradient(90deg, #6366f1, #744EA6);
+    -webkit-background-clip: text;
+    -webkit-text-fill-color: transparent;
+    background-clip: text;
+    font-size: 14px;
+}
+.postcards-section .titles {
+  font-size: 40px;
+  font-weight: 700;
+  background: linear-gradient(90deg, #5759e1, #6d43a5);
+  -webkit-background-clip: text;
+  -webkit-text-fill-color: transparent;
+  background-clip: text; 
+  margin-top: 20px;
+  margin-bottom: 35px;
+
+}
+.menu-section .subtitle {
+    background: linear-gradient(90deg, #6366f1, #744EA6);
+    -webkit-background-clip: text;
+    -webkit-text-fill-color: transparent;
+    background-clip: text;
+}
+
+.menu-section .title {
+  font-size: 50px;
+  font-weight: 700;
+  background: linear-gradient(90deg, #6366f1, #744EA6);
+  -webkit-background-clip: text;
+  -webkit-text-fill-color: transparent;
+  background-clip: text; 
+  padding-bottom: 10px;
+}
+.about-content .title {
+  font-size: 50px;
+  font-weight: 700;
+  background: linear-gradient(90deg, #6366f1, #744EA6);
+  -webkit-background-clip: text;
+  -webkit-text-fill-color: transparent;
+  background-clip: text; 
+}
+.about-content .titles {
+  font-size: 14px;
+  font-weight: 500;
+  background: linear-gradient(90deg, #6366f1, #744EA6);
+  -webkit-background-clip: text;
+  -webkit-text-fill-color: transparent;
+  background-clip: text; 
+}
+
+
+
+/* Hiệu ứng gradient khi hover */
+.menu-section .title:hover {
+  background: linear-gradient(
+    90deg,
+    #ff6ec7,
+    #ff9a8b,
+    #fad0c4,
+    #a18cd1,
+    #fbc2eb,
+    #8fd3f4
+  );
+  background-size: 400% 400%;
+  -webkit-background-clip: text;
+  -webkit-text-fill-color: transparent;
+  animation: rainbow 4s linear infinite;
+}
+
+/* Animation chạy màu */
+@keyframes rainbow {
+  0% {
+    background-position: 0% 50%;
+  }
+  50% {
+    background-position: 100% 50%;
+  }
+  100% {
+    background-position: 0% 50%;
+  }
+}
+
+
+.name-section {
+  padding: 60px 40px;
+  text-align: center;
+}
+
+/* Nhóm nhân vật */
+.character-grid  {
+  display: flex;
+  gap: 40px;
+  justify-content: center;
+}
+/* Card nhân vật */
+.character-card h3 {
+  color: #6b4eff;
+  font-size: 18px;
+  font-weight: 600;
+  margin-bottom: 12px;
+}
+
+.character-card img {
+  width: 220px;
+  height: 280px;
+  object-fit: cover;
+  border-radius: 16px;
+  box-shadow: 0 6px 18px rgba(0, 0, 0, 0.15);
+  transition: transform 0.3s ease;
+  box-shadow: 0 4px 15px rgba(0, 0, 0, 0.2); /* bóng nhẹ */
+}
+
+
+/* Custom dots */
+:where(.css-dev-only-do-not-override-xepvsj).ant-carousel .slick-dots {
+  position: relative;
+  margin-top: 30px !important;  
+  text-align: center;
+}
+
+:where(.css-dev-only-do-not-override-xepvsj).ant-carousel .slick-dots li {
+  width: 12px !important;
+  height: 12px !important;
+}
+
+:where(.css-dev-only-do-not-override-xepvsj).ant-carousel .slick-dots li button {
+  width: 10px;
+  height: 10px;
+  border-radius: 50%;       /* tròn đều */
+  background: #d4d4ff;      /* màu mặc định */
+  opacity: 1;
+  cursor: pointer;
+  border: none;
+  padding: 0;               /* bỏ padding thừa */
+}
+
+/* Xóa hiệu ứng progress mặc định */
+:where(.css-dev-only-do-not-override-xepvsj).ant-carousel .slick-dots li button::after {
+  display: none !important;
+}
+
+/* Active dot */
+:where(.css-dev-only-do-not-override-xepvsj).ant-carousel .slick-dots li.slick-active button {
+  background: #6b4eff; 
+  
+}
+
+/* Hover dot */
+:where(.css-dev-only-do-not-override-xepvsj).ant-carousel .slick-dots li button:hover {
+  background: #744EA6;
+}
+
+:where(.css-dev-only-do-not-override-xepvsj).ant-carousel .slick-dots li::after {
+  display: none !important;
+}
+
+
+
+
+.postcards-section {
+  background: #f3f0ff; /* nền tím nhạt */
+  text-align: center;
+  padding: 80px 50px;
+}
+
+.postcards-section .subtitle {
+  font-size: 14px;
+  letter-spacing: 1px;
+  color: #7c7c7c;
+  margin-bottom: 8px;
+}
+
+.postcards-section .title {
+  font-size: 28px;
+  font-weight: bold;
+  color: #6b4eff;
+  margin-bottom: 40px;
+}
+
+.card-grid {
+  display: grid;
+  grid-template-columns: repeat(auto-fit, minmax(220px, 1fr));
+  gap: 24px;
+  justify-items: center;
+}
+
+.card {
+  background: white;
+  border-radius: 16px;
+  padding: 35px;
+  width: 268px;
+  min-height: 268px;
+  box-shadow: 0 6px 18px rgba(0,0,0,0.08);
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  text-align: center;
+  transition: transform 0.3s ease, box-shadow 0.3s ease;
+  
+}
+.card .arrow {
+  font-size: 30px;
+  font-weight: bold;
+  display: inline-block;
+  line-height: 20px;  /* giảm chiều cao dòng để mũi tên lên trên */
+  vertical-align: top; /* đẩy mũi tên sát phía trên */
+}
+.card-texts{
+   font-size: 30px;
+  font-weight: bold;
+  display: inline-block;
+  line-height: 20px;  /* giảm chiều cao dòng để mũi tên lên trên */
+  vertical-align: top; /* đẩy mũi tên sát phía trên */
+}
+
+
+.card:nth-child(odd) {
+  background: linear-gradient(90deg, #667ce7, #754da5);
+  color: white;
+}
+
+.card:hover {
+  transform: translateY(-8px);
+  box-shadow: 0 12px 24px rgba(0,0,0,0.15);
+}
+
+.card .icon {
+  font-size: 32px;
+  margin-bottom: 12px;
+}
+.card .icon img {
+  width: 70px;   
+  height: 70px;
+  object-fit: contain; 
+}
+
+
+.card h3 {
+  margin-bottom: 8px;
+  font-size: 26px;
+  font-weight: 600;
+}
+
+.card p {
+  font-size: 14px;
+  margin-bottom: 16px;
+  line-height: 1.4;
+   line-height: 20px;  /* giảm chiều cao dòng để mũi tên lên trên */
+  vertical-align: top; /* đẩy mũi tên sát phía trên */
+}
+.card-text {
+  font-weight: 600; /* chữ đậm hơn */
+  background: linear-gradient(90deg, #667ce7, #754da5); /* gradient */
+  -webkit-background-clip: text;
+  -webkit-text-fill-color: transparent;
+  background-clip: text;
+
+}
+.card-texts {
+  font-size: 30px;
+  background: linear-gradient(90deg, #667ce7, #754da5); /* gradient */
+  -webkit-background-clip: text;
+  -webkit-text-fill-color: transparent;
+  background-clip: text;
+}
+
+.card .arrow {
+  font-size: 30px;
+  font-weight: bold;
+}
+
+
+.about-section {
+  padding: 80px 0;
+}
+
+.about-container {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  gap: 50px;
+  max-width: 1200px;
+  margin: 0 auto;
+}
+
+.about-image img {
+  width: 500px;
+  border-radius: 16px;
+  box-shadow: 0 9px 35px rgba(0, 0, 0, 0.2); /* bóng nhẹ */
+}
+
+.about-content {
+  max-width: 500px;
+}
+
+.about-content .subtitle {
+  font-size: 14px;
+  font-weight: 600;
+  text-transform: uppercase;
+  background: linear-gradient(90deg, #667ce7, #754da5);
+  -webkit-background-clip: text;
+  -webkit-text-fill-color: transparent;
+  background-clip: text;
+}
+
+.about-content .title {
+  font-size: 36px;
+  font-weight: 700;
+  margin: 16px 0;
+  color: #6366f1;
+}
+
+.about-content p {
+  font-size: 16px;
+  color: #555;
+  margin-bottom: 24px;
+  line-height: 1.6;
+
+}
+
+.about-content .cta-button {
+  padding: 12px 32px;
+  font-size: 16px;
+  font-weight: 600;
+  border: none;
+  border-radius: 8px;
+  color: #fff;
+  background: linear-gradient(90deg, #667ce7, #754da5);
+  cursor: pointer;
+  transition: all 0.3s ease;
+}
+
+.about-content .cta-button:hover {
+  transform: translateY(-2px);
+  opacity: 0.9;
+}
+
+
+
+
+
+/* 📱 Responsive cho màn nhỏ */
+@media (max-width: 768px) {
+  .hero-section {
+    flex-direction: column; 
+    text-align: center; 
+    padding: 40px 5%;
+  }
+  .character-grid {
+    flex-direction: column; /* xếp dọc */
+    align-items: center;
+  }
+    .character-card {
+
+    margin-bottom: 20px;
+  }
+  .hero-text {
+    max-width: 100%;
+  }
+
+  .hero-text h1 {
+    font-size: 32px;
+  }
+
+  .highlight-margin-left {
+    font-size: 16px;
+    text-align: center;
+  }
+
+  .cta-button {
+    margin-right: 100px; 
+    margin-top: 20px;
+
+  }
+
+  .hero-image img {
+    max-width: 300px;
+    margin-right: 100px;
+    margin-top: 30px;
+  }
+}
+
+/* Responsive cho màn hình nhỏ */
+@media screen and (max-width: 768px) {
+  .about-container {
+    flex-direction: column; /* xếp hình và nội dung theo cột */
+    gap: 30px;
+    text-align: center;
+  }
+
+  .about-image img {
+    width: 100%;
+    max-width: 300px;
+  }
+
+  .title {
+    font-size: 28px;
+  }
+
+  .titles {
+    font-size: 14px;
+  }
+
+  .cta-button {
+    width: 100%;
+    max-width: 200px;
+    margin: 0 auto;
+  }
+}
+

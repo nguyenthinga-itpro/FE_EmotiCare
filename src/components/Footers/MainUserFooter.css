@@ -1,0 +1,111 @@
+.custom-footer {
+  background: linear-gradient(180deg, #5a8dee, #784ba0);
+  color: #fff;
+  padding: 60px 20px;
+  font-size: 14px;
+}
+
+.footer-container {
+  max-width: 1200px;
+  margin: 0 auto;
+}
+
+.footer-title {
+  font-weight: 600;
+  margin-bottom: 30px;
+  color: #fff;
+}
+
+.footer-list {
+  list-style: none;
+  padding: 0;
+  margin: 0;
+}
+
+.footer-list li {
+  margin-bottom: 8px;
+  cursor: pointer;
+}
+
+.footer-list li:hover {
+  color: #ffd666;
+}
+
+.social-icons {
+  display: flex;
+  gap: 12px;
+  margin-top: 10px;
+}
+
+.social-icons a {
+  color: #fff;
+  font-size: 18px;
+  transition: 0.3s;
+}
+
+.social-icons a:hover {
+  color: #ffd666;
+}
+
+/* Newsletter */
+.newsletter {
+  display: flex;
+  align-items: center;
+  background: #fff;
+  border-radius: 8px; 
+  max-width: 320px;
+  padding: 3px; 
+}
+:where(.css-dev-only-do-not-override-xepvsj).ant-row-middle {
+  align-items: center;       /* căn giữa theo chiều dọc */
+  justify-content: center;   /* căn giữa theo chiều ngang */
+  margin-left: 100px !important; /* bỏ margin trái */
+  margin-right: 0 !important; /* bỏ margin phải */
+  margin-top: 30px;
+  margin-bottom: 30px;
+}
+
+.newsletter-input {
+  flex: 1;
+  border: none;
+  padding: 12px 10px;
+  outline: none;
+  font-size: 14px;
+  border-radius: 6px 0 0 6px; 
+}
+
+.send-btnM {
+  background: linear-gradient(90deg, #7b2ff7, #4096ff);
+  color: #fff;
+  border: none;
+  cursor: pointer;
+  font-weight: 600;
+  font-size: 16px;
+
+  border-radius: 8px; 
+  transition: all 0.3s ease;
+  box-shadow: 0 6px 15px rgba(64, 150, 255, 0.35),
+              0 4px 10px rgba(123, 47, 247, 0.25);
+}
+
+.send-btnM:hover {
+  opacity: 0.95;
+  transform: translateY(-3px) scale(1.03); /* nổi lên */
+  box-shadow: 0 10px 25px rgba(64, 150, 255, 0.5),
+              0 6px 18px rgba(123, 47, 247, 0.4);
+}
+
+.privacy-text{
+      margin-bottom: 30px;
+}
+.privacy-text a {
+  color: #fff;
+  text-decoration: underline;
+  
+}
+.footer-logo {
+  width: 60px;   
+  height: auto;  
+  object-fit: contain; 
+}
+
