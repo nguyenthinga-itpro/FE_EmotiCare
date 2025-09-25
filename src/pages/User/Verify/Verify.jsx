@@ -2,15 +2,20 @@
 import React, { useEffect, useState } from "react";
 import { useNavigate } from "react-router-dom";
 import { Typography, Card } from "antd";
+import { useDispatch, useSelector } from "react-redux";
+import { verifyEmail } from "../../../redux/Slices/AuthSlice";
 import "./Verify.css";
 
 const { Title } = Typography;
 
 export default function Verify() {
   const navigate = useNavigate();
+  const dispatch = useDispatch();
+  const { message, error } = useSelector((state) => state.user);
+
   const [bubbles, setBubbles] = useState([]);
   const [activeBubbles, setActiveBubbles] = useState(new Set());
-  const [message, setMessage] = useState("Verifying your email...");
+
   const colors = [
     "#ff4d4f",
     "#ffa940",
@@ -21,10 +26,10 @@ export default function Verify() {
   ];
 
   useEffect(() => {
-    // 1️⃣ Tạo 100 bong bóng ngẫu nhiên
+    // tạo bubble animation
     const newBubbles = Array.from({ length: 100 }).map(() => {
-      const duration = 6 + Math.random() * 4;
-      const delay = Math.random() * 5;
+      const duration = 3 + Math.random() * 4;
+      const delay = Math.random() * 2;
       return {
         id: Math.random(),
         left: `${Math.random() * 100}vw`,
@@ -37,29 +42,18 @@ export default function Verify() {
     });
     setBubbles(newBubbles);
 
-    // 2️⃣ Gọi backend tự động update isVerify
-    const updateVerify = async () => {
-      try {
-        await fetch("http://localhost:3001/auth/verify", {
-          method: "POST",
-          headers: { "Content-Type": "application/json" },
-          // Giả sử bạn đã lưu email hoặc UID của user ở localStorage
-          body: JSON.stringify({ email: localStorage.getItem("users.email") }),
-        });
-        setMessage("✅ Email verified successfully!");
-      } catch (err) {
-        console.error("Verify backend error:", err);
-        setMessage("❌ Verification failed");
-      }
-    };
-    updateVerify();
+    // gọi redux verifyEmail
+    const email = localStorage.getItem("users.email");
+    if (email) {
+      dispatch(verifyEmail({ email }));
+    }
 
-    // 3️⃣ Tìm thời gian lớn nhất để redirect về Home
+    // redirect sau khi animation xong
     const maxTime = Math.max(...newBubbles.map((b) => b.totalTime));
     const timer = setTimeout(() => navigate("/"), maxTime * 1000);
 
     return () => clearTimeout(timer);
-  }, [navigate]);
+  }, [dispatch, navigate]);
 
   const handleGlow = (id) => {
     setActiveBubbles((prev) => new Set(prev).add(id));
@@ -87,12 +81,12 @@ export default function Verify() {
             animationDuration: b.duration,
           }}
           onClick={() => handleGlow(b.id)}
-        ></div>
+        />
       ))}
 
       <Card className="verify-card">
         <Title level={2} className="verify-card-title">
-          {message}
+          {error ? `Verification failed: ${error}` : message || "Verifying..."}
         </Title>
       </Card>
     </div>

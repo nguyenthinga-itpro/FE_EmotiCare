@@ -7,8 +7,8 @@ import {
 } from "@ant-design/icons";
 import { Row, Col, Space, Tooltip, Button, Modal } from "antd";
 import "./Postcards.css";
-import ExtraHeader from "../../../components/Headers/ExtraHeader";
-import ExtraUserFooter from "../../../components/Footers/ExtraUserFooter";
+import ExtraHeader from "../../../components/Headers/ExtraHeader/ExtraHeader";
+import ExtraUserFooter from "../../../components/Footers/ExtraUserFooter/ExtraUserFooter";
 
 export default function Postcards() {
   const [flipped, setFlipped] = useState(Array(10).fill(false));
@@ -279,70 +279,65 @@ export default function Postcards() {
               className={`card-container ${flipped[i] ? "flipped" : ""}`}
               onClick={() => handleFlip(i)}
             >
-                {/* Mặt trước */}
-                <div className="card-front">
-                  <img src={card.image} alt={card.title} />
+              {/* Mặt trước */}
+              <div className="card-front">
+                <img src={card.image} alt={card.title} />
+              </div>
+
+              {/* Mặt sau */}
+
+              <div className="card-back">
+                <div className="card-header">
+                  <img className="avatar" src={card.avatar} alt="Avatar" />
+                  <div>
+                    <h4>{card.author}</h4>
+                    <span>{card.job}</span>
+                  </div>
+                  {card.Imgs && (
+                    <img className="article-saves" src={card.Imgs} alt="Save" />
+                  )}
                 </div>
 
-                {/* Mặt sau */}
+                <h2>{card.title}</h2>
+                <p className="date">{card.date}</p>
+                <p className="desc">{card.desc}</p>
 
-        
-                  <div className="card-back">
-                  <div className="card-header">
-                    <img className="avatar" src={card.avatar} alt="Avatar" />
-                    <div>
-                      <h4>{card.author}</h4>
-                      <span>{card.job}</span>
-                    </div>
-                    {card.Imgs && (
-                      <img
-                        className="article-saves"
-                        src={card.Imgs}
-                        alt="Save"
-                      />
-                    )}
-                  </div>
+                {/* Tag + Button chi tiết */}
+                <div className="card-footer">
+                  <span className="tag">{card.tag}</span>
+                  <img
+                    className="card-viewdetail"
+                    src={Images.viewdetail}
+                    alt="View Detail"
+                    onClick={(e) => {
+                      e.stopPropagation(); // tránh lật thẻ
+                      openModal(card);
+                    }}
+                  />
+                </div>
 
-                  <h2>{card.title}</h2>
-                  <p className="date">{card.date}</p>
-                  <p className="desc">{card.desc}</p>
-
-                  {/* Tag + Button chi tiết */}
-                  <div className="card-footer">
-                    <span className="tag">{card.tag}</span>
-                    <img
-                      className="card-viewdetail"
-                      src={Images.viewdetail}
-                      alt="View Detail"
-                      onClick={(e) => {
-                        e.stopPropagation(); // tránh lật thẻ
-                        openModal(card);
-                      }}
-                    />
-                  </div>
-
-                  {/* Stats */}
-                  <div className="stats">
-                    <Space size="large">
-                      <Tooltip title="Likes">
-                        <span>
-                          <HeartOutlined /> {card.likes}
-                        </span>
-                      </Tooltip>
-                      <Tooltip title="Shares">
-                        <span>
-                          <ShareAltOutlined /> {card.shares}
-                        </span>
-                      </Tooltip>
-                      <Tooltip title="Comments">
-                        <span>
-                          <MessageOutlined /> {card.comments}
-                        </span>
-                      </Tooltip>
-                    </Space>
-                  </div>
-                </div></div>
-              
+                {/* Stats */}
+                <div className="stats">
+                  <Space size="large">
+                    <Tooltip title="Likes">
+                      <span>
+                        <HeartOutlined /> {card.likes}
+                      </span>
+                    </Tooltip>
+                    <Tooltip title="Shares">
+                      <span>
+                        <ShareAltOutlined /> {card.shares}
+                      </span>
+                    </Tooltip>
+                    <Tooltip title="Comments">
+                      <span>
+                        <MessageOutlined /> {card.comments}
+                      </span>
+                    </Tooltip>
+                  </Space>
+                </div>
+              </div>
+            </div>
           </Col>
         ))}
       </Row>

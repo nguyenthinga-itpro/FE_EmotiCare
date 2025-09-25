@@ -1,19 +1,10 @@
 import React from "react";
 import Images from "../../../Constant/Images";
 import "./ArticleCard.css";
-import ExtraHeader from "../../../components/Headers/ExtraHeader";
-import ExtraUserFooter from "../../../components/Footers/ExtraUserFooter";
 
 export default function More() {
   return (
     <main>
-      <ExtraHeader />
-
-      {/* Breadcrumb */}
-      <div className="article-breadcrumb">
-        <a href="/More">More</a> / <span>Tips & Guides:</span>
-      </div>
-
       {/* Card */}
       <div className="article-card">
         {/* Image */}
@@ -33,8 +24,6 @@ export default function More() {
           exercises.
         </p>
       </div>
-
-      <ExtraUserFooter />
     </main>
   );
 }

@@ -1,30 +1,53 @@
 import React from "react";
 import { useDispatch, useSelector } from "react-redux";
-import { loginEmail, loginGoogle } from "../../../redux/Slices/AuthSlice";
+import { loginEmail, loginGoogle } from "../../redux/Slices/AuthSlice";
 import { Input, Button, Checkbox, Form, Typography, Space } from "antd";
-import { useTheme } from "../../../Themes/ThemeContext";
-import Videos from "../../../Constant/Videos";
-import Images from "../../../Constant/Images";
+import { useTheme } from "../../Themes/ThemeContext";
+import Videos from "../../Constant/Videos";
+import Images from "../../Constant/Images";
 import "bootstrap/dist/css/bootstrap.min.css";
 import "./Login.css";
+import { Link, useNavigate } from "react-router-dom";
+import { gradientTextStyle, gradientButtonStyle } from "../../Constant/Colors";
 
-import { gradientTextStyle, gradientButtonStyle } from "../../../Themes/Colors";
-
-const { Text, Link } = Typography;
+const { Text } = Typography;
 
 export default function LoginPage() {
   const dispatch = useDispatch();
   const { loading, error } = useSelector((state) => state.user);
   const { theme } = useTheme();
+  const navigate = useNavigate();
 
   const [form] = Form.useForm();
 
-  const onFinish = (values) => {
-    dispatch(loginEmail(values));
+  const onFinish = async (values) => {
+    try {
+      const res = await dispatch(loginEmail(values)).unwrap(); // unwrap để bắt lỗi
+      const role = res.user.role; // lấy role từ response
+      if (role === "admin") {
+        navigate("/admin");
+      } else if (role === "user") {
+        navigate("/user");
+      } else {
+        navigate("/");
+      }
+    } catch (err) {
+      console.error("Login failed:", err);
+    }
   };
 
-  const handleGoogleLogin = () => {
-    dispatch(loginGoogle());
+  const handleGoogleLogin = async () => {
+    try {
+      const res = await dispatch(loginGoogle()).unwrap(); // unwrap để bắt lỗi
+      const role = res.user.role; // lấy role từ response
+      if (role === "admin") {
+        navigate("/admin");
+      } else {
+        navigate("/");
+      }
+    } catch (err) {
+      console.error("Google login failed:", err);
+    }
   };
 
   return (
@@ -102,6 +125,7 @@ export default function LoginPage() {
                   </Checkbox>
 
                   <Link
+                    to="/forgotpassword"
                     style={{
                       float: "right",
                       ...gradientTextStyle(theme.primarycolors, 180),
@@ -161,7 +185,6 @@ export default function LoginPage() {
                       ...gradientTextStyle(theme.primarycolors, 180),
                     }}
                   >
-                    {" "}
                     Sign in with Google
                   </Text>
                 </Button>
@@ -169,13 +192,14 @@ export default function LoginPage() {
                 {/* Register Link */}
                 <div className="link-register text-center mt-3">
                   <Text>
-                    Don’t have an account?{" "}
+                    Don’t have an account?
                     <Link
+                      to="/register"
                       style={{
                         ...gradientTextStyle(theme.primarycolors, 180),
                       }}
                     >
-                      Register for free!
+                      <span> Register for free!</span>
                     </Link>
                   </Text>
                 </div>

@@ -9,13 +9,10 @@ import "./Contact.css";
 import Images from "../../../Constant/Images";
 import Videos from "../../../Constant/Videos";
 import "./Contact.css";
-import AuthHeader from "../../../components/Headers/AuthHeader";
-import ExtraUserFooter from "../../../components/Footers/ExtraUserFooter";
 
 export default function Contact() {
   return (
     <main>
-      <AuthHeader />
       <section className="contact-section">
         <div className="contact-container">
           {/* Form liên hệ */}
@@ -71,17 +68,16 @@ export default function Contact() {
             {/* Google map iframe */}
             <div className="map-container">
               <iframe
-                // title="map"
-                // src="https://www.google.com/maps/embed?pb=!1m18!1m12!1m3..."
-                // allowFullScreen=""
-                // loading="lazy"
-                // referrerPolicy="no-referrer-when-downgrade"
+              // title="map"
+              // src="https://www.google.com/maps/embed?pb=!1m18!1m12!1m3..."
+              // allowFullScreen=""
+              // loading="lazy"
+              // referrerPolicy="no-referrer-when-downgrade"
               ></iframe>
             </div>
           </div>
         </div>
       </section>
-      <ExtraUserFooter />
     </main>
   );
 }

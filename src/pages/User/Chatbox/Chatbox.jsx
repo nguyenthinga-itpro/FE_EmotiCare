@@ -3,13 +3,10 @@ import { Carousel } from "antd";
 import { Link } from "react-router-dom";
 import Images from "../../../Constant/Images";
 import "./Chatbox.css";
-import MainHeader from "../../../components/Headers/MainHeader";
-import ExtraUserFooter from "../../../components/Footers/ExtraUserFooter";
 
 export default function Chatbox() {
   return (
     <main>
-      <MainHeader />
 
       <section className="menu-section">
         <div className="content">
@@ -99,7 +96,7 @@ export default function Chatbox() {
 
             <div className="profile-buttons">
               <button className="btn-more">More</button>
-              <Link to="/Chat" className="btn-chat">
+              <Link to="/user/Chat" className="btn-chat">
                 Chat
               </Link>
             </div>
@@ -138,7 +135,7 @@ export default function Chatbox() {
             </ul>
 
             <div className="profile-buttons">
-              <button  className="btn-more">More</button>
+              <button className="btn-more">More</button>
               <button className="btn-chat">Chat</button>
             </div>
           </div>
@@ -224,8 +221,6 @@ export default function Chatbox() {
       <div class="more-sections">
         <button class="btn-mores">More...</button>
       </div>
-
-      <ExtraUserFooter />
     </main>
   );
 }

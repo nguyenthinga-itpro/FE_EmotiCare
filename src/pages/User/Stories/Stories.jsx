@@ -4,15 +4,12 @@ import { Collapse, Carousel } from "antd";
 import Images from "../../../Constant/Images";
 import Videos from "../../../Constant/Videos";
 import "./Stories.css";
-import AuthHeader from "../../../components/Headers/AuthHeader";
-import ExtraUserFooter from "../../../components/Footers/ExtraUserFooter";
 
 const { Panel } = Collapse;
 
 export default function Stories() {
   return (
     <main>
-      <AuthHeader />
 
       <div className="video-container">
         <video
@@ -109,8 +106,6 @@ export default function Stories() {
           </div>
         </div>
       </section>
-
-      <ExtraUserFooter />
     </main>
   );
 }

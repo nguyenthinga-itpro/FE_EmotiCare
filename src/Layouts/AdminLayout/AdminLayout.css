@@ -1,0 +1,9 @@
+.breadcrumb-custom {
+  background: var(--sidebarBg);
+}
+
+.breadcrumb-custom .ant-breadcrumb-separator,
+.breadcrumb-custom a,
+.breadcrumb-custom span {
+  color: var(--sidebarText) !important;
+}

@@ -1,0 +1,9 @@
+.btn-edit-table-management {
+  background: var(--gradientGreen);
+  border: "none";
+  color: var(--textTopStatictis);
+  padding: 4px 18px;
+  border-radius: 6;
+  cursor: pointer;
+  font-weight: 600;
+}
