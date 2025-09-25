@@ -1,9 +1,18 @@
 import axios from "axios";
+
 const Api = axios.create({
   baseURL: "http://localhost:3001",
   headers: { "Content-Type": "application/json" },
-  withCredentials: true, // quan trọng để gửi cookie
+  withCredentials: true,
 });
+
+// Tạo instance riêng cho refresh, KHÔNG có interceptor
+const RefreshApi = axios.create({
+  baseURL: "http://localhost:3001",
+  headers: { "Content-Type": "application/json" },
+  withCredentials: true,
+});
+
 Api.interceptors.response.use(
   (response) => response,
   async (error) => {
@@ -13,9 +22,10 @@ Api.interceptors.response.use(
       originalRequest._retry = true;
 
       try {
-        await Api.get("/auth/refresh"); // refresh token
-        return Api(originalRequest); // retry request cũ
+        await RefreshApi.get("/auth/refresh"); // dùng instance riêng
+        return Api(originalRequest); // gọi lại request cũ
       } catch (err) {
+        console.error("Refresh token failed:", err);
         return Promise.reject(err);
       }
     }
@@ -23,4 +33,5 @@ Api.interceptors.response.use(
     return Promise.reject(error);
   }
 );
+
 export default Api;

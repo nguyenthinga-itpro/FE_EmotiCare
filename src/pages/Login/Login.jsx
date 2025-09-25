@@ -26,6 +26,8 @@ export default function LoginPage() {
       const role = res.user.role; // lấy role từ response
       if (role === "admin") {
         navigate("/admin");
+      } else if (role === "user") {
+        navigate("/user");
       } else {
         navigate("/");
       }
