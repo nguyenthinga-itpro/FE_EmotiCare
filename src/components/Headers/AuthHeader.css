@@ -1,0 +1,32 @@
+.avatar-img {
+  width: 40px;
+  height: 40px;
+  border-radius: 50%;
+  cursor: pointer;
+}
+
+.right-wrapper {
+  display: flex;
+  align-items: center;
+  justify-content: flex-end;
+  gap: 10px;
+}
+
+.menu-btn {
+  background: none;
+  border: none;
+  color: #fff;
+  font-size: 22px;
+  cursor: pointer;
+  display: none;
+}
+
+
+@media (max-width: 768px) {
+  .menu-desktop {
+    display: none; 
+  }
+  .menu-btn {
+    display: inline-flex; 
+  }
+}
