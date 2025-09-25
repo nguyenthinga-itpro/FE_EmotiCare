@@ -16,8 +16,6 @@ import { useNavigate } from "react-router-dom";
 
 import Images from "../../../Constant/Images";
 import "./More.css";
-import AuthHeader from "../../../components/Headers/AuthHeader";
-import ExtraUserFooter from "../../../components/Footers/ExtraUserFooter";
 const { Panel } = Collapse;
 // Hàm xử lý đổi tab
 // const scrollToSection = (section) => {
@@ -28,7 +26,7 @@ export default function More() {
   // const [darkEnabled, setDarkEnabled] = useState(false);
   const navigate = useNavigate();
   const goToPostcards = () => {
-    navigate("/ArticleCard");
+    navigate("/user/ArticleCard");
     setTimeout(() => {
       window.scrollTo({ top: 0, behavior: "smooth" });
     }, 100); // delay 100ms cho chắc
@@ -70,7 +68,6 @@ export default function More() {
 
   return (
     <main>
-      <AuthHeader />
       <Row align="middle" justify="space-between" style={{ width: "100%" }}>
         {/* Left col trống desktop */}
         <Col xs={0} md={5}></Col>
@@ -837,8 +834,6 @@ export default function More() {
           </Card>
         </div>
       )} */}
-
-      <ExtraUserFooter />
     </main>
   );
 }

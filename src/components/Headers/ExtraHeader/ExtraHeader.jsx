@@ -2,7 +2,7 @@ import React from "react";
 import { Layout, Col, Row } from "antd";
 import { Link } from "react-router-dom";
 import { LockOutlined } from "@ant-design/icons";
-import Images from "../../../src/Constant/Images";
+import Images from "../../../Constant/Images";
 import "./ExtraHeader.css";
 
 const { Header } = Layout;
@@ -19,19 +19,13 @@ const HeaderBar = () => {
           </div>
         </Col>
 
-        <Col span={18}>
+        <Col span={18}></Col>
+
+        <Col span={2} className="login-col">
+          <Link to="/login">
+            <img src={Images.Care} alt="User Avatar" className="avatar-img" />
+          </Link>
         </Col>
-
-<Col span={2} className="login-col">
-  <Link to="/login">
-    <img
-      src={Images.Care}
-      alt="User Avatar"
-      className="avatar-img"
-    />
-  </Link>
-</Col>
-
       </Row>
     </Header>
   );

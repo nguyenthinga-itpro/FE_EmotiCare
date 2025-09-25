@@ -3,16 +3,12 @@ import { Col, Row, Carousel } from "antd";
 import { Link, useNavigate } from "react-router-dom";
 import Images from "../../../Constant/Images";
 import "./Home.css";
-import MainHeader from "../../../components/Headers/MainHeader";
-import MainUserFooter from "../../../components/Footers/MainUserFooter";
 
 export default function Home() {
   const navigate = useNavigate();
 
   return (
     <main>
-      <MainHeader />
-
       {/* Hero Section */}
       <section className="hero-section">
         <div className="hero-text">
@@ -172,7 +168,7 @@ export default function Home() {
             >
               About us
             </button>
-                        <button
+            <button
               className="cta-button"
               onClick={() => {
                 navigate("/Postcards");
@@ -184,8 +180,6 @@ export default function Home() {
           </div>
         </div>
       </section>
-
-      <MainUserFooter />
     </main>
   );
 }

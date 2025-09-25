@@ -1,0 +1,73 @@
+.users-management {
+  text-align: center !important;
+}
+
+.title-users-management {
+  color: var(--colorTitle) !important;
+}
+
+.user-table .ant-table-thead > tr > th {
+  background: var(--gradientPrimary) !important;
+  color: var(--textTopStatictis) !important;
+  font-weight: bold;
+  /* text-align: center; */
+}
+
+.user-table .ant-table-tbody {
+  box-shadow: 0px 4px 12px rgba(0, 0, 0, 0.1);
+  border-radius: 8px; /* bo góc nếu cần */
+}
+
+.user-table .ant-table-tbody > tr:nth-child(odd) > td {
+  background: var(--BgPrimary) !important; /* màu xen kẽ */
+}
+
+.user-table .ant-table-tbody > tr:nth-child(even) > td {
+  background: var(--sidebarHoverBg) !important; /* màu xen kẽ */
+}
+/* Đổi màu icon Filter */
+.user-table .ant-table-filter-trigger {
+  color: var(--textTopStatictis) !important; /* xanh dương */
+}
+
+/* Đổi màu icon Sorter */
+.user-table .ant-table-column-sorter-up,
+.user-table .ant-table-column-sorter-down {
+  color: var(--textTopStatictis) !important; /* xanh dương */
+}
+
+/* Khi đang active (đang filter/sort) */
+.user-table .ant-table-filter-trigger.active,
+.user-table .ant-table-column-sorter-up.active,
+.user-table .ant-table-column-sorter-down.active {
+  color: var(--filterIcon) !important; /* cam */
+}
+/* Áp dụng style cho filter dropdown của bảng */
+.ant-dropdown .ant-table-filter-dropdown .ant-dropdown-menu {
+  max-height: 264px;
+  overflow-x: hidden;
+  border: 0;
+  box-shadow: none;
+  border-radius: unset;
+  background: var(--BgPrimary) !important;
+}
+/* Hiệu ứng hover cho mục trong dropdown */
+.ant-dropdown .ant-table-filter-dropdown .ant-dropdown-menu-item:hover {
+  background: var(--sidebarHoverBg) !important; /* Màu nền khi hover */
+}
+
+/* Áp dụng style cho mục đã chọn trong dropdown */
+.ant-dropdown .ant-table-filter-dropdown .ant-dropdown-menu-item-selected {
+  background-color: var(
+    --sidebarHoverBg
+  ) !important; /* Màu nền cho mục đã chọn */
+  color: var(--colorPrimary) !important; /* Màu chữ cho mục đã chọn */
+}
+/* Tùy chỉnh cho nút bị vô hiệu hóa (disabled button) */
+.ant-btn-color-link.ant-btn-variant-link:disabled,
+.ant-btn-color-link.ant-btn-variant-link.ant-btn-disabled {
+  cursor: not-allowed; /* Khi nút bị vô hiệu hóa, con trỏ chuột sẽ thay đổi thành not-allowed */
+  color: var(
+    --sidebarHoverText
+  ) !important; /* Màu chữ khi nút bị vô hiệu hóa */
+}

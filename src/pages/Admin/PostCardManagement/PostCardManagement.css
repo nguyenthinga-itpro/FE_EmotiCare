@@ -1,0 +1,108 @@
+.user-table {
+  max-height: 400px;
+  overflow-y: auto;
+  scrollbar-width: none;
+  -ms-overflow-style: none;
+  border-radius: 8px;
+  box-shadow: 0 4px 12px rgba(0, 0, 0, 0.1); /* Đổ bóng toàn bảng */
+}
+
+/* Ẩn scrollbar */
+.user-table::-webkit-scrollbar {
+  display: none;
+}
+
+/* Header cố định và gradient */
+.user-table .ant-table-thead > tr > th {
+  background: linear-gradient(180deg, #667eea 0%, #764ba2 100%) !important;
+  color: #ffffff !important;
+  font-weight: bold;
+  position: sticky;
+  top: 0;
+  z-index: 10;
+  box-shadow: 0 2px 4px rgba(0, 0, 0, 0.1); /* đổ bóng cho header */
+}
+
+/* Body với background xen kẽ */
+.user-table .ant-table-tbody > tr:nth-child(odd) > td {
+  background-color: #ffffff;
+}
+
+.user-table .ant-table-tbody > tr:nth-child(even) > td {
+  background-color: #fafafa;
+}
+
+/* Đổ bóng cho từng row khi hover (tùy chọn) */
+.user-table .ant-table-tbody > tr:hover > td {
+  box-shadow: inset 0 0 10px rgba(0, 0, 0, 0.05);
+  transition: all 0.3s ease;
+}
+
+/* Filter/Sorter icon */
+.user-table .ant-table-filter-trigger {
+  color: #ffffff !important;
+}
+
+.user-table .ant-table-column-sorter-up,
+.user-table .ant-table-column-sorter-down {
+  color: #ffffff !important;
+}
+
+.user-table .ant-table-filter-trigger.active,
+.user-table .ant-table-column-sorter-up.active,
+.user-table .ant-table-column-sorter-down.active {
+  color: #fffb00 !important;
+}
+.postcard-management {
+  text-align: center;
+}
+
+.postcard-management h3 {
+  color: #67748e;
+  margin-bottom: 20px;
+}
+
+/* Table row xen kẽ */
+.table-row-light {
+  background-color: #ffffff;
+}
+
+.table-row-dark {
+  background-color: #fafafa;
+}
+
+/* Image trong table */
+.table-image {
+  width: 120px;
+  height: 120px;
+  object-fit: cover;
+  border-radius: 6px;
+  cursor: pointer;
+}
+
+/* Title clickable */
+.table-title {
+  cursor: pointer;
+  color: #333;
+}
+
+/* Button Edit */
+.edit-button {
+  background: linear-gradient(90deg,#00c853,#64dd17);
+  border: none;
+  color: #fff;
+  padding: 4px 18px;
+  border-radius: 6px;
+  cursor: pointer;
+  font-weight: 600;
+  transition: all 0.3s ease;
+}
+
+.edit-button:hover {
+  filter: brightness(1.1);
+}
+
+/* Description with html */
+.description-html {
+  white-space: pre-wrap;
+}
