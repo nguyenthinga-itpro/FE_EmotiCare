@@ -4,100 +4,119 @@
   align-items: center;
   padding: 0 24px;
   height: 70px;
-  background: linear-gradient(180deg, #7b2ff7, #4096ff);
-  color: #fff;
+  background: var(--gradientHeader);
+  color: var(--colorText);
 }
 
-.logo {
+.logo a {
   font-size: 20px;
   font-weight: bold;
-  color: #fff;
+  color: var(--textTopStatictis);
 }
-
-
+.header-menu-left {
+  width: 100%;
+}
 .menu {
   display: flex;
   gap: 24px;
 }
 
 .menu a {
-  color: #d6e4ff;
+  color: var(--textTopStatictis);
   text-decoration: none;
   font-weight: 500;
   transition: color 0.2s ease;
-    transition: color 0.3s ease;
+  transition: color 0.3s ease;
 }
 
 .menu a:hover,
 .menu-mobile a:hover {
-  color: #667ce7; /* màu khi hover */
+  color: var(--menuHover); /* màu khi hover */
 }
 
 .menu a.active,
 .menu-mobile a.active {
-  color: #fff; /* màu sáng cho trang đang active */
+  color: var(--textTopStatictis); /* màu sáng cho trang đang active */
   font-weight: bold;
-}
-/* Nút login (trước khi đăng nhập) */
-.login-col {
-  text-align: left;
-}
-
-.right-wrappers {
-  display: flex;
-
-  justify-content: flex-end;
-  
-}
-.login-wrappers {
-  display: flex;
-  justify-content: flex-end; /* đẩy hết về bên phải */
-  align-items: center;
-  gap: 10px; /* khoảng cách giữa login và menu */
-  width: 100%; /* chiếm full Col */
-}
-
-.login-btns {
-  background: linear-gradient(180deg, #7b2ff7, #4096ff);
-  border: 1px solid #fff;
-  padding: 6px 14px;
-  border-radius: 8px;
-  color: #fff;
-  font-weight: 500;
-  font-size: 14px;
-  cursor: pointer;
-  display: inline-flex;
-  align-items: center;
-  justify-content: center;
-  gap: 6px;
-  height: 36px;
-  transition: all 0.3s ease;
-}
-
-.login-btns:hover {
-  opacity: 0.9;
 }
 
 /* Menu button (hamburger) */
 .menu-btn {
   background: none;
   border: none;
-  color: #fff;
+  color: var(--textTopStatictis);
   font-size: 20px;
   margin-left: 5px;
   cursor: pointer;
   display: none; /* mặc định ẩn */
 }
+.header-menu-right {
+  text-align: center;
+}
+.email-header-menu-right {
+  margin-bottom: 10px;
+  color: var(--textTopStatictis);
+  font-weight: 500;
+}
+.button-Logout-header-menu-right {
+  background: var(--gradientPrimary);
+  color: var(--textTopStatictis);
+  border: none;
+  border-radius: 6px;
+  font-weight: 500;
+}
+.custom-popover .ant-popover-inner {
+  background: var(--tooltipBg) !important;
+  border-radius: 8px;
+  color: var(--textTopStatictis);
+}
 
+.avatar-header-menu-right {
+  cursor: pointer;
+  border: 2px solid #fff;
+}
+.theme-toggle {
+  margin-left: 20px;
+}
+.light-theme-toggle {
+  font-size: 20px;
+}
+.dark-theme-toggle {
+  font-size: 20;
+  color: var(--textTopStatictis);
+}
+.language-toggle {
+  margin-left: 20px;
+}
+.tooltip-language-toggle {
+  user-select: none;
+}
+.menu-button-mobile {
+  margin-left: 20px;
+}
 /* Responsive */
 @media (max-width: 768px) {
   .menu-desktop {
-    display: none; /* ẩn menu ngang */
+    display: none;
   }
   .menu-btn {
-    display: inline-flex; /* hiện hamburger */
+    display: inline-flex;
   }
 }
+.menu-container .menu-container {
+  background: var(--gradientPrimary) !important;
+}
+
+.menu-container .ant-drawer-header {
+  background: var(--gradientPrimary) !important;
+  color: var(--textTopStatictis) !important;
+  padding: 16px 0px !important;
+}
+
+.menu-container .menu-mobile a:hover {
+  color: var(--menuHover) !important;
+}
+
 .menu-mobile {
   display: flex;
   flex-direction: column;
@@ -108,18 +127,17 @@
 .menu-mobile a {
   font-size: 16px;
   font-weight: 500;
-  color: #4096ff; /* xanh dương */
+  color: var(--colorText);
   text-decoration: none;
   transition: all 0.3s ease;
 }
 
 .menu-mobile a:hover {
-  color: #7b2ff7; /* tím khi hover */
+  color: var(--menuHover);
   padding-left: 8px;
 }
 
 .menu-mobile a.active {
-  color: #7b2ff7;
+  color: var(--menuHover);
   font-weight: 600;
 }
-
