@@ -24,6 +24,7 @@ export default function LoginPage() {
     try {
       const res = await dispatch(loginEmail(values)).unwrap(); // unwrap để bắt lỗi
       const role = res.user.role; // lấy role từ response
+      console.log("role", role);
       if (role === "admin") {
         navigate("/admin");
       } else if (role === "user") {

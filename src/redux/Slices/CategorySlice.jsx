@@ -9,6 +9,7 @@ export const getAllCategories = createAsyncThunk(
       const res = await Api.get("/category", {
         params: { pageSize, startAfterId },
       });
+      console.log(res.data);
       return res.data;
     } catch (err) {
       return rejectWithValue(err.response?.data?.error || err.message);
@@ -19,9 +20,9 @@ export const getAllCategories = createAsyncThunk(
 // === CREATE CATEGORY ===
 export const createCategory = createAsyncThunk(
   "category/createCategory",
-  async ({ name, description }, { rejectWithValue }) => {
+  async ({ name, description, image }, { rejectWithValue }) => {
     try {
-      const res = await Api.post("/category", { name, description });
+      const res = await Api.post("/category", { name, description, image });
       return res.data;
     } catch (err) {
       return rejectWithValue(err.response?.data?.error || err.message);
@@ -32,11 +33,12 @@ export const createCategory = createAsyncThunk(
 // === UPDATE CATEGORY ===
 export const updateCategory = createAsyncThunk(
   "category/updateCategory",
-  async ({ id, name, description }, { rejectWithValue }) => {
+  async ({ id, name, description, image }, { rejectWithValue }) => {
     try {
       const res = await Api.patch(`/category/${id}`, {
         name,
         description,
+        image,
       });
       return res.data.category;
     } catch (err) {
@@ -57,7 +59,46 @@ export const toggleCategoryStatus = createAsyncThunk(
     }
   }
 );
+// === UPLOAD IMAGE ===
+export const uploadImage = createAsyncThunk(
+  "category/uploadImage",
+  async (file, { rejectWithValue }) => {
+    try {
+      const formData = new FormData();
+      formData.append("image", file);
 
+      const res = await Api.post("/file/upload", formData, {
+        headers: { "Content-Type": "multipart/form-data" },
+      });
+
+      return res.data.imageUrl;
+    } catch (err) {
+      return rejectWithValue(err.response?.data?.error || err.message);
+    }
+  }
+);
+// === UPDATE IMAGE Postcard ===
+export const updateImage = createAsyncThunk(
+  "category/updateCategoryImage",
+  async ({ id, file }, { rejectWithValue }) => {
+    try {
+      const formData = new FormData();
+      formData.append("image", file);
+
+      const res = await Api.patch(
+        `/file/update/${id}/image?type=category`,
+        formData,
+        {
+          headers: { "Content-Type": "multipart/form-data" },
+        }
+      );
+
+      return { category: res.data.category, imageUrl: res.data.imageUrl };
+    } catch (err) {
+      return rejectWithValue(err.response?.data?.error || err.message);
+    }
+  }
+);
 const categorySlice = createSlice({
   name: "category",
   initialState: {
@@ -192,6 +233,40 @@ const categorySlice = createSlice({
         );
       })
       .addCase(toggleCategoryStatus.rejected, (state, action) => {
+        state.error = action.payload;
+      })
+      .addCase(uploadImage.pending, (state) => {
+        state.loading = true;
+        state.error = null;
+      })
+      .addCase(uploadImage.fulfilled, (state, action) => {
+        state.loading = false;
+        state.message = "Image uploaded successfully";
+        state.uploadedImageUrl = action.payload; // lưu URL vào state
+      })
+      .addCase(uploadImage.rejected, (state, action) => {
+        state.loading = false;
+        state.error = action.payload;
+      })
+      .addCase(updateImage.pending, (state) => {
+        state.loading = true;
+        state.error = null;
+      })
+      .addCase(updateImage.fulfilled, (state, action) => {
+        state.loading = false;
+        state.message = "Image updated successfully";
+
+        const updated = action.payload.category;
+        state.allCategoriesMap[updated.id] = {
+          ...state.allCategoriesMap[updated.id],
+          ...updated,
+        };
+        state.paginatedCategories = state.paginatedCategories.map((e) =>
+          e.id === updated.id ? { ...e, ...updated } : e
+        );
+      })
+      .addCase(updateImage.rejected, (state, action) => {
+        state.loading = false;
         state.error = action.payload;
       });
   },
