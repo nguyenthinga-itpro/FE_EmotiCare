@@ -2,28 +2,18 @@ import React, { useState } from "react";
 import {
   Form,
   Input,
-  Avatar,
   Card,
-  Layout,
   Row,
   Col,
   Collapse,
   Carousel,
-  Radio,
-  Switch,
 } from "antd";
 import { useNavigate } from "react-router-dom";
 
 import Images from "../../../Constant/Images";
 import "./More.css";
 const { Panel } = Collapse;
-// Hàm xử lý đổi tab
-// const scrollToSection = (section) => {
-//   setactiveSettingsSection (section);
-// };
 export default function More() {
-  // const [theme, setTheme] = useState("light");
-  // const [darkEnabled, setDarkEnabled] = useState(false);
   const navigate = useNavigate();
   const goToPostcards = () => {
     navigate("/user/ArticleCard");
@@ -31,28 +21,6 @@ export default function More() {
       window.scrollTo({ top: 0, behavior: "smooth" });
     }, 100); // delay 100ms cho chắc
   };
-  // Mỗi khi theme đổi -> thêm class vào body
-  // useEffect(() => {
-  //   document.body.classList.remove("light-theme", "dark-theme");
-  //   if (theme === "dark" || darkEnabled) {
-  //     document.body.classList.add("dark-theme");
-  //   } else {
-  //     document.body.classList.add("light-theme");
-  //   }
-  // }, [theme, darkEnabled]);
-
-  // Hàm scroll mượt
-  // const [activeSettingsSection , setactiveSettingsSection ] = useState("mydetails"); // 👈 mặc định mở "mydetails"
-
-  //   const scrollToSection = (id) => {
-  //     const section = document.getElementById(id);
-  //     if (section) {
-  //       section.scrollIntoView({ behavior: "smooth", block: "start" });
-  //       setactiveSettingsSection (id); // đổi active khi click
-  //       console.log("setactiveSettingsSection ", activeSettingsSection );
-  //     }
-  //   };
-  // Menu trên (About, FAQ, Resources, Settings)
   const [activeMainSection, setActiveMainSection] = useState("about");
 
   // Menu dưới (My details, Profile, Password, Email)
@@ -65,7 +33,6 @@ export default function More() {
       setActiveMainSection(id); // chỉ thay đổi menu trên
     }
   };
-
   return (
     <main>
       <Row align="middle" justify="space-between" style={{ width: "100%" }}>

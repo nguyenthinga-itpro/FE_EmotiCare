@@ -355,7 +355,7 @@ width: 100%;
 
 
 .card:nth-child(odd) {
-  background: linear-gradient(90deg, #667ce7, #754da5);
+  /* background: linear-gradient(90deg, #667ce7, #754da5); */
   color: white;
 }
 
@@ -394,7 +394,6 @@ width: 100%;
   -webkit-background-clip: text;
   -webkit-text-fill-color: transparent;
   background-clip: text;
-
 }
 .card-texts {
   font-size: 30px;

@@ -23,14 +23,14 @@ body,html{
   margin-bottom:10px
 }
 .menu-navbar button:hover{
-  line-height:1.9;
-  background:linear-gradient(90deg,#ff7b7b,#ffb347);
+  line-height:1.6;
+  background:var(--gradientPrimary);
   -webkit-background-clip:text;
   -webkit-text-fill-color:transparent;
-  transform:scale(1.05)
+  transform:scale(1.1)
 }
 .menu-navbar .active-navbar{
-  line-height:1.9;
+  line-height:1.6;
   background:linear-gradient(90deg,#667ce7,#754da5);
   -webkit-background-clip:text;
   -webkit-text-fill-color:transparent;
@@ -38,7 +38,7 @@ body,html{
 }
 .about-line{
   font-weight:700;
-  line-height:1.9;
+  line-height:1.6;
   background:linear-gradient(90deg,#667ce7,#955dda);
   -webkit-background-clip:text;
   -webkit-text-fill-color:transparent;
@@ -60,7 +60,7 @@ body,html{
   -webkit-background-clip:text;
   -webkit-text-fill-color:transparent;
   background-clip:text;
-  line-height:1.9
+  line-height:1.6
 }
 .faq-lines{
   max-width:1100px;
@@ -85,7 +85,7 @@ section ul li{
 .general-line{
   font-size:22px;
   font-weight:700;
-  line-height:1.9;
+  line-height:1.6;
   background:linear-gradient(90deg,#667ce7,#754da5);
   -webkit-background-clip:text;
   -webkit-text-fill-color:transparent;
@@ -93,7 +93,7 @@ section ul li{
   padding-bottom:10px
 }
 .panel-gradient{
-  line-height:1.9;
+  line-height:1.6;
   background:linear-gradient(90deg,#667ce7,#754da5);
   -webkit-background-clip:text;
   -webkit-text-fill-color:transparent;
@@ -105,7 +105,7 @@ section ul li{
 .about-lineFAQ{
   font-weight:700;
   font-size:36px;
-  line-height:1.9;
+  line-height:1.6;
   background:linear-gradient(90deg,#667ce7,#754da5);
   -webkit-background-clip:text;
   -webkit-text-fill-color:transparent;
@@ -115,7 +115,7 @@ section ul li{
 .general-line{
   font-size:20px;
   font-weight:700;
-  line-height:1.9;
+  line-height:1.6;
   background:linear-gradient(90deg,#667ce7,#754da5);
   -webkit-background-clip:text;
   -webkit-text-fill-color:transparent;
@@ -138,7 +138,7 @@ section ul li{
   transition:all .3s ease
 }
 .ant-collapse-header .panel-gradient{
-  line-height:1.9;
+  line-height:1.6;
   background:linear-gradient(90deg,#667ce7,#754da5);
   -webkit-background-clip:text;
   -webkit-text-fill-color:transparent;
@@ -156,7 +156,7 @@ section ul li{
   padding:10px
 }
 .panel-p{
-  line-height:1.9;
+  line-height:1.6;
   background:linear-gradient(90deg,#667ce7,#754da5);
   -webkit-background-clip:text;
   -webkit-text-fill-color:transparent;
@@ -164,7 +164,7 @@ section ul li{
   line-height:1.6
 }
 .panel-gradient{
-  line-height:1.9;
+  line-height:1.6;
   background:linear-gradient(90deg,#667ce7,#754da5);
   -webkit-background-clip:text;
   -webkit-text-fill-color:transparent;
@@ -204,7 +204,7 @@ section ul li{
   font-weight:700;
   padding-top:10px;
   margin-left:90px;
-  line-height:1.9;
+  line-height:1.6;
   text-align:left;
   background:linear-gradient(90deg,#6567cc,#8c43eb);
   -webkit-background-clip:text;
