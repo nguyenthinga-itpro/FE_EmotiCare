@@ -2,7 +2,7 @@ import React from "react";
 import { Layout, Breadcrumb } from "antd";
 import MainHeader from "../../components/Headers/MainHeader/MainHeader";
 import MainUserFooter from "../../components/Footers/MainUserFooter/MainUserFooter";
-import { Outlet, useLocation, Link } from "react-router-dom";
+import { Outlet } from "react-router-dom";
 import { useTheme } from "../../Themes/ThemeContext";
 import "./MainUserLayout.css";
 
@@ -11,7 +11,10 @@ const { Content } = Layout;
 const MainUserLayout = () => {
   const { theme, mode } = useTheme();
   return (
-    <Layout className={`main-user-layout ${mode}`}>
+    <Layout
+      className={`main-user-layout ${mode}`}
+      style={{ minHeight: "100vh", background: theme.colorBgContainer }}
+    >
       {/* Header */}
       <MainHeader />
 
@@ -19,7 +22,14 @@ const MainUserLayout = () => {
       {/* <Breadcrumb style={{ margin: "16px 24px" }} items={breadcrumbItems} /> */}
 
       {/* Content */}
-      <Content style={{ minHeight: "calc(100vh - 160px)", padding: "24px" }}>
+      <Content
+        style={{
+          minHeight: "calc(100vh - 160px)",
+          padding: "24px",
+          background: theme.colorBgContainer,
+          borderRadius: theme.borderRadiusLG,
+        }}
+      >
         <Outlet />
       </Content>
 
