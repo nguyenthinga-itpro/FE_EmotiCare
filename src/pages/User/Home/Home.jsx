@@ -1,5 +1,5 @@
-import React, { useEffect } from "react";
-import { Col, Row, Carousel, Button } from "antd";
+import React, { useEffect, useState } from "react";
+import { Pagination, Button } from "antd";
 import { Link, useNavigate } from "react-router-dom";
 import Images from "../../../Constant/Images";
 import "./Home.css";
@@ -7,22 +7,41 @@ import { getAllChats } from "../../../redux/Slices/ChatAISlice";
 import { getAllCategories } from "../../../redux/Slices/CategorySlice";
 import { useDispatch, useSelector } from "react-redux";
 import { ArrowRightOutlined } from "@ant-design/icons";
+
 export default function Home() {
+  const [currentPage, setCurrentPage] = useState(1);
+  const localPageSize = 3; // số card mỗi trang
+
   const navigate = useNavigate();
   const dispatch = useDispatch();
-  const { paginatedChats, loading, error, pageSize } = useSelector(
-    (s) => s.chat
-  );
-  const { paginatedCategories } = useSelector((s) => s.category);
+
+  // lấy state từ redux
+  const {
+    paginatedChats = [],
+    loading,
+    error,
+    pageSize,
+  } = useSelector((s) => s.chat);
+  const { paginatedCategories = [] } = useSelector((s) => s.category);
+
+  // gọi API chats
   useEffect(() => {
     dispatch(getAllChats({ pageSize: 100 }));
   }, [dispatch, pageSize]);
+
+  // gọi API categories
   useEffect(() => {
     dispatch(getAllCategories({ pageSize: 100 }));
   }, [dispatch]);
+
+  // lọc bỏ disabled
   const chats = paginatedChats.filter((c) => c.isDisabled === false);
   const categories = paginatedCategories.filter((c) => c.isDisabled === false);
-  console.log("categories", categories);
+
+  // tính toán dữ liệu hiển thị cho pagination
+  const startIndex = (currentPage - 1) * localPageSize;
+  const currentChats = chats.slice(startIndex, startIndex + localPageSize);
+
   return (
     <main>
       {/* Hero Section */}
@@ -35,9 +54,11 @@ export default function Home() {
           <span className="highlight-margin-left">
             You speak, we listen — every emotion matters.
           </span>
-          <Link to="/login">
-            <button className="cta-button">Get Started</button>
-          </Link>
+          <div className="cta1-button-login">
+            <Link to="/login">
+              <button className="cta-button">Get Started</button>
+            </Link>
+          </div>
         </div>
 
         <div className="hero-image">
@@ -55,10 +76,14 @@ export default function Home() {
 
       {/* Characters Section */}
       <section className="name-section">
-        <Carousel dots={{ className: "custom-dots" }}>
+        {loading && <p>Loading chats...</p>}
+        {error && <p style={{ color: "red" }}>Error loading chats</p>}
+        {!loading && chats.length === 0 && <p>No chats available</p>}
+
+        {currentChats.length > 0 && (
           <div className="character-grid-container">
             <div className="character-grid">
-              {chats.map((chat) => (
+              {currentChats.map((chat) => (
                 <div key={chat.id} className="character-card-home">
                   <h3>{chat.name}</h3>
                   <img src={chat.image} alt={chat.name} />
@@ -66,7 +91,17 @@ export default function Home() {
               ))}
             </div>
           </div>
-        </Carousel>
+        )}
+
+        {/* Pagination */}
+        <Pagination
+          className="custom-Pagination"
+          align="center"
+          current={currentPage}
+          pageSize={localPageSize}
+          total={chats.length}
+          onChange={(page) => setCurrentPage(page)}
+        />
       </section>
 
       {/* Postcards Section */}
@@ -79,7 +114,6 @@ export default function Home() {
             {categories.map((c) => (
               <div key={c.id} className="card-home">
                 <div className="icon">
-                  {/* nếu có ảnh thì hiện, ko thì fallback */}
                   <img src={c.image || Images.DefaultPostcard} alt={c.name} />
                 </div>
                 <h3>{c.name}</h3>
@@ -104,7 +138,7 @@ export default function Home() {
           </div>
 
           <div className="about-content">
-            <span className="subtitle">ABOUT US</span>
+            <span className="subtitles">ABOUT US</span>
             <h2 className="title">Welcome to EmotiCare!</h2>
             <p className="titles">
               EmotiCare is a place to talk, chat, and connect about your
