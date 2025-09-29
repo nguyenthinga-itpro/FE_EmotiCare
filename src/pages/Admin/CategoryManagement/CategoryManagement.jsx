@@ -16,6 +16,8 @@ import {
   toggleCategoryStatus,
   createCategory,
   updateCategory,
+  uploadImage,
+  updateImage,
 } from "../../../redux/Slices/CategorySlice";
 import { getFirestore } from "firebase/firestore";
 import { Form, Switch } from "antd";
@@ -46,7 +48,8 @@ export default function CategoryManagement() {
   const justCreatedRef = useRef(false);
   const [realtimeActive, setRealtimeActive] = useState(true);
   const [searchText, setSearchText] = useState("");
-
+  const [fileList, setFileList] = useState([]);
+  const [editFileList, setEditFileList] = useState([]);
   // Initial fetch
   useEffect(() => {
     dispatch(getAllCategories({ pageSize }));
@@ -94,29 +97,61 @@ export default function CategoryManagement() {
   };
 
   const handleCreate = async () => {
+    if (!fileList.length) return toast.error("Select file");
     try {
       setRealtimeActive(false);
+      const imageUrl = await dispatch(
+        uploadImage(fileList[0].originFileObj)
+      ).unwrap();
       const values = await createForm.validateFields();
-      await dispatch(createCategory(values)).unwrap();
+      await dispatch(
+        createCategory({
+          ...values,
+          image: imageUrl,
+        })
+      ).unwrap();
       justCreatedRef.current = true;
       setCreateModalOpen(false);
       createForm.resetFields();
+      setFileList([]);
       setRealtimeActive(true);
     } catch {
       setRealtimeActive(true);
     }
   };
-
   const handleUpdate = async () => {
     if (!selected) return;
     try {
+      let imageUrl = selected.image;
+      if (editFileList.length > 0) {
+        const uploaded = await dispatch(
+          updateImage({
+            id: selected.id,
+            file: editFileList[0].originFileObj,
+          })
+        ).unwrap();
+        imageUrl = uploaded.imageUrl;
+      }
       const values = await form.validateFields();
-      await dispatch(updateCategory({ id: selected.id, ...values })).unwrap();
+      const payload = {
+        id: selected.id,
+        name: values.name,
+        description: values.description,
+        image: imageUrl,
+      };
+      const oldMusicUrl = selected.music?.external_url || "";
+      if (!values.music || values.music === oldMusicUrl) {
+        delete payload.music;
+      } else {
+        payload.music = values.music;
+      }
+      await dispatch(updateCategory(payload)).unwrap();
       setEditModalOpen(false);
       form.resetFields();
       setSelected(null);
+      setEditFileList([]);
     } catch (err) {
-      console.error(err);
+      console.error("Update postcard error:", err);
     }
   };
 
@@ -135,6 +170,7 @@ export default function CategoryManagement() {
         {e.name}
       </div>
     ),
+    image: <img src={e.image} alt={e.title} className="table-image" />,
     toggle: (
       <Switch
         checked={!e.isDisabled}
@@ -192,6 +228,13 @@ export default function CategoryManagement() {
           { label: "Name", key: "name" },
           { label: "Description", key: "description", type: "html" },
           {
+            label: "Image",
+            key: "image",
+            render: (r) => (
+              <img src={r.image} alt={r.title} style={{ width: 120 }} />
+            ),
+          },
+          {
             label: "Disabled",
             key: "isDisabled",
             render: (r) => (r.isDisabled ? "Yes" : "No"),
@@ -215,6 +258,13 @@ export default function CategoryManagement() {
             rules: [{ required: true, message: "Enter name" }],
           },
           { name: "description", label: "Description", type: "textarea" },
+          {
+            name: "image",
+            label: "Upload Image",
+            type: "upload",
+            fileList: fileList,
+            setFileList: setFileList,
+          },
         ]}
       />
 
@@ -232,6 +282,13 @@ export default function CategoryManagement() {
             rules: [{ required: true, message: "Enter name" }],
           },
           { name: "description", label: "Description", type: "textarea" },
+          {
+            name: "image",
+            label: "Update Image",
+            type: "upload",
+            fileList: editFileList,
+            setFileList: setEditFileList,
+          },
         ]}
       />
     </div>

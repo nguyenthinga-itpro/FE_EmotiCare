@@ -48,15 +48,11 @@
 }
 
 .custom-checkbox .ant-checkbox-checked .ant-checkbox-inner {
-  background: linear-gradient(
-    180deg,
-    #667eea,
-    #764ba2
-  ); 
+  background: linear-gradient(180deg, #667eea, #764ba2);
 }
 
 .custom-checkbox .ant-checkbox-checked::after {
-  border-color: #fff; 
+  border-color: #fff;
 }
 
 .custom-checkbox span {
