@@ -1,6 +1,10 @@
 body,html{
   overflow-x:hidden
 }
+.desktop-menu{
+  display: flex;
+  justify-content: center;
+}
 .menu-navbar{
   display:flex;
   justify-content:center;
@@ -14,7 +18,7 @@ body,html{
   font-size:16px;
   font-weight:700;
   cursor:pointer;
-  color:#333;
+  color:var(--colorText);;
   padding:10px 15px;
   transition:all .3s ease
 }
@@ -29,9 +33,10 @@ body,html{
   -webkit-text-fill-color:transparent;
   transform:scale(1.1)
 }
+
 .menu-navbar .active-navbar{
   line-height:1.6;
-  background:linear-gradient(90deg,#667ce7,#754da5);
+  background:var(--panelGradient);
   -webkit-background-clip:text;
   -webkit-text-fill-color:transparent;
   font-weight:700
@@ -39,7 +44,7 @@ body,html{
 .about-line{
   font-weight:700;
   line-height:1.6;
-  background:linear-gradient(90deg,#667ce7,#955dda);
+  background:var(--panelGradient);
   -webkit-background-clip:text;
   -webkit-text-fill-color:transparent;
   background-clip:text
@@ -56,7 +61,7 @@ body,html{
 }
 .resources-setting{
   font-weight:700;
-  background:linear-gradient(90deg,#667ce7,#955dda);
+  background:var(--panelGradient);
   -webkit-background-clip:text;
   -webkit-text-fill-color:transparent;
   background-clip:text;
@@ -70,11 +75,12 @@ body,html{
 section h3{
   font-size:22px;
   font-weight:700;
-  margin-top:10px}
+}
 section p{
   font-size:16px;
   line-height:1.6;
-  margin-bottom:15px
+  display: flex;
+  margin-top: 10px;
 }
 section ul{
   list-style-type:disc;
@@ -82,31 +88,21 @@ section ul{
 }
 section ul li{
   margin-bottom:8px}
-.general-line{
-  font-size:22px;
-  font-weight:700;
-  line-height:1.6;
-  background:linear-gradient(90deg,#667ce7,#754da5);
-  -webkit-background-clip:text;
-  -webkit-text-fill-color:transparent;
-  background-clip:text;
-  padding-bottom:10px
-}
+
 .panel-gradient{
   line-height:1.6;
-  background:linear-gradient(90deg,#667ce7,#754da5);
+  background:var(--panelGradient);
   -webkit-background-clip:text;
   -webkit-text-fill-color:transparent;
   background-clip:text;
   font-weight:600
 }
-.ant-collapse-header{
-  background-color:#ececfb}
+
 .about-lineFAQ{
   font-weight:700;
   font-size:36px;
   line-height:1.6;
-  background:linear-gradient(90deg,#667ce7,#754da5);
+  background:var(--panelGradient);
   -webkit-background-clip:text;
   -webkit-text-fill-color:transparent;
   background-clip:text;
@@ -116,7 +112,7 @@ section ul li{
   font-size:20px;
   font-weight:700;
   line-height:1.6;
-  background:linear-gradient(90deg,#667ce7,#754da5);
+  background:var(--panelGradient);
   -webkit-background-clip:text;
   -webkit-text-fill-color:transparent;
   background-clip:text;
@@ -139,39 +135,17 @@ section ul li{
 }
 .ant-collapse-header .panel-gradient{
   line-height:1.6;
-  background:linear-gradient(90deg,#667ce7,#754da5);
+  background: var(--panelGradient);
   -webkit-background-clip:text;
   -webkit-text-fill-color:transparent;
   background-clip:text;
   font-weight:600
 }
 .ant-collapse-header:hover{
-  background:#e6e4fb!important;
+  background:#e6e4fb !important;
   transform:translateX(2px)
 }
-.general-P{
-  background:#f3f2fd!important;
-  border-radius:8px;
-  margin-bottom:20px;
-  padding:10px
-}
-.panel-p{
-  line-height:1.6;
-  background:linear-gradient(90deg,#667ce7,#754da5);
-  -webkit-background-clip:text;
-  -webkit-text-fill-color:transparent;
-  font-size:16px;
-  line-height:1.6
-}
-.panel-gradient{
-  line-height:1.6;
-  background:linear-gradient(90deg,#667ce7,#754da5);
-  -webkit-background-clip:text;
-  -webkit-text-fill-color:transparent;
-  background-clip:text;
-  font-weight:600
-}
-.ant-collapse .ant-collapse-content>.ant-collapse-content-box{
+.ant-collapse-content-box{
   background:#f3f2fd
 }
 .ant-collapse .ant-collapse-arrow{
@@ -179,14 +153,15 @@ section ul li{
   right:16px;
   left:auto
 }
-.ant-collapse>.ant-collapse-item>.ant-collapse-content{
+.ant-collapse-content{
   border-top:none!important;
   border-bottom:none!important
 }
 .postcards-sections{
   background:#f3f0ff;
   text-align:center;
-  padding:40px 50px
+  padding: 50px;
+  border-radius: 12px;
 }
 .resources-header{
   font-weight:700;
@@ -196,17 +171,13 @@ section ul li{
   margin-bottom:20px;
   margin-left:55px
 }
-.filter-icon img{
-  width:20px;
-  height:20px
-}
 .resources-title{
   font-weight:700;
   padding-top:10px;
   margin-left:90px;
   line-height:1.6;
   text-align:left;
-  background:linear-gradient(90deg,#6567cc,#8c43eb);
+  background: var(--panelGradient);
   -webkit-background-clip:text;
   -webkit-text-fill-color:transparent;
   background-clip:text;
@@ -219,7 +190,7 @@ section ul li{
   margin-bottom:1.5rem;
   line-height:1.7;
   text-align:left;
-  background:linear-gradient(90deg,#5153c7,#9759e7);
+  background:var(--panelGradient);
   -webkit-background-clip:text;
   -webkit-text-fill-color:transparent;
   background-clip:text
@@ -265,7 +236,7 @@ section ul li{
 .card-btn{
   width:80%;
   margin:16px auto 20px;
-  background:linear-gradient(90deg,#667ce7,#754da5);
+  background:var(--panelGradient);
   color:#fff;
   padding:10px 0;
   border-radius:8px;
@@ -290,7 +261,7 @@ section ul li{
   height:200px;
   overflow:hidden
 }
-:where(.css-dev-only-do-not-override-xepvsj).ant-card:not(.ant-card-bordered) {
+.ant-card-bordered {
   box-shadow: none !important;
 }
 
@@ -316,7 +287,7 @@ section ul li{
 .card-btn{
   display:inline-block;
   padding:10px 20px;
-  background:linear-gradient(90deg,#667ce7,#754da5);
+  background:var(--panelGradient);
   color:#fff;
   font-weight:500;
   text-decoration:none;
@@ -326,13 +297,8 @@ section ul li{
 .card-btn:hover{
   transform:scale(1.05)
 }
-.mobile-dropdown{
-  width:20%;padding:10px;
-  border-radius:8px;
-  border:1px solid #ccc;
-  font-size:16px;
-  margin-left:110px
-}
+
+
 .mobile-menu{
   margin:15px 0;text-align:center
 }
@@ -347,7 +313,6 @@ section ul li{
   background:#fff;
   color:#333;outline:0;
   appearance:none;
-  background-image:url("data:image/svg+xml;charset=UTF-8,<svg xmlns='http://www.w3.org/2000/svg' width='16' height='16' fill='%237b2ff7' viewBox='0 0 16 16'><path d='M1.5 5l6 6 6-6'/></svg>");
   background-repeat:no-repeat;
   background-position:right 12px center;
   background-size:14px;
@@ -364,7 +329,6 @@ section ul li{
   border-radius:8px;
   background:#fff;color:#333;
   outline:0;appearance:none;
-  background-image:url("data:image/svg+xml;charset=UTF-8,<svg xmlns='http://www.w3.org/2000/svg' width='16' height='16' fill='%237b2ff7' viewBox='0 0 16 16'><path d='M1.5 5l6 6 6-6'/></svg>");
   background-repeat:no-repeat;
   background-position:right 12px center;
   background-size:14px;cursor:pointer;
@@ -395,8 +359,6 @@ section ul li{
   color:#5a8dee;
   border-bottom:2px solid #5a8dee
 }
-
-
 .jinx-avatar{
   width:70px;
   height:70px;
@@ -417,55 +379,28 @@ section ul li{
   padding:20px
 }
 .gradient-text{
-  background:linear-gradient(90deg,#5153c7,#9759e7);
+  background:var(--panelGradient);
   -webkit-background-clip:text;
   -webkit-text-fill-color:transparent;
   display:inline-block;
   font-size:16px;
   border:.2px solid #7b2ff7
 }
-.gradient-text::placeholder{
-  background:linear-gradient(90deg,#5153c7,#9759e7);
-  -webkit-background-clip:text;
-  -webkit-text-fill-color:transparent
-}
-:where(.css-dev-only-do-not-override-xepvsj).ant-input-outlined.ant-input-disabled,
-:where(.css-dev-only-do-not-override-xepvsj).ant-input-outlined[disabled] {
-  border: 1px solid transparent;
-  background-image: linear-gradient(white, white), linear-gradient(90deg,#5153c7,#9759e7);
-  background-origin: border-box;
-  background-clip: padding-box, border-box;
-  color: #888;
-}
-
 .gradient-texts {
   font-weight: 700;
-  background: linear-gradient(90deg, #5153c7, #9759e7);
+  background: var(--panelGradient);
   -webkit-background-clip: text;
   -webkit-text-fill-color: transparent;
   color: transparent;
 }
-
-
-
 .profile-title {
   font-weight: 700;           /* đậm hơn */
   text-align: center;         /* căn giữa */
   margin-bottom: 20px;
-
-  background: linear-gradient(90deg, #5153c7, #9759e7);
+  background: var(--panelGradient);
   -webkit-background-clip: text;
   -webkit-text-fill-color: transparent;
 }
-
-
-
-
-
-
-
-
-
 .gradient-text-password {
   border-radius: 14px !important;
   padding: 8px 12px;
@@ -473,7 +408,7 @@ section ul li{
   font-size: 14px;
   color: #6a11cb;
   font-weight: 500;
-  border-image: linear-gradient(90deg, #6a11cb, #2575fc) 1;
+  border-image: var(--panelGradient) 1;
   border-width: 1px;
   border-style: solid;
   background-color: #fff;
@@ -486,16 +421,6 @@ section ul li{
 .gradient-text-password:hover {
   box-shadow: 0 0 6px rgba(106, 17, 203, 0.3);
 }
-
-.gradient-text-password:focus,
-.gradient-text-password:focus-within {
-  outline: none;
-  border-image: linear-gradient(90deg, #ff6a00, #ee0979) 1;
-  box-shadow: 0 0 8px rgba(255, 106, 0, 0.4);
-  border-radius: 14px;  /* giữ bo góc khi focus */
-   border:.2px solid #7b2ff7
-}
-
 .resourcesCheerup img {
   width: 100px;   /* chỉnh kích thước mong muốn */
   height: auto;   /* tự động giữ tỷ lệ */
@@ -503,46 +428,40 @@ section ul li{
   margin: 0 auto; /* căn giữa */
     transition: transform 0.3s ease; /* hiệu ứng mượt */
 }
-
-
-
 .resourcesCheerup img:hover {
   transform: scale(1.5); /* phóng to nhẹ khi rê chuột */
 }
-
-
-
-
 /* Radio button custom */
 .mode-radio-group .ant-radio-wrapper {
   font-weight: 500;
   color: #374151; /* text-gray-700 */
 }
-
 .mode-radio-group .ant-radio-checked .ant-radio-inner {
   border-color: #7c3aed !important; 
   background-color: #7c3aed !important; /* tím */
 }
-
 /* Switch custom */
 .mode-switch {
-  background-color: #d1d5db !important; /* xám mặc định */
+  background-color: #F3F0FF !important; /* xám mặc định */
   border-radius: 20px !important;
 }
 
 .mode-switch.ant-switch-checked {
-  background: linear-gradient(90deg, #667ce7, #754da5) !important;
-}
-/* Default light */
-body.light-theme {
-  background: #ffffff;
-  color: #000000;
+  background: var(--panelGradient) !important;
 }
 
-/* Dark theme */
-body.dark-theme {
-  background: #121212;
-  color: #ffffff;
+/* .anticon svg{
+color: var(--anticonSvg);
+} */
+.faq-menu.ant-menu-light.ant-menu-root.ant-menu-inline {
+  border-inline-end: none !important;
+}
+.faq-menu .ant-menu-item,
+.faq-menu .ant-menu-submenu-title {
+  background: var(--sectionp) !important;
+}
+.faq-menu .ant-menu-sub.ant-menu-inline {
+  background: transparent !important;
 }
 
 
@@ -550,6 +469,87 @@ body.dark-theme {
 
 
 
+
+
+.custom-Pagination {
+  display: flex;
+  margin-top: 20px ; /* lùi xuống 10px */
+}
+
+/* Ẩn số mặc định */
+.custom-Pagination .ant-pagination-item {
+  display: none;
+}
+
+/* Hiển thị dạng dấu chấm */
+.custom-Pagination .ant-pagination-item-ellipsis,
+.custom-Pagination .ant-pagination-item-link {
+  display: none; /* bỏ ... và icon mặc định */
+}
+
+.custom-Pagination .ant-pagination-prev,
+.custom-Pagination .ant-pagination-next {
+  display: none; /* bỏ nút prev/next nếu không cần */
+}
+
+
+
+/* Dot active (trang hiện tại) */
+.custom-Pagination .ant-pagination-item-active {
+  background: #722ed1 !important; /* đổi sang màu bạn muốn */
+}
+
+/* Ghi đè Ant Design */
+.custom-Pagination .ant-pagination-item {
+  min-width: unset !important;  /* bỏ giới hạn mặc định */
+  width: 12px;
+  height: 12px;
+  border-radius: 50%;
+  background: #d9d9d9;
+  margin: 0 6px;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  border: none;
+  line-height: 1;
+  cursor: pointer;
+}
+
+/* Ẩn số bên trong */
+.custom-Pagination .ant-pagination-item a {
+  display: none;
+}
+
+/* Dot active */
+.custom-Pagination .ant-pagination-item-active {
+  background: #722ed1 !important; /* màu dot active */
+}
+
+/* Bỏ prev/next nếu không muốn */
+.custom-Pagination .ant-pagination-prev,
+.custom-Pagination .ant-pagination-next {
+  display: none;
+}
+
+/* Icon mặc định ▼ */
+.menu-arrow::before {
+  content: "▼";
+  font-size: 12px;
+  color: #ab88e3;
+  display: inline-block;
+  transition: transform 0.2s ease;
+}
+
+/* Khi mở thì thành ▲ */
+.menu-arrow.open::before {
+  content: "▲";
+  color: #b598e4; /* bạn có thể đổi màu khác khi mở */
+}
+.panel-p{
+  background: var(--panelGradient);
+  -webkit-background-clip: text;
+  -webkit-text-fill-color: transparent;
+}
 
   @media (max-width:1024px)
 {

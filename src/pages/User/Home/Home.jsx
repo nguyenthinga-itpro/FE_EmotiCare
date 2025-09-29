@@ -1,11 +1,46 @@
-import React from "react";
-import { Col, Row, Carousel } from "antd";
+import React, { useEffect, useState } from "react";
+import { Pagination, Button } from "antd";
 import { Link, useNavigate } from "react-router-dom";
 import Images from "../../../Constant/Images";
 import "./Home.css";
+import { getAllChats } from "../../../redux/Slices/ChatAISlice";
+import { getAllCategories } from "../../../redux/Slices/CategorySlice";
+import { useDispatch, useSelector } from "react-redux";
+import { ArrowRightOutlined } from "@ant-design/icons";
 
 export default function Home() {
+  const [currentPage, setCurrentPage] = useState(1);
+  const localPageSize = 3; // số card mỗi trang
+
   const navigate = useNavigate();
+  const dispatch = useDispatch();
+
+  // lấy state từ redux
+  const {
+    paginatedChats = [],
+    loading,
+    error,
+    pageSize,
+  } = useSelector((s) => s.chat);
+  const { paginatedCategories = [] } = useSelector((s) => s.category);
+
+  // gọi API chats
+  useEffect(() => {
+    dispatch(getAllChats({ pageSize: 100 }));
+  }, [dispatch, pageSize]);
+
+  // gọi API categories
+  useEffect(() => {
+    dispatch(getAllCategories({ pageSize: 100 }));
+  }, [dispatch]);
+
+  // lọc bỏ disabled
+  const chats = paginatedChats.filter((c) => c.isDisabled === false);
+  const categories = paginatedCategories.filter((c) => c.isDisabled === false);
+
+  // tính toán dữ liệu hiển thị cho pagination
+  const startIndex = (currentPage - 1) * localPageSize;
+  const currentChats = chats.slice(startIndex, startIndex + localPageSize);
 
   return (
     <main>
@@ -13,15 +48,17 @@ export default function Home() {
       <section className="hero-section">
         <div className="hero-text">
           <h1>
-            <span className="highlight">EmotiCare:</span>
-            <span className="highlights">Where mood meets companion.</span>
+            <span className="highlight">EmotiCare: </span>
+            <span className="highlights"> Where mood meets companion.</span>
           </h1>
           <span className="highlight-margin-left">
             You speak, we listen — every emotion matters.
           </span>
-          <Link to="/login">
-            <button className="cta-button">Get Started</button>
-          </Link>
+          <div className="cta1-button-login">
+            <Link to="/login">
+              <button className="cta-button">Get Started</button>
+            </Link>
+          </div>
         </div>
 
         <div className="hero-image">
@@ -39,102 +76,56 @@ export default function Home() {
 
       {/* Characters Section */}
       <section className="name-section">
-        <Carousel dots={{ className: "custom-dots" }}>
-          <div>
-            <div className="character-grid">
-              <div className="character-card">
-                <h3>Sunny</h3>
-                <img src={Images.Sunny} alt="Sunny" />
-              </div>
-              <div className="character-card">
-                <h3>Mellow</h3>
-                <img src={Images.Mellow} alt="Mellow" />
-              </div>
-              <div className="character-card">
-                <h3>Stormy</h3>
-                <img src={Images.Stormy} alt="Stormy" />
-              </div>
-              <div className="character-card">
-                <h3>Breezy</h3>
-                <img src={Images.Breezy} alt="Breezy" />
-              </div>
-              <div className="character-card">
-                <h3>Navi</h3>
-                <img src={Images.Navi} alt="Navi" />
-              </div>
-            </div>
-          </div>
+        {loading && <p>Loading chats...</p>}
+        {error && <p style={{ color: "red" }}>Error loading chats</p>}
+        {!loading && chats.length === 0 && <p>No chats available</p>}
 
-          <div>
+        {currentChats.length > 0 && (
+          <div className="character-grid-container">
             <div className="character-grid">
-              <div className="character-card">
-                <h3>Sunny</h3>
-                <img src={Images.Sunny} alt="Sunny" />
-              </div>
-              <div className="character-card">
-                <h3>Mellow</h3>
-                <img src={Images.Mellow} alt="Mellow" />
-              </div>
+              {currentChats.map((chat) => (
+                <div key={chat.id} className="character-card-home">
+                  <h3>{chat.name}</h3>
+                  <img src={chat.image} alt={chat.name} />
+                </div>
+              ))}
             </div>
           </div>
+        )}
 
-          <div>
-            <div className="character-grid">
-              <div className="character-card">
-                <h3>Mellow</h3>
-                <img src={Images.Mellow} alt="Mellow" />
-              </div>
-            </div>
-          </div>
-        </Carousel>
+        {/* Pagination */}
+        <Pagination
+          className="custom-Pagination"
+          align="center"
+          current={currentPage}
+          pageSize={localPageSize}
+          total={chats.length}
+          onChange={(page) => setCurrentPage(page)}
+        />
       </section>
 
       {/* Postcards Section */}
-      <section className="postcards-section">
-        <div className="container">
+      <section className="postcards-section-home">
+        <div className="container-postcards-section-home">
           <h2 className="subtitle">LARGE HEALING POSTCARD COLLECTION</h2>
           <h1 className="titles">POST CARDS</h1>
 
           <div className="card-grid">
-            <div className="card">
-              <div className="icon">
-                <img src={Images.Sunnyvibes} alt="Sunnyvibes" />
+            {categories.map((c) => (
+              <div key={c.id} className="card-home">
+                <div className="icon">
+                  <img src={c.image || Images.DefaultPostcard} alt={c.name} />
+                </div>
+                <h3>{c.name}</h3>
+                <p
+                  className="card-text"
+                  dangerouslySetInnerHTML={{ __html: c.description }}
+                />
+                <Button className="arrow-card-home">
+                  <ArrowRightOutlined />
+                </Button>
               </div>
-              <h3>Sunny Vibes</h3>
-              <p>Adipiscing elit, sed do eiusmod labore dolore magna aliqua.</p>
-              <span className="arrow">→</span>
-            </div>
-
-            <div className="card">
-              <div className="icon">
-                <img src={Images.Cheerup} alt="Cheerup" />
-              </div>
-              <h3 className="card-text">Cheer Up!</h3>
-              <p className="card-text">
-                Adipiscing elit, sed do eiusmod labore dolore magna aliqua.
-              </p>
-              <span className="card-texts">→</span>
-            </div>
-
-            <div className="card">
-              <div className="icon">
-                <img src={Images.HeartDrop} alt="HeartDrop" />
-              </div>
-              <h3>HeartDrops</h3>
-              <p>Adipiscing elit, sed do eiusmod labore dolore magna aliqua.</p>
-              <span className="arrow">→</span>
-            </div>
-
-            <div className="card">
-              <div className="icon">
-                <img src={Images.GoofyCard} alt="GoofyCard" />
-              </div>
-              <h3 className="card-text">GoofyCards</h3>
-              <p className="card-text">
-                Adipiscing elit, sed do eiusmod labore dolore magna aliqua.
-              </p>
-              <span className="card-texts">→</span>
-            </div>
+            ))}
           </div>
         </div>
       </section>
@@ -147,31 +138,17 @@ export default function Home() {
           </div>
 
           <div className="about-content">
-            <span className="subtitle">ABOUT US</span>
+            <span className="subtitles">ABOUT US</span>
             <h2 className="title">Welcome to EmotiCare!</h2>
             <p className="titles">
               EmotiCare is a place to talk, chat, and connect about your
               feelings. We create a safe, friendly, and fun space where every
               mood is embraced — from happy, sad, to silly, mindless moments.
             </p>
-            {/* Cách 1: dùng Link */}
-            {/* <Link to="/Postcards">
-              <button className="cta-button">About us</button>
-            </Link> */}
-            {/* Cách 2: dùng navigate */}
             <button
               className="cta-button"
               onClick={() => {
-                navigate("/Error");
-                window.scrollTo(0, 0);
-              }}
-            >
-              About us
-            </button>
-            <button
-              className="cta-button"
-              onClick={() => {
-                navigate("/Postcards");
+                navigate("/user/more");
                 window.scrollTo(0, 0);
               }}
             >
