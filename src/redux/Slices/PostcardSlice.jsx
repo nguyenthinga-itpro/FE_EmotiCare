@@ -9,7 +9,7 @@ export const getAllPostcards = createAsyncThunk(
       const res = await Api.get("/postcard", {
         params: { pageSize, startAfterId },
       });
-      return res.data; 
+      return res.data;
     } catch (err) {
       return rejectWithValue(err.response?.data?.error || err.message);
     }
@@ -84,7 +84,7 @@ export const uploadImage = createAsyncThunk(
         headers: { "Content-Type": "multipart/form-data" },
       });
 
-      return res.data.imageUrl; 
+      return res.data.imageUrl;
     } catch (err) {
       return rejectWithValue(err.response?.data?.error || err.message);
     }
@@ -98,9 +98,13 @@ export const updateImage = createAsyncThunk(
       const formData = new FormData();
       formData.append("image", file);
 
-      const res = await Api.patch(`/file/update/${id}/image`, formData, {
-        headers: { "Content-Type": "multipart/form-data" },
-      });
+      const res = await Api.patch(
+        `/file/update/${id}/image?type=postcard`,
+        formData,
+        {
+          headers: { "Content-Type": "multipart/form-data" },
+        }
+      );
 
       return { postcard: res.data.postcard, imageUrl: res.data.imageUrl };
     } catch (err) {
