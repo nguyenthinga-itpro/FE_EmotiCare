@@ -1,3 +1,5 @@
+import { Tooltip } from "antd";
+
 // src/Themes/Colors.js
 export const light = {
   colorBgContainer: "#f7f7f7",
@@ -16,6 +18,7 @@ export const light = {
   labelStyleProfileDeatail: "#4a4a4a",
   contentStyleProfileDeatail: "#222",
   gradientPrimary: "linear-gradient(135deg, #6e8efb, #a777e3)",
+  gradientHeader: "linear-gradient(0deg, #6e8efb, #a777e3)",
   gradientBlue: "linear-gradient(135deg, #22E4F0, #029DF0)",
   gradientGreen: "linear-gradient(135deg, #A2F078, #60D56C)",
   gradientPurple: "linear-gradient(135deg, #F761DF, #B526E4)",
@@ -25,6 +28,10 @@ export const light = {
   textTopStatictis: "#fff",
   filterIcon: "#fffb00",
   filterHover: "#b2d4f5ff",
+  menuHover: "#667ce7",
+  tooltipBg: "#000",
+  characterData: "#fff",
+  postcardsSection: "#f3f0ff",
 };
 
 export const dark = {
@@ -44,6 +51,7 @@ export const dark = {
   labelStyleProfileDeatail: "#fff8f8ff",
   contentStyleProfileDeatail: "#ffffffff",
   gradientPrimary: "linear-gradient(135deg, #6e8efb, #a777e3)",
+  gradientHeader: "linear-gradient(0deg, #6e8efb, #a777e3)",
   gradientBlue: "linear-gradient(135deg, #22E4F0, #029DF0)",
   gradientGreen: "linear-gradient(135deg, #A2F078, #60D56C)",
   gradientPurple: "linear-gradient(135deg, #F761DF, #B526E4)",
@@ -53,6 +61,10 @@ export const dark = {
   textTopStatictis: "#fff",
   filterIcon: "#fffb00",
   filterHover: "#b2d4f5ff",
+  menuHover: "#667ce7",
+  tooltipBg: "#000",
+  characterData: "#333",
+  postcardsSection: "#333",
 };
 
 const colors = { light, dark };

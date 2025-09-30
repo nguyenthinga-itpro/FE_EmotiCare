@@ -9,6 +9,8 @@ import faqReducer from "../redux/Slices/FAQSlice";
 import resourceReducer from "../redux/Slices/ResourseSlice";
 import categoryReducer from "../redux/Slices/CategorySlice";
 import themeReducer from "../redux/Slices/ThemeSlice";
+import postcardCommentReducer from "../redux/Slices/PostcardCommentSlice";
+import postcardFavoriteReducer from "../redux/Slices/PostcardFavoriteSlice";
 export const store = configureStore({
   reducer: {
     user: authReducer,
@@ -19,6 +21,8 @@ export const store = configureStore({
     faq: faqReducer,
     resource: resourceReducer,
     category: categoryReducer,
+    comment: postcardCommentReducer,
+    favorite: postcardFavoriteReducer,
     theme: themeReducer,
   },
 });
