@@ -1,401 +1,286 @@
-import React, { useState } from "react";
-import Images from "../../../Constant/Images";
+import React, { useEffect, useState } from "react";
 import {
   HeartOutlined,
-  ShareAltOutlined,
+  HeartFilled,
   MessageOutlined,
+  UserOutlined,
 } from "@ant-design/icons";
-import { Row, Col, Space, Tooltip, Button, Modal } from "antd";
+import {
+  Row,
+  Col,
+  Space,
+  Tooltip,
+  Button,
+  Modal,
+  Input,
+  Avatar,
+  Spin,
+} from "antd";
+import { useDispatch, useSelector } from "react-redux";
+import { getAllPostcards } from "../../../redux/Slices/PostcardSlice";
+import {
+  getFavoriteInfo,
+  toggleFavorite,
+} from "../../../redux/Slices/PostcardFavoriteSlice";
+import { createComment } from "../../../redux/Slices/PostcardCommentSlice";
+import { rtdb } from "../../../config/firebase";
+import { ref, onValue } from "firebase/database";
 import "./Postcards.css";
-import ExtraHeader from "../../../components/Headers/ExtraHeader/ExtraHeader";
-import ExtraUserFooter from "../../../components/Footers/ExtraUserFooter/ExtraUserFooter";
 
 export default function Postcards() {
-  const [flipped, setFlipped] = useState(Array(10).fill(false));
+  const dispatch = useDispatch();
+  const { paginatedPostcards = [], loading: pcLoading } = useSelector(
+    (s) => s.postcard || {}
+  );
+  const { favorites } = useSelector((s) => s.favorite);
+  const currentUser = useSelector((s) => s.user?.currentUser);
+
+  const [flipped, setFlipped] = useState([]);
   const [isModalOpen, setIsModalOpen] = useState(false);
   const [selectedCard, setSelectedCard] = useState(null);
+  const [newComment, setNewComment] = useState("");
+  const [replyTo, setReplyTo] = useState(null);
+  const [comments, setComments] = useState({}); // { postcardId: [nested tree] }
+
+  // Load postcards
+  useEffect(() => {
+    dispatch(getAllPostcards({ pageSize: 100 }));
+  }, [dispatch]);
+
+  useEffect(() => {
+    setFlipped(Array(paginatedPostcards.length).fill(false));
+  }, [paginatedPostcards.length]);
+
+  // Realtime listener
+  useEffect(() => {
+    const commentsRef = ref(rtdb, "postcardComments");
+    const unsubscribe = onValue(commentsRef, (snapshot) => {
+      const data = snapshot.val() || {};
+      const grouped = {};
+
+      Object.values(data).forEach((c) => {
+        if (!grouped[c.postcardId]) grouped[c.postcardId] = [];
+        grouped[c.postcardId].push(c);
+      });
+
+      const nested = {};
+      Object.keys(grouped).forEach((pid) => {
+        nested[pid] = buildNestedTree(grouped[pid]);
+      });
+
+      setComments(nested);
+    });
+
+    return () => unsubscribe();
+  }, []);
+
+  // Build nested tree
+  const buildNestedTree = (flat) => {
+    const map = {};
+    flat.forEach((c) => {
+      c.replies = [];
+      map[c.id] = c;
+    });
+    const tree = [];
+    flat.forEach((c) => {
+      if (c.parentId && map[c.parentId]) map[c.parentId].replies.push(c);
+      else tree.push(c);
+    });
+    return tree;
+  };
 
   const handleFlip = (index) => {
-    const newFlipped = [...flipped];
-    newFlipped[index] = !newFlipped[index];
-    setFlipped(newFlipped);
+    setFlipped((prev) => {
+      const next = [...prev];
+      next[index] = !next[index];
+      if (next[index] && paginatedPostcards[index]) {
+        dispatch(
+          getFavoriteInfo({
+            postcardId: paginatedPostcards[index].id,
+            userId: currentUser?.uid,
+          })
+        );
+      }
+      return next;
+    });
   };
 
   const openModal = (card) => {
     setSelectedCard(card);
     setIsModalOpen(true);
+    setReplyTo(null); // reset khi mở modal mới
   };
-
   const closeModal = () => {
     setIsModalOpen(false);
     setSelectedCard(null);
+    setNewComment("");
+    setReplyTo(null);
   };
 
-  // toggle all cards
-  const toggleAll = () => {
-    const isAnyFlipped = flipped.some((f) => f); // có thẻ nào đang lật?
-    if (isAnyFlipped) {
-      // nếu có → đóng hết
-      setFlipped(Array(flipped.length).fill(false));
-    } else {
-      // nếu chưa có → lật hết
-      setFlipped(Array(flipped.length).fill(true));
+  const handleLike = (postcardId) => {
+    dispatch(toggleFavorite({ postcardId, userId: currentUser?.uid }));
+  };
+
+  const handleAddComment = () => {
+    if (!newComment.trim()) return;
+    if (!selectedCard) {
+      console.warn("[DEBUG] No postcard selected for comment");
+      return;
     }
+
+    const payload = {
+      postcardId: selectedCard.id,
+      content: newComment,
+      userId: currentUser?.uid,
+      parentId: replyTo?.id || null, // đúng comment user chọn
+    };
+
+    console.log("[DEBUG] Sending comment:", payload);
+    dispatch(createComment(payload));
+    setNewComment("");
+    setReplyTo(null);
   };
 
-  // dữ liệu cho 10 thẻ
-  const cards = [
-    {
-      image: Images.SunnyV1,
-      avatar: "https://i.pravatar.cc/50?img=1",
-      author: "Robert Fox",
-      job: "Web Development",
-      title: "Minim dolor in amet nulla laboris",
-      date: "September 23, 2025",
-      desc: "Minim dolor in amet nulla laboris enim dolore consequat proident fugiat culpa eiusmod...",
-      tag: "Music",
-      likes: "20k",
-      shares: 34,
-      comments: 567,
-      Imgs: Images.Save,
-    },
-    {
-      image: Images.SunnyV1,
-      avatar: "https://i.pravatar.cc/50?img=2",
-      author: "Jane Cooper",
-      job: "UI/UX Designer",
-      title: "Consectetur adipiscing elit",
-      date: "September 18, 2025",
-      desc: "Consectetur magna laboris exercitation est qui. Fugiat culpa eiusmod tempor...",
-      tag: "Music",
-      likes: "5k",
-      shares: 12,
-      comments: 120,
-    },
-    {
-      image: Images.SunnyV1,
-      avatar: "https://i.pravatar.cc/50?img=3",
-      author: "Devon Lane",
-      job: "Frontend Engineer",
-      title: "Proident fugiat culpa eiusmod",
-      date: "September 14, 2025",
-      desc: "Excepteur amet proident incididunt officia laboris laborum...",
-      tag: "Music",
-      likes: "15k",
-      shares: 25,
-      comments: 321,
-    },
-    {
-      image: Images.SunnyV1,
-      avatar: "https://i.pravatar.cc/50?img=4",
-      author: "Esther Howard",
-      job: "Digital Marketer",
-      title: "Dolor sit amet consectetur",
-      date: "September 10, 2025",
-      desc: "Amet nulla laboris enim dolore consequat. Officia laboris laborum...",
-      tag: "Music",
-      likes: "9k",
-      shares: 40,
-      comments: 210,
-    },
-    {
-      image: Images.SunnyV1,
-      avatar: "https://i.pravatar.cc/50?img=5",
-      author: "Cameron Williamson",
-      job: "Photographer",
-      title: "Excepteur amet proident",
-      date: "September 8, 2025",
-      desc: "Enim dolore consequat proident fugiat culpa eiusmod tempor...",
-      tag: "Music",
-      likes: "3k",
-      shares: 18,
-      comments: 78,
-    },
-    {
-      image: Images.SunnyV1,
-      avatar: "https://i.pravatar.cc/50?img=6",
-      author: "Theresa Webb",
-      job: "Writer",
-      title: "Labore incididunt officia",
-      date: "September 5, 2025",
-      desc: "Magna laboris exercitation est qui. Fugiat culpa eiusmod tempor incididunt...",
-      tag: "Music",
-      likes: "7k",
-      shares: 15,
-      comments: 95,
-    },
-    {
-      image: Images.SunnyV1,
-      avatar: "https://i.pravatar.cc/50?img=7",
-      author: "Courtney Henry",
-      job: "Content Creator",
-      title: "Consectetur magna laboris",
-      date: "September 2, 2025",
-      desc: "Nulla laboris enim dolore consequat proident fugiat culpa eiusmod...",
-      tag: "Music",
-      likes: "11k",
-      shares: 50,
-      comments: 403,
-    },
-    {
-      image: Images.SunnyV1,
-      avatar: "https://i.pravatar.cc/50?img=8",
-      author: "Jacob Jones",
-      job: "Fullstack Developer",
-      title: "Proident fugiat culpa eiusmod",
-      date: "August 30, 2025",
-      desc: "Culpa eiusmod tempor incididunt magna laboris exercitation est qui...",
-      tag: "Music",
-      likes: "25k",
-      shares: 70,
-      comments: 800,
-    },
-    {
-      image: Images.SunnyV1,
-      avatar: "https://i.pravatar.cc/50?img=9",
-      author: "Brooklyn Simmons",
-      job: "Artist",
-      title: "Dolor in amet nulla laboris",
-      date: "August 28, 2025",
-      desc: "Fugiat culpa eiusmod tempor incididunt magna laboris exercitation est qui...",
-      tag: "Music",
-      likes: "2k",
-      shares: 8,
-      comments: 40,
-    },
-    {
-      image: Images.SunnyV1,
-      avatar: "https://i.pravatar.cc/50?img=10",
-      author: "Arlene McCoy",
-      job: "Teacher",
-      title: "Enim dolore consequat",
-      date: "August 25, 2025",
-      desc: "Excepteur amet proident incididunt officia laboris laborum...",
-      tag: "Music",
-      likes: "6k",
-      shares: 20,
-      comments: 150,
-    },
-  ];
+  const countCommentsTree = (nodes) => {
+    let count = 0;
+    const dfs = (n) => {
+      n.forEach((c) => {
+        count++;
+        if (c.replies?.length) dfs(c.replies);
+      });
+    };
+    if (nodes) dfs(nodes);
+    return count;
+  };
+
+  // render nested comments
+  const renderComments = (nodes, level = 0) =>
+    nodes.map((node) => (
+      <div
+        key={node.id}
+        style={{
+          paddingLeft: 20 * level,
+          marginBottom: 4,
+          cursor: "pointer",
+          borderLeft: level > 0 ? "1px solid #ddd" : "none",
+          paddingTop: 4,
+        }}
+        onClick={(e) => {
+          e.stopPropagation(); // tránh click parent
+          console.log("[DEBUG] Set replyTo:", node);
+          setReplyTo(node); // lưu đúng comment được click
+        }}
+      >
+        <Space>
+          <Avatar
+            src={node.avatar || null}
+            icon={!node.avatar ? <UserOutlined /> : null}
+            size={24}
+          />
+          <div>
+            <b>{node.author}</b>: {node.content}
+          </div>
+        </Space>
+        {node.replies?.length ? renderComments(node.replies, level + 1) : null}
+      </div>
+    ));
+
+  if (pcLoading)
+    return (
+      <div style={{ display: "flex", justifyContent: "center", padding: 40 }}>
+        <Spin />
+      </div>
+    );
 
   return (
-    <main>
-      <ExtraHeader />
-
-      {/* Breadcrumb */}
-      <div className="article-breadcrumb">
-        <a href="/">Home</a> / <span>Postcards:</span>
-      </div>
-
-      <section className="menu-section">
-        <div className="content">
-          <img
-            className="title-sunny"
-            src={Images.Sunnyvibes}
-            alt="Sunny vibes"
-          />
-          <h1 className="title">Sunny Vibes</h1>
-        </div>
-      </section>
-
-      <Button className="toggle-all-btn" type="dashed" onClick={toggleAll}>
-        <span className="toggle-all-text">Toggle All Cards</span>
-      </Button>
-
-      {/* Grid 10 thẻ */}
-      {/* <Row gutter={[16, 16]} justify="center" style={{ marginTop: "20px" }}>
-        {cards.map((card, i) => (
-          <Col key={i} flex="1 0 18%" style={{ maxWidth: "18%" }}>
-            <div
-              className={`card-container ${flipped[i] ? "flipped" : ""}`}
-              onClick={() => handleFlip(i)}
-            >
-             
-              <div className="card-front">
-                <img src={card.image} alt={card.title} />
-              </div>
-
-              <div className="card-back">
-                <div className="card-header">
-                  <img className="avatar" src={card.avatar} alt="Avatar" />
-                  <div>
-                    <h4>{card.author}</h4>
-                    <span>{card.job}</span>
-                  </div>
-                  {card.Imgs && (
-                    <img className="article-saves" src={card.Imgs} alt="Save" />
-                  )}
+    <div>
+      <Row gutter={[16, 16]} justify="center" style={{ marginTop: 20 }}>
+        {paginatedPostcards.map((card, i) => {
+          const fav = favorites[card.id] || {
+            isFavorite: false,
+            totalFavorites: 0,
+          };
+          const commentCount = countCommentsTree(comments[card.id]);
+          return (
+            <Col key={card.id} xs={24} sm={12} md={8} lg={6} xl={5}>
+              <div
+                className={`card-container ${flipped[i] ? "flipped" : ""}`}
+                onClick={() => handleFlip(i)}
+              >
+                <div className="card-front">
+                  <img src={card.image} alt={card.title} />
                 </div>
-
-                <h2>{card.title}</h2>
-                <p className="date">{card.date}</p>
-                <p className="desc">{card.desc}</p>
-
-                
-                <div className="card-footer">
-                  <span className="tag">{card.tag}</span>
-
-                   <img className="card-viewdetail" src={Images.viewdetail} onClick={(e) => {
-                      e.stopPropagation(); 
-                      openModal(card);
-                    }}/>
-                </div>
-
-                <div className="stats">
+                <div className="card-back">
+                  <h2>{card.title}</h2>
                   <Space size="large">
-                    <Tooltip title="Likes">
-                      <span>
-                        <HeartOutlined /> {card.likes}
-                      </span>
-                    </Tooltip>
-                    <Tooltip title="Shares">
-                      <span>
-                        <ShareAltOutlined /> {card.shares}
+                    <Tooltip title="Like">
+                      <span
+                        onClick={(e) => {
+                          e.stopPropagation();
+                          handleLike(card.id);
+                        }}
+                      >
+                        {fav.isFavorite ? (
+                          <HeartFilled style={{ color: "red" }} />
+                        ) : (
+                          <HeartOutlined />
+                        )}{" "}
+                        {fav.totalFavorites}
                       </span>
                     </Tooltip>
                     <Tooltip title="Comments">
-                      <span>
-                        <MessageOutlined /> {card.comments}
+                      <span
+                        onClick={(e) => {
+                          e.stopPropagation();
+                          openModal(card);
+                        }}
+                      >
+                        <MessageOutlined /> {commentCount}
                       </span>
                     </Tooltip>
                   </Space>
                 </div>
               </div>
-            </div>
-          </Col>
-        ))}
-      </Row> */}
-      <Row gutter={[16, 16]} justify="center" style={{ marginTop: "20px" }}>
-        {cards.map((card, i) => (
-          <Col
-            key={i}
-            xs={24} // Mobile: 1 thẻ full width
-            sm={12} // Tablet nhỏ: 2 thẻ / hàng
-            md={8} // Tablet lớn: 3 thẻ / hàng
-            lg={6} // Desktop vừa: 4 thẻ / hàng
-            xl={5} // Desktop lớn: 6 thẻ / hàng
-          >
-            <div
-              className={`card-container ${flipped[i] ? "flipped" : ""}`}
-              onClick={() => handleFlip(i)}
-            >
-              {/* Mặt trước */}
-              <div className="card-front">
-                <img src={card.image} alt={card.title} />
-              </div>
-
-              {/* Mặt sau */}
-
-              <div className="card-back">
-                <div className="card-header">
-                  <img className="avatar" src={card.avatar} alt="Avatar" />
-                  <div>
-                    <h4>{card.author}</h4>
-                    <span>{card.job}</span>
-                  </div>
-                  {card.Imgs && (
-                    <img className="article-saves" src={card.Imgs} alt="Save" />
-                  )}
-                </div>
-
-                <h2>{card.title}</h2>
-                <p className="date">{card.date}</p>
-                <p className="desc">{card.desc}</p>
-
-                {/* Tag + Button chi tiết */}
-                <div className="card-footer">
-                  <span className="tag">{card.tag}</span>
-                  <img
-                    className="card-viewdetail"
-                    src={Images.viewdetail}
-                    alt="View Detail"
-                    onClick={(e) => {
-                      e.stopPropagation(); // tránh lật thẻ
-                      openModal(card);
-                    }}
-                  />
-                </div>
-
-                {/* Stats */}
-                <div className="stats">
-                  <Space size="large">
-                    <Tooltip title="Likes">
-                      <span>
-                        <HeartOutlined /> {card.likes}
-                      </span>
-                    </Tooltip>
-                    <Tooltip title="Shares">
-                      <span>
-                        <ShareAltOutlined /> {card.shares}
-                      </span>
-                    </Tooltip>
-                    <Tooltip title="Comments">
-                      <span>
-                        <MessageOutlined /> {card.comments}
-                      </span>
-                    </Tooltip>
-                  </Space>
-                </div>
-              </div>
-            </div>
-          </Col>
-        ))}
+            </Col>
+          );
+        })}
       </Row>
 
-      {/* Modal chi tiết postcard */}
       <Modal
-        centered
         open={isModalOpen}
         onCancel={closeModal}
         footer={null}
-        width={600}
+        width={1300}
         title={selectedCard?.title}
-        bodyStyle={{ maxHeight: "80vh", overflowY: "auto" }}
+        centered
       >
         {selectedCard && (
-          <scrollView>
-            <img
-              src={selectedCard.avatar}
-              alt={selectedCard.title}
-              style={{ width: "100%", borderRadius: "10px" }}
-            />
-            <h3 style={{ marginTop: "1rem" }}>{selectedCard.author}</h3>
-            <p>{selectedCard.job}</p>
-            <p>
-              <b>Date:</b> {selectedCard.date}
-            </p>
-            <p>{selectedCard.desc}</p>
-            <span className="tag">{selectedCard.tag}</span>
-
-            {/* Stats */}
-            <div className="stats" style={{ marginTop: "1rem" }}>
-              <Space size="large">
-                <Tooltip title="Likes">
-                  <span>
-                    <HeartOutlined /> {selectedCard.likes}
-                  </span>
-                </Tooltip>
-                <Tooltip title="Shares">
-                  <span>
-                    <ShareAltOutlined /> {selectedCard.shares}
-                  </span>
-                </Tooltip>
-                <Tooltip title="Comments">
-                  <span>
-                    <MessageOutlined /> {selectedCard.comments}
-                  </span>
-                </Tooltip>
-              </Space>
+          <>
+            <div style={{ maxHeight: 400, overflowY: "auto" }}>
+              {renderComments(comments[selectedCard.id] || [])}
             </div>
-          </scrollView>
+            {replyTo && (
+              <div style={{ marginTop: 8, fontSize: 12, color: "#555" }}>
+                Replying to {replyTo.author}
+              </div>
+            )}
+            <Input.TextArea
+              rows={3}
+              style={{ marginTop: 8 }}
+              placeholder="Add a comment..."
+              value={newComment}
+              onChange={(e) => setNewComment(e.target.value)}
+            />
+            <Button
+              type="primary"
+              style={{ marginTop: 8 }}
+              onClick={handleAddComment}
+            >
+              Comment
+            </Button>
+          </>
         )}
       </Modal>
-
-      <div className="more-sections">
-        <button className="btn-mores">More...</button>
-      </div>
-
-      <ExtraUserFooter />
-    </main>
+    </div>
   );
 }

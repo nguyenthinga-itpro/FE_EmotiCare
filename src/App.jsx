@@ -115,7 +115,7 @@ function App() {
           <Route path="stories" element={<Stories />} />
           <Route path="contact" element={<Contact />} />
           <Route path="chatbox" element={<Chatbox />} />
-          <Route path="postcards" element={<Postcards />} />
+
           <Route path="error" element={<Error />} />
         </Route>
 
@@ -128,6 +128,7 @@ function App() {
             </UserRoute>
           }
         >
+          <Route path="postcards" element={<Postcards />} />
           <Route path="articlecard" element={<ArticleCard />} />
           <Route path="chat" element={<Chat />} />
           <Route path="error" element={<Error />} />
