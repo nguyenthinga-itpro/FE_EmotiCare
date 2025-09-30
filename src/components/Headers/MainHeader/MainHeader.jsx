@@ -54,7 +54,8 @@ const HeaderBar = () => {
     e.preventDefault();
     try {
       await dispatch(logout()).unwrap();
-      navigate("/");
+      // reload để cookie HttpOnly chắc chắn bị xóa
+      window.location.href = "/login";
     } catch (err) {
       console.error("Logout failed:", err);
     }
