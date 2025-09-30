@@ -1,23 +1,38 @@
-import React from "react";
-import { Collapse, Carousel } from "antd";
-
+import React, { useEffect, useState } from "react";
+import { Collapse, Pagination } from "antd";
+import { useDispatch, useSelector } from "react-redux";
 import Images from "../../../Constant/Images";
 import Videos from "../../../Constant/Videos";
+import { getAllChats } from "../../../redux/Slices/ChatAISlice";
+import { getAllCategories } from "../../../redux/Slices/CategorySlice";
 import "./Stories.css";
 
 const { Panel } = Collapse;
 
 export default function Stories() {
+  const [currentPage, setCurrentPage] = useState(1);
+  const localPageSize = 3;
+
+  const dispatch = useDispatch();
+
+  const { paginatedChats = [] } = useSelector((s) => s.chat);
+  const { paginatedCategories = [] } = useSelector((s) => s.category);
+
+  useEffect(() => {
+    dispatch(getAllChats({ pageSize: 100 }));
+    dispatch(getAllCategories({ pageSize: 100 }));
+  }, [dispatch]);
+
+  const chats = paginatedChats.filter((c) => !c.isDisabled);
+  const categories = paginatedCategories.filter((c) => !c.isDisabled);
+
+  const startIndex = (currentPage - 1) * localPageSize;
+  const currentChats = chats.slice(startIndex, startIndex + localPageSize);
+
   return (
     <main>
-
       <div className="video-container">
-        <video
-          src={Videos.Storya}
-          controls
-          autoPlay={false}
-          className="video-player"
-        />
+        <video src={Videos.Storya} controls autoPlay={false} className="video-player" />
       </div>
 
       <section className="stories-section" id="stories">
@@ -28,82 +43,35 @@ export default function Stories() {
           </div>
 
           <section className="stories-carousel">
-            <Carousel dots={{ className: "custom-dots" }}>
-              <div>
-                <div className="stories-grid">
-                  <div className="story-card">
-                    <video
-                      src={Videos.Story}
-                      controls
-                      className="story-video"
-                    />
-                  </div>
-                  <div className="story-card">
-                    <video
-                      src={Videos.Story}
-                      controls
-                      className="story-video"
-                    />
-                  </div>
-                  <div className="story-card">
-                    <video
-                      src={Videos.Story}
-                      controls
-                      className="story-video"
-                    />
-                  </div>
+            <div className="stories-grid">
+              {currentChats.map((chat, index) => (
+                <div key={index} className="story-card">
+                  <video src={chat.videoUrl || Videos.Story} controls className="story-video" />
                 </div>
-              </div>
+              ))}
+            </div>
 
-              <div>
-                <div className="stories-grid">
-                  <div className="story-card">
-                    <video
-                      src={Videos.Story}
-                      controls
-                      className="story-video"
-                    />
-                  </div>
-                  <div className="story-card">
-                    <video
-                      src={Videos.Story}
-                      controls
-                      className="story-video"
-                    />
-                  </div>
-                  <div className="story-card">
-                    <video
-                      src={Videos.Story}
-                      controls
-                      className="story-video"
-                    />
-                  </div>
-                </div>
-              </div>
-            </Carousel>
+            <Pagination
+              className="custom-Pagination"
+              align="center"
+              current={currentPage}
+              pageSize={localPageSize}
+              total={chats.length}
+              onChange={(page) => setCurrentPage(page)}
+            />
           </section>
         </div>
       </section>
+
       <section className="stories-sections">
         <h1 className="stories-titles">Interactive Stories</h1>
         <p className="stories-subtitle">You choose mood today</p>
-
         <div className="stories-grids">
-          <div className="story-cards">
-            <img src={Images.Happy} alt="Happy" className="story-icon" />
-          </div>
-          <div className="story-cardss">
-            <img src={Images.Sad} alt="Sad" className="story-icon" />
-          </div>
-          <div className="story-cards">
-            <img src={Images.Angry} alt="Angry" className="story-icon" />
-          </div>
-          <div className="story-cardss">
-            <img src={Images.Think} alt="Think" className="story-icon" />
-          </div>
-          <div className="story-cards">
-            <img src={Images.Scare} alt="Scare" className="story-icon" />
-          </div>
+          {[Images.Happy, Images.Sad, Images.Angry, Images.Think, Images.Scare].map((img, i) => (
+            <div key={i} className="story-cards">
+              <img src={img} alt="Mood" className="story-icon" />
+            </div>
+          ))}
         </div>
       </section>
     </main>

@@ -1,58 +1,124 @@
 import React, { useState } from "react";
-import {
-  Form,
-  Input,
-  Avatar,
-  Card,
-  Layout,
-  Row,
-  Col,
-  Collapse,
-  Carousel,
-  Radio,
-  Switch,
-} from "antd";
-import { useNavigate } from "react-router-dom";
-
+import { Form, Input, Card, Row, Col, Menu, Collapse, Carousel } from "antd";
+import { Pagination } from "antd";
 import Images from "../../../Constant/Images";
 import "./More.css";
+
+const faqItems = [
+  {
+    key: "general1",
+    category: "general",
+    label: <span className="panel-gradient">What is EmotiCare?</span>,
+    children: [
+      {
+        key: "1",
+        label: <p className="panel-p">EmotiCare is ...</p>,
+      },
+    ],
+  },
+  {
+    key: "general2",
+    category: "general",
+    label: (
+      <span className="panel-gradient">
+        Is EmotiCare suitable for all ages?
+      </span>
+    ),
+    children: [
+      {
+        key: "2",
+        label: <p className="panel-p">Yes, ...</p>,
+      },
+    ],
+  },
+  {
+    key: "avatars1",
+    category: "avatars",
+    label: (
+      <span className="panel-gradient">How do I interact with avatars?</span>
+    ),
+    children: [
+      {
+        key: "3",
+        label: (
+          <>
+            <p className="panel-p">...</p>
+          </>
+        ),
+      },
+    ],
+  },
+  {
+    key: "avatars2",
+    category: "avatars",
+    label: (
+      <span className="panel-gradient">Can I save my favorite articles?</span>
+    ),
+    children: [
+      {
+        key: "4",
+        label: <p className="panel-p">...</p>,
+      },
+    ],
+  },
+  {
+    key: "privacy1",
+    category: "privacy",
+    label: (
+      <span className="panel-gradient">Is my personal information safe?</span>
+    ),
+    children: [
+      {
+        key: "5",
+        label: <p className="panel-p">...</p>,
+      },
+    ],
+  },
+  {
+    key: "privacy2",
+    category: "privacy",
+    label: <span className="panel-gradient">Can I remain anonymous?</span>,
+    children: [
+      {
+        key: "6",
+        label: <p className="panel-p">...</p>,
+      },
+    ],
+  },
+  {
+    key: "support1",
+    category: "support",
+    label: (
+      <span className="panel-gradient">
+        How can I give feedback or report a problem?
+      </span>
+    ),
+    children: [
+      {
+        key: "7",
+        label: <p className="panel-p">...</p>,
+      },
+    ],
+  },
+  {
+    key: "support2",
+    category: "support",
+    label: (
+      <span className="panel-gradient">
+        Where can I find help if I feel overwhelmed?
+      </span>
+    ),
+    children: [
+      {
+        key: "8",
+        label: <p className="panel-p">...</p>,
+      },
+    ],
+  },
+];
+
 const { Panel } = Collapse;
-// Hàm xử lý đổi tab
-// const scrollToSection = (section) => {
-//   setactiveSettingsSection (section);
-// };
 export default function More() {
-  // const [theme, setTheme] = useState("light");
-  // const [darkEnabled, setDarkEnabled] = useState(false);
-  const navigate = useNavigate();
-  const goToPostcards = () => {
-    navigate("/user/ArticleCard");
-    setTimeout(() => {
-      window.scrollTo({ top: 0, behavior: "smooth" });
-    }, 100); // delay 100ms cho chắc
-  };
-  // Mỗi khi theme đổi -> thêm class vào body
-  // useEffect(() => {
-  //   document.body.classList.remove("light-theme", "dark-theme");
-  //   if (theme === "dark" || darkEnabled) {
-  //     document.body.classList.add("dark-theme");
-  //   } else {
-  //     document.body.classList.add("light-theme");
-  //   }
-  // }, [theme, darkEnabled]);
-
-  // Hàm scroll mượt
-  // const [activeSettingsSection , setactiveSettingsSection ] = useState("mydetails"); // 👈 mặc định mở "mydetails"
-
-  //   const scrollToSection = (id) => {
-  //     const section = document.getElementById(id);
-  //     if (section) {
-  //       section.scrollIntoView({ behavior: "smooth", block: "start" });
-  //       setactiveSettingsSection (id); // đổi active khi click
-  //       console.log("setactiveSettingsSection ", activeSettingsSection );
-  //     }
-  //   };
-  // Menu trên (About, FAQ, Resources, Settings)
   const [activeMainSection, setActiveMainSection] = useState("about");
 
   // Menu dưới (My details, Profile, Password, Email)
@@ -66,6 +132,72 @@ export default function More() {
     }
   };
 
+  const renderMenuByCategory = (category) =>
+    faqItems.filter((item) => item.category === category);
+  const [currentPage, setCurrentPage] = useState(1);
+  const pageSize = 3; // số card mỗi trang
+  // Dữ liệu character cards
+  const characterCards = [
+    {
+      img: Images.Breezy,
+      title: "Stormy",
+      text: "Learn to recognize the signs of stress and practice daily relaxation exercises.",
+    },
+    {
+      img: Images.Care,
+      title: "Boost Your Confidence",
+      text: "Learn to recognize the signs of stress and practice daily relaxation exercises.",
+    },
+    {
+      img: Images.Navi,
+      title: "Coping With Emotions",
+      text: "Learn to recognize the signs of stress and practice daily relaxation exercises.",
+    },
+    {
+      img: Images.Jinx,
+      title: "Extra Card 1",
+      text: "Learn to recognize the signs of stress and practice daily relaxation exercises.",
+    },
+    {
+      img: Images.Mellow,
+      title: "Extra Card 2",
+      text: "Learn to recognize the signs of stress and practice daily relaxation exercises.",
+    },
+  ];
+
+  // Danh sách video
+  const videos = [
+    {
+      src: "https://www.youtube.com/embed/jfKfPfyJRdk",
+      title: "lofi hip hop radio 📚 beats to relax/study to",
+      text: "Listen on Spotify, Apple music and more",
+      link: "https://www.youtube.com/watch?v=jfKfPfyJRdk",
+    },
+    {
+      src: "https://www.youtube.com/embed/ScMzIvxBSi4",
+      title: "Placeholder Video",
+      text: "I am a web designer and developer. And I couldn't find any good placeholder videos for a website mockup so I came up with my own.",
+      link: "https://www.youtube.com/watch?v=ScMzIvxBSi4",
+    },
+    {
+      src: "https://www.youtube.com/embed/LXb3EKWsInQ",
+      title: "COSTA RICA IN 4K 60fps HDR (ULTRA HD)",
+      text: "We've re-mastered and re-uploaded our favorite video in HDR!",
+      link: "https://www.youtube.com/watch?v=LXb3EKWsInQ",
+    },
+    {
+      src: "https://www.youtube.com/embed/RgKAFK5djSk",
+      title: "See You Again - Wiz Khalifa ft. Charlie Puth",
+      text: "Original soundtrack from Fast & Furious 7.",
+      link: "https://www.youtube.com/watch?v=RgKAFK5djSk",
+    },
+  ];
+  // Tính index slice
+  const startIndex = (currentPage - 1) * pageSize;
+  const currentCards = characterCards.slice(startIndex, startIndex + pageSize);
+
+  const currentVideos = videos.slice(startIndex, startIndex + pageSize);
+
   return (
     <main>
       <Row align="middle" justify="space-between" style={{ width: "100%" }}>
@@ -73,7 +205,7 @@ export default function More() {
         <Col xs={0} md={5}></Col>
 
         {/* Desktop menu */}
-        <Col xs={0} md={13} className="desktop-menu">
+        <Col xs={0} md={16} className="desktop-menu">
           <nav className="menu-navbar">
             <button
               className={activeMainSection === "about" ? "active-navbar" : ""}
@@ -121,7 +253,7 @@ export default function More() {
         </Col>
 
         {/* Login col */}
-        <Col xs={12} md={6} className="login-col"></Col>
+        <Col xs={12} md={3} className="login-col"></Col>
       </Row>
 
       {/* About Us Section */}
@@ -193,110 +325,46 @@ export default function More() {
         <Row gutter={50}>
           <Col xs={24} md={12}>
             <h3 className="general-line">General</h3>
-            <Collapse className="general-P">
-              <Panel
-                header={
-                  <span className="panel-gradient">What is EmotiCare?</span>
-                }
-                key="1"
-              >
-                <p className="panel-p">EmotiCare is ...</p>
-              </Panel>
-            </Collapse>
-            <Collapse className="general-P">
-              <Panel
-                header={
-                  <span className="panel-gradient">
-                    Is EmotiCare suitable for all ages?
-                  </span>
-                }
-                key="2"
-              >
-                <p className="panel-p">Yes, ...</p>
-              </Panel>
-            </Collapse>
+            <Menu
+              className="faq-menu"
+              mode="inline"
+              expandIcon={({ isOpen }) => (
+                <span className={`menu-arrow ${isOpen ? "open" : ""}`}></span>
+              )}
+              items={renderMenuByCategory("general")}
+            />
 
             <h3 className="general-line">Using Avatars</h3>
-
-            <Collapse className="general-P">
-              <Panel
-                header={
-                  <span className="panel-gradient">
-                    How do I interact with avatars?
-                  </span>
-                }
-                key="3"
-              >
-                <p className="panel-p">...</p>
-              </Panel>
-            </Collapse>
-            <Collapse className="general-P">
-              <Panel
-                header={
-                  <span className="panel-gradient">
-                    Can I save my favorite articles?
-                  </span>
-                }
-                key="4"
-              >
-                <p className="panel-p">...</p>
-              </Panel>
-            </Collapse>
+            <Menu
+              className="faq-menu"
+              mode="inline"
+              expandIcon={({ isOpen }) => (
+                <span className={`menu-arrow ${isOpen ? "open" : ""}`}></span>
+              )}
+              items={renderMenuByCategory("avatars")}
+            />
           </Col>
 
           <Col xs={24} md={12}>
             <h3 className="general-line">Privacy</h3>
-            <Collapse className="general-P">
-              <Panel
-                header={
-                  <span className="panel-gradient">
-                    Is my personal information safe?
-                  </span>
-                }
-                key="5"
-              >
-                <p className="panel-p">...</p>
-              </Panel>
-            </Collapse>
-            <Collapse className="general-P">
-              <Panel
-                header={
-                  <span className="panel-gradient">
-                    Can I remain anonymous?
-                  </span>
-                }
-                key="6"
-              >
-                <p className="panel-p">...</p>
-              </Panel>
-            </Collapse>
+            <Menu
+              className="faq-menu"
+              mode="inline"
+              expandIcon={({ isOpen }) => (
+                <span className={`menu-arrow ${isOpen ? "open" : ""}`}></span>
+              )}
+              items={renderMenuByCategory("privacy")}
+            />
 
             <h3 className="general-line">Support</h3>
-
-            <Collapse className="general-P">
-              <Panel
-                header={
-                  <span className="panel-gradient">
-                    How can I give feedback or report a problem?
-                  </span>
-                }
-                key="7"
-              >
-                <p className="panel-p">...</p>
-              </Panel>
-            </Collapse>
-            <Collapse className="general-P">
-              <Panel
-                header={
-                  <span className="panel-gradient">
-                    Where can I find help if I feel overwhelmed?
-                  </span>
-                }
-                key="8"
-              >
-                <p className="panel-p">...</p>
-              </Panel>
-            </Collapse>
+            <Menu
+              className="faq-menu"
+              mode="inline"
+              expandIcon={({ isOpen }) => (
+                <span className={`menu-arrow ${isOpen ? "open" : ""}`}></span>
+              )}
+              items={renderMenuByCategory("support")}
+            />
           </Col>
         </Row>
       </section>
@@ -309,218 +377,70 @@ export default function More() {
           </div>
           <h3 className="section-subtitle">Articles / Tips & Guides:</h3>
 
-          <section className="name-sections">
-            <Carousel dots={{ className: "custom-dots" }}>
-              <div>
-                <div className="character-grids">
-                  <div className="character-card stormy-card">
-                    <div className="image-wrapper">
-                      <img src={Images.Breezy} alt="Breezy" />
-                    </div>
-                    <h3>Stormy</h3>
-                    <p className="card-text">
-                      Learn to recognize the signs of stress and practice daily
-                      relaxation exercises.
-                    </p>
-                    <button onClick={goToPostcards} className="card-btn">
-                      READ MORE
-                    </button>
+          <section className="custom-sections">
+            {/* Character Cards */}
+            <div className="character-grids">
+              {currentCards.map((card, index) => (
+                <div key={index} className="character-card stormy-card">
+                  <div className="image-wrapper">
+                    <img src={card.img} alt={card.title} />
                   </div>
-
-                  <div className="character-card stormy-card">
-                    <div className="image-wrapper">
-                      <img src={Images.Care} alt="Care" />
-                    </div>
-                    <h3>Boost Your Confidence </h3>
-                    <p className="card-text">
-                      Learn to recognize the signs of stress and practice daily
-                      relaxation exercises.
-                    </p>
-                    <button className="card-btn">READ MORE</button>
-                  </div>
-
-                  <div className="character-card stormy-card">
-                    <div className="image-wrapper">
-                      <img src={Images.Navi} alt="Navi" />
-                    </div>
-                    <h3>Coping With Emotions </h3>
-                    <p className="card-text">
-                      Learn to recognize the signs of stress and practice daily
-                      relaxation exercises.
-                    </p>
-                    <button className="card-btn">READ MORE</button>
-                  </div>
+                  <h3>{card.title}</h3>
+                  <p className="card-text">{card.text}</p>
+                  <button className="card-btn">READ MORE</button>
                 </div>
-              </div>
-
-              <div>
-                <div className="character-grids">
-                  <div className="character-card">
-                    <h3>Sunny</h3>
-                    <img src={Images.Sunny} alt="Sunny" />
-                  </div>
-                  <div className="character-card">
-                    <h3>Mellow</h3>
-                    <img src={Images.Mellow} alt="Mellow" />
-                  </div>
-                  <div className="character-card">
-                    <h3>Navi</h3>
-                    <img src={Images.Navi} alt="Navi" />
-                  </div>
-                </div>
-              </div>
-
-              <div>
-                <div className="character-grids">
-                  <div className="character-card">
-                    <h3>Mellow</h3>
-                    <img src={Images.Mellow} alt="Mellow" />
-                  </div>
-                  <div className="character-card">
-                    <h3>Mellow</h3>
-                    <img src={Images.Mellow} alt="Mellow" />
-                  </div>
-                </div>
-              </div>
-            </Carousel>
-
+              ))}
+            </div>
+            {/* Pagination */}
+            <Pagination
+              className="custom-Pagination"
+              align="center"
+              current={currentPage}
+              pageSize={pageSize}
+              total={characterCards.length}
+              onChange={(page) => setCurrentPage(page)}
+            />
             <h3 className="section-subtitle">Videos / Video:</h3>
-            <Carousel dots={{ className: "custom-dots" }}>
-              <div>
-                <div className="character-grids">
-                  <div className="character-card">
-                    <div className="video-wrapper">
-                      <iframe
-                        width="100%"
-                        height="200"
-                        src="https://www.youtube.com/embed/jfKfPfyJRdk"
-                        title="Sunny video"
-                        frameBorder="0"
-                        allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture"
-                        allowFullScreen
-                      ></iframe>
-                    </div>
-
-                    <div className="card-content">
-                      <h3 className="card-title">
-                        lofi hip hop radio 📚 beats to relax/study to
-                      </h3>
-                      <p className="card-text">
-                        Listen on Spotify, Apple music and more
-                      </p>
-                      <a
-                        href="https://www.youtube.com/watch?v=jfKfPfyJRdk"
-                        target="_blank"
-                        rel="noopener noreferrer"
-                        className="card-btn"
-                      >
-                        READ MORE
-                      </a>
-                    </div>
+            <div className="character-grids">
+              {currentVideos.map((video, index) => (
+                <div key={index} className="character-card">
+                  <div className="video-wrapper">
+                    <iframe
+                      width="100%"
+                      height="200"
+                      src={video.src}
+                      title={video.title}
+                      frameBorder="0"
+                      allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture"
+                      allowFullScreen
+                    ></iframe>
                   </div>
 
-                  <div className="character-card stormy-card">
-                    <div className="video-wrapper">
-                      <iframe
-                        width="100%"
-                        height="200"
-                        src="https://www.youtube.com/embed/ScMzIvxBSi4"
-                        title="Stormy video"
-                        frameBorder="0"
-                        allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture"
-                        allowFullScreen
-                      ></iframe>
-                    </div>
-
-                    <div className="card-content">
-                      <h3 className="card-title">Placeholder Video</h3>
-                      <p className="card-text">
-                        I am a web designer and developer. And I couldn't find
-                        any good placeholder videos for a website mockup so I
-                        came up with my own. I hope you find it just as useful
-                        as I do.
-                      </p>
-                      <a
-                        href="https://www.youtube.com/watch?v=ScMzIvxBSi4"
-                        target="_blank"
-                        rel="noopener noreferrer"
-                        className="card-btn"
-                      >
-                        READ MORE
-                      </a>
-                    </div>
-                  </div>
-
-                  <div className="character-card">
-                    <div className="video-wrapper">
-                      <iframe
-                        width="100%"
-                        height="200"
-                        src="https://www.youtube.com/embed/LXb3EKWsInQ"
-                        title="Sunny video"
-                        frameBorder="0"
-                        allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture"
-                        allowFullScreen
-                      ></iframe>
-                    </div>
-
-                    <div className="card-content">
-                      <h3 className="card-title">
-                        COSTA RICA IN 4K 60fps HDR (ULTRA HD)
-                      </h3>
-                      <p className="card-text">
-                        We've re-mastered and re-uploaded our favorite video in
-                        HDR!
-                      </p>
-                      <a
-                        href="https://www.youtube.com/watch?v=LXb3EKWsInQ"
-                        target="_blank"
-                        rel="noopener noreferrer"
-                        className="card-btn"
-                      >
-                        READ MORE
-                      </a>
-                    </div>
+                  <div className="card-content">
+                    <h3 className="card-title">{video.title}</h3>
+                    <p className="card-text">{video.text}</p>
+                    <a
+                      href={video.link}
+                      target="_blank"
+                      rel="noopener noreferrer"
+                      className="card-btn"
+                    >
+                      READ MORE
+                    </a>
                   </div>
                 </div>
-              </div>
+              ))}
+            </div>
 
-              <div>
-                <div className="character-grids">
-                  <div className="character-card">
-                    <div className="video-wrapper">
-                      <iframe
-                        width="100%"
-                        height="200"
-                        src="https://www.youtube.com/embed/RgKAFK5djSk"
-                        title="Sunny video"
-                        frameBorder="0"
-                        allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture"
-                        allowFullScreen
-                      ></iframe>
-                    </div>
-
-                    <div className="card-content">
-                      <h3 className="card-title">
-                        COSTA RICA IN 4K 60fps HDR (ULTRA HD)
-                      </h3>
-                      <p className="card-text">
-                        We've re-mastered and re-uploaded our favorite video in
-                        HDR!
-                      </p>
-                      <a
-                        href="https://www.youtube.com/watch?v=RgKAFK5djSk"
-                        target="_blank"
-                        rel="noopener noreferrer"
-                        className="card-btn"
-                      >
-                        READ MORE
-                      </a>
-                    </div>
-                  </div>
-                </div>
-              </div>
-            </Carousel>
+            {/* Pagination */}
+            <Pagination
+              className="custom-Pagination"
+              align="center"
+              current={currentPage}
+              pageSize={pageSize}
+              total={videos.length}
+              onChange={(page) => setCurrentPage(page)}
+            />
           </section>
         </div>
       </section>
@@ -530,9 +450,10 @@ export default function More() {
         </div>
       </section>
 
-      <Row align="middle" justify="center" style={{ width: "92%" }}>
+      <Row align="middle" justify="center" style={{ width: "100%" }}>
         {/* Desktop menu */}
-        <Col xs={0} md={18} className="desktop-menu">
+        <Col xs={0} md={2}></Col>
+        <Col xs={0} md={22} className="desktop-menu">
           <nav className="menu-navbar">
             <button
               className={

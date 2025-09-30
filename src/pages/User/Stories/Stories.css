@@ -36,7 +36,7 @@ body,html{
 .stories-title {
   font-size: 32px;
   line-height:1.6;
-  background:linear-gradient(90deg,#6f82e4,#754da5);
+  background:var(--panelGradient);
   -webkit-background-clip:text;
   -webkit-text-fill-color:transparent;
   font-weight:700
@@ -45,8 +45,9 @@ body,html{
 
 .stories-subtitle {
   font-size: 16px;
-
-  background:linear-gradient(90deg,#6f82e4,#754da5);
+display: flex;
+justify-content: center;
+  background:var(--panelGradient);
   -webkit-background-clip:text;
   -webkit-text-fill-color:transparent;
   font-weight:700
@@ -82,7 +83,7 @@ body,html{
 .stories-title {
     font-size: 48px;
   font-weight: 700;
-  background: linear-gradient(90deg, #6366f1, #744ea6);
+  background: var(--panelGradient);
   -webkit-background-clip: text;
   -webkit-text-fill-color: transparent;
   background-clip: text; 
@@ -92,7 +93,7 @@ body,html{
 .stories-titles {
   font-size: 50px;
   font-weight: 700;
-  background: linear-gradient(90deg, #6366f1, #744EA6);
+  background: var(--panelGradient);
   -webkit-background-clip: text;
   -webkit-text-fill-color: transparent;
   background-clip: text; 
@@ -118,14 +119,8 @@ body,html{
   animation: rainbow 4s linear infinite;
 }
 
-.stories-subtitle {
-  font-size: 14px;
-  background: linear-gradient(90deg, #6c6eeb, #8f50e3);
-  -webkit-background-clip: text;
-  -webkit-text-fill-color: transparent;
-  margin-bottom: 30px;
-  text-align: center;   
-}
+
+
 
 .stories-grid {
   display: flex;
