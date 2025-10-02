@@ -194,7 +194,7 @@ export default function ResourceManagement() {
       />
     ),
     categoryDisplay: <div>{e.categoryId}</div>,
-    image: <img src={e.image} alt={e.title} className="table-image" />,
+    image: <img src={"e.image"} alt={e.title} className="table-image" />,
     toggle: (
       <Switch
         checked={!e.isDisabled}
