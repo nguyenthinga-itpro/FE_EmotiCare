@@ -1,5 +1,6 @@
 import { Tooltip } from "antd";
-
+import LightBG from "../assets/Images/EmotiCareBGLight.png";
+import DarkBG from "../assets/Images/EmotiCareBGDark.png";
 // src/Themes/Colors.js
 export const light = {
   colorBgContainer: "#f7f7f7",
@@ -34,6 +35,8 @@ export const light = {
   tooltipBg: "#000",
   characterData: "#fff",
   postcardsSection: "#f3f0ff",
+  cardBack: "#f7f7f7",
+  backgroundPostcardImage: `url(${LightBG})`,
   anticonSvg: "#000000",
   generalP: "#e6e4fb",
   sectionp: "#F3F0FF",
@@ -74,6 +77,8 @@ export const dark = {
   tooltipBg: "#000",
   characterData: "#333",
   postcardsSection: "#333",
+  cardBack: "#000",
+  backgroundPostcardImage: `url(${DarkBG})`,
   anticonSvg: "#000000",
   generalP: "#e6e4fb",
   sectionp: "#F3F0FF",

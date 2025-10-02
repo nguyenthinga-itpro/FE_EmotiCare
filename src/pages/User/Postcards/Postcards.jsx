@@ -1,114 +1,116 @@
-import React, { useEffect, useState } from "react";
-import {
-  HeartOutlined,
-  HeartFilled,
-  MessageOutlined,
-  UserOutlined,
-} from "@ant-design/icons";
-import {
-  Row,
-  Col,
-  Space,
-  Tooltip,
-  Button,
-  Modal,
-  Input,
-  Avatar,
-  Spin,
-} from "antd";
+import React, { useState, useRef, useEffect, useMemo } from "react";
+import { Row, Spin, Avatar, Space } from "antd";
+import { UserOutlined } from "@ant-design/icons";
 import { useDispatch, useSelector } from "react-redux";
-import { getAllPostcards } from "../../../redux/Slices/PostcardSlice";
+import FilterBar from "./FilterBar";
+import PostcardItem from "./PostcardItem";
+import CommentSection from "./CommentSection";
+import CommentActions from "./CommentActions";
+import Images from "../../../Constant/Images";
+import { usePostcards } from "./usePostcards";
+import { useComments } from "./useComments";
 import {
   getFavoriteInfo,
   toggleFavorite,
 } from "../../../redux/Slices/PostcardFavoriteSlice";
-import { createComment } from "../../../redux/Slices/PostcardCommentSlice";
-import { rtdb } from "../../../config/firebase";
-import { ref, onValue } from "firebase/database";
 import "./Postcards.css";
+import { useLocation } from "react-router-dom";
 
 export default function Postcards() {
   const dispatch = useDispatch();
-  const { paginatedPostcards = [], loading: pcLoading } = useSelector(
-    (s) => s.postcard || {}
-  );
-  const { favorites } = useSelector((s) => s.favorite);
   const currentUser = useSelector((s) => s.user?.currentUser);
+  const location = useLocation();
+  const initialCategoryF = location.state?.category?.name;
+  // filters
+  const [categoryFilter, setCategoryFilter] = useState("");
+  const [favoriteFilter, setFavoriteFilter] = useState(false);
+  const [searchText, setSearchText] = useState("");
 
+  // ✅ Khi có initialCategoryF thì set nó vào categoryFilter
+  useEffect(() => {
+    if (initialCategoryF) {
+      setCategoryFilter(initialCategoryF); // Ví dụ initialCategoryF = "Happiness"
+    }
+  }, [initialCategoryF]);
+
+  const filters = useMemo(
+    () => ({
+      categoryFilter,
+      favoriteFilter,
+      searchText,
+    }),
+    [categoryFilter, favoriteFilter, searchText]
+  );
+
+  const { cards, loadMore, loading, paginatedCategories, favorites } =
+    usePostcards(10, filters);
+
+  const {
+    comments,
+    addComment,
+    editExistingComment,
+    deleteExistingComment,
+    countCommentsTree,
+  } = useComments(currentUser);
+
+  const scrollRef = useRef(null);
   const [flipped, setFlipped] = useState([]);
-  const [isModalOpen, setIsModalOpen] = useState(false);
   const [selectedCard, setSelectedCard] = useState(null);
-  const [newComment, setNewComment] = useState("");
   const [replyTo, setReplyTo] = useState(null);
-  const [comments, setComments] = useState({}); // { postcardId: [nested tree] }
 
-  // Load postcards
+  const [isModalOpen, setIsModalOpen] = useState(false);
+  const [editState, setEditState] = useState({
+    open: false,
+    id: null,
+    content: "",
+  });
+  const [deleteState, setDeleteState] = useState({ open: false, id: null });
+  const [openDropdownId, setOpenDropdownId] = useState(null);
+  const [newComment, setNewComment] = useState("");
+
+  // flip array sync
+  useEffect(() => setFlipped(Array(cards.length).fill(false)), [cards.length]);
+
+  // infinite scroll
   useEffect(() => {
-    dispatch(getAllPostcards({ pageSize: 100 }));
-  }, [dispatch]);
-
-  useEffect(() => {
-    setFlipped(Array(paginatedPostcards.length).fill(false));
-  }, [paginatedPostcards.length]);
-
-  // Realtime listener
-  useEffect(() => {
-    const commentsRef = ref(rtdb, "postcardComments");
-    const unsubscribe = onValue(commentsRef, (snapshot) => {
-      const data = snapshot.val() || {};
-      const grouped = {};
-
-      Object.values(data).forEach((c) => {
-        if (!grouped[c.postcardId]) grouped[c.postcardId] = [];
-        grouped[c.postcardId].push(c);
-      });
-
-      const nested = {};
-      Object.keys(grouped).forEach((pid) => {
-        nested[pid] = buildNestedTree(grouped[pid]);
-      });
-
-      setComments(nested);
-    });
-
-    return () => unsubscribe();
-  }, []);
-
-  // Build nested tree
-  const buildNestedTree = (flat) => {
-    const map = {};
-    flat.forEach((c) => {
-      c.replies = [];
-      map[c.id] = c;
-    });
-    const tree = [];
-    flat.forEach((c) => {
-      if (c.parentId && map[c.parentId]) map[c.parentId].replies.push(c);
-      else tree.push(c);
-    });
-    return tree;
-  };
+    const handleScroll = () => {
+      if (!scrollRef.current || loading) return;
+      const { scrollTop, scrollHeight, clientHeight } = scrollRef.current;
+      if (scrollTop + clientHeight >= scrollHeight - 100) {
+        loadMore(); // ✅ không dùng cursor nữa
+      }
+    };
+    const container = scrollRef.current;
+    container?.addEventListener("scroll", handleScroll);
+    return () => container?.removeEventListener("scroll", handleScroll);
+  }, [loading, loadMore]);
 
   const handleFlip = (index) => {
     setFlipped((prev) => {
       const next = [...prev];
       next[index] = !next[index];
-      if (next[index] && paginatedPostcards[index]) {
+      console.log("FLIP INDEX", index, "CARD", cards[index]?.id);
+      if (next[index] && cards[index]) {
         dispatch(
           getFavoriteInfo({
-            postcardId: paginatedPostcards[index].id,
+            postcardId: cards[index].id,
             userId: currentUser?.uid,
           })
         );
-      }
+        setSelectedCard(cards[index]);
+      } else setSelectedCard(null);
       return next;
     });
+  };
+
+  const toggleAll = () => {
+    setFlipped(Array(flipped.length).fill(!flipped.some((f) => f)));
   };
 
   const openModal = (card) => {
     setSelectedCard(card);
     setIsModalOpen(true);
-    setReplyTo(null); // reset khi mở modal mới
+    setReplyTo(null);
   };
   const closeModal = () => {
     setIsModalOpen(false);
@@ -117,43 +119,25 @@ export default function Postcards() {
     setReplyTo(null);
   };
 
-  const handleLike = (postcardId) => {
+  const handleLike = (postcardId) =>
     dispatch(toggleFavorite({ postcardId, userId: currentUser?.uid }));
-  };
-
   const handleAddComment = () => {
-    if (!newComment.trim()) return;
-    if (!selectedCard) {
-      console.warn("[DEBUG] No postcard selected for comment");
-      return;
+    if (selectedCard) {
+      addComment(selectedCard.id, newComment, replyTo);
+      setNewComment("");
+      setReplyTo(null);
     }
-
-    const payload = {
-      postcardId: selectedCard.id,
-      content: newComment,
-      userId: currentUser?.uid,
-      parentId: replyTo?.id || null, // đúng comment user chọn
-    };
-
-    console.log("[DEBUG] Sending comment:", payload);
-    dispatch(createComment(payload));
-    setNewComment("");
-    setReplyTo(null);
+  };
+  const openEditModal = (id, content) =>
+    setEditState({ open: true, id, content });
+  const closeEditModal = () =>
+    setEditState({ open: false, id: null, content: "" });
+  const openDeleteModal = (id) => setDeleteState({ open: true, id });
+  const onConfirmDelete = () => {
+    deleteExistingComment(deleteState.id);
+    setDeleteState({ open: false, id: null });
   };
 
-  const countCommentsTree = (nodes) => {
-    let count = 0;
-    const dfs = (n) => {
-      n.forEach((c) => {
-        count++;
-        if (c.replies?.length) dfs(c.replies);
-      });
-    };
-    if (nodes) dfs(nodes);
-    return count;
-  };
-
-  // render nested comments
   const renderComments = (nodes, level = 0) =>
     nodes.map((node) => (
       <div
@@ -166,121 +150,114 @@ export default function Postcards() {
           paddingTop: 4,
         }}
         onClick={(e) => {
-          e.stopPropagation(); // tránh click parent
-          console.log("[DEBUG] Set replyTo:", node);
-          setReplyTo(node); // lưu đúng comment được click
+          e.stopPropagation();
+          setReplyTo(node);
         }}
       >
         <Space>
           <Avatar
-            src={node.avatar || null}
+            src={node.avatar}
             icon={!node.avatar ? <UserOutlined /> : null}
             size={24}
           />
           <div>
             <b>{node.author}</b>: {node.content}
+            {node.userId === currentUser?.uid && (
+              <CommentActions
+                commentId={node.id}
+                content={node.content}
+                openDropdownId={openDropdownId}
+                setOpenDropdownId={setOpenDropdownId}
+                openEditModal={openEditModal}
+                openDeleteModal={openDeleteModal}
+              />
+            )}
           </div>
         </Space>
         {node.replies?.length ? renderComments(node.replies, level + 1) : null}
       </div>
     ));
 
-  if (pcLoading)
-    return (
-      <div style={{ display: "flex", justifyContent: "center", padding: 40 }}>
-        <Spin />
-      </div>
-    );
-
   return (
-    <div>
-      <Row gutter={[16, 16]} justify="center" style={{ marginTop: 20 }}>
-        {paginatedPostcards.map((card, i) => {
-          const fav = favorites[card.id] || {
-            isFavorite: false,
-            totalFavorites: 0,
-          };
-          const commentCount = countCommentsTree(comments[card.id]);
-          return (
-            <Col key={card.id} xs={24} sm={12} md={8} lg={6} xl={5}>
-              <div
-                className={`card-container ${flipped[i] ? "flipped" : ""}`}
-                onClick={() => handleFlip(i)}
-              >
-                <div className="card-front">
-                  <img src={card.image} alt={card.title} />
-                </div>
-                <div className="card-back">
-                  <h2>{card.title}</h2>
-                  <Space size="large">
-                    <Tooltip title="Like">
-                      <span
-                        onClick={(e) => {
-                          e.stopPropagation();
-                          handleLike(card.id);
-                        }}
-                      >
-                        {fav.isFavorite ? (
-                          <HeartFilled style={{ color: "red" }} />
-                        ) : (
-                          <HeartOutlined />
-                        )}{" "}
-                        {fav.totalFavorites}
-                      </span>
-                    </Tooltip>
-                    <Tooltip title="Comments">
-                      <span
-                        onClick={(e) => {
-                          e.stopPropagation();
-                          openModal(card);
-                        }}
-                      >
-                        <MessageOutlined /> {commentCount}
-                      </span>
-                    </Tooltip>
-                  </Space>
-                </div>
-              </div>
-            </Col>
-          );
-        })}
-      </Row>
-
-      <Modal
-        open={isModalOpen}
-        onCancel={closeModal}
-        footer={null}
-        width={1300}
-        title={selectedCard?.title}
-        centered
-      >
-        {selectedCard && (
-          <>
-            <div style={{ maxHeight: 400, overflowY: "auto" }}>
-              {renderComments(comments[selectedCard.id] || [])}
+    <div className="postcards-container">
+      <section className="title-container">
+        <div className="content">
+          <h1 className="title-postcard-type">POST CARDS</h1>
+        </div>
+      </section>
+      <div className="filter-bar-container">
+        <FilterBar
+          searchText={searchText}
+          setSearchText={setSearchText}
+          categoryFilter={categoryFilter}
+          setCategoryFilter={setCategoryFilter}
+          favoriteFilter={favoriteFilter}
+          setFavoriteFilter={setFavoriteFilter}
+          toggleAll={toggleAll}
+          allOpen={flipped.every((f) => f === true)}
+          paginatedCategories={paginatedCategories}
+        />
+      </div>
+      <div className="postcards-scroll-container" ref={scrollRef}>
+        <div className="postcards-scroll-content">
+          <Row
+            gutter={[16, 16]}
+            justify="center"
+            className="row-postcards-scroll"
+          >
+            {cards.map((card, i) => {
+              const fav = favorites?.[card.id] || {
+                isFavorite: false,
+                totalFavorites: 0,
+              };
+              console.log("CARD:", card.id, "FAV STATE:", fav);
+              const categoryDetail = paginatedCategories.find(
+                (c) => c?.id === card.categoryId
+              );
+              const commentCount = countCommentsTree(comments[card.id]);
+              return (
+                <PostcardItem
+                  key={card.id}
+                  card={card}
+                  categoryDetail={categoryDetail}
+                  flipped={flipped[i]}
+                  onFlip={() => handleFlip(i)}
+                  fav={fav}
+                  onLike={() => handleLike(card.id)}
+                  onOpenModal={() => openModal(card)}
+                  commentCount={commentCount}
+                />
+              );
+            })}
+          </Row>
+          {loading && (
+            <div style={{ textAlign: "center", padding: 20 }}>
+              <Spin />
             </div>
-            {replyTo && (
-              <div style={{ marginTop: 8, fontSize: 12, color: "#555" }}>
-                Replying to {replyTo.author}
-              </div>
-            )}
-            <Input.TextArea
-              rows={3}
-              style={{ marginTop: 8 }}
-              placeholder="Add a comment..."
-              value={newComment}
-              onChange={(e) => setNewComment(e.target.value)}
-            />
-            <Button
-              type="primary"
-              style={{ marginTop: 8 }}
-              onClick={handleAddComment}
-            >
-              Comment
-            </Button>
-          </>
-        )}
-      </Modal>
+          )}
+        </div>
+      </div>
+
+      <CommentSection
+        isOpen={isModalOpen}
+        onClose={closeModal}
+        card={selectedCard}
+        comments={comments}
+        renderComments={renderComments}
+        replyTo={replyTo}
+        setReplyTo={setReplyTo}
+        newComment={newComment}
+        setNewComment={setNewComment}
+        onSubmit={handleAddComment}
+        isEditOpen={editState.open}
+        onEditClose={closeEditModal}
+        editContent={editState.content}
+        setEditContent={(c) => setEditState({ ...editState, content: c })}
+        onSaveEdit={() => editExistingComment(editState.id, editState.content)}
+        isDeleteOpen={deleteState.open}
+        onDeleteClose={() => setDeleteState({ open: false, id: null })}
+        onConfirmDelete={onConfirmDelete}
+      />
     </div>
   );
 }

@@ -15,7 +15,7 @@ const { Footer } = Layout;
 
 export default function CustomFooter() {
   return (
-    <Footer className="custom-footer">
+    <Footer className="extra-custom-footer">
       <div className="footer-container">
         <Row gutter={[32, 32]}>
           <Col xs={24} sm={12} md={3}></Col>

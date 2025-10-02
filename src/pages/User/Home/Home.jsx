@@ -37,6 +37,10 @@ export default function Home() {
   // lọc bỏ disabled
   const chats = paginatedChats.filter((c) => c.isDisabled === false);
   const categories = paginatedCategories.filter((c) => c.isDisabled === false);
+  console.log("categories", categories);
+  const postcardHandle = (category) => {
+    navigate("/user/postcards", { state: { category } });
+  };
 
   // tính toán dữ liệu hiển thị cho pagination
   const startIndex = (currentPage - 1) * localPageSize;
@@ -121,7 +125,10 @@ export default function Home() {
                   className="card-text"
                   dangerouslySetInnerHTML={{ __html: c.description }}
                 />
-                <Button className="arrow-card-home">
+                <Button
+                  className="arrow-card-home"
+                  onClick={() => postcardHandle({ name: c.name })}
+                >
                   <ArrowRightOutlined />
                 </Button>
               </div>

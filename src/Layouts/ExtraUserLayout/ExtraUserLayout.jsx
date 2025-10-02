@@ -9,7 +9,7 @@ import "./ExtraUserLayout.css";
 const { Content } = Layout;
 
 const ExtraUserLayout = () => {
-  const { theme, mode } = useTheme();
+  const { mode } = useTheme();
   const location = useLocation();
 
   const pathSnippets = location.pathname.split("/").filter(Boolean);
@@ -23,20 +23,20 @@ const ExtraUserLayout = () => {
   ];
 
   return (
-    <Layout className={`main-user-layout ${mode}`}>
-      {/* Header */}
-      <ExtraHeader />
-
-      {/* Breadcrumb */}
-      <Breadcrumb style={{ margin: "16px 24px" }} items={breadcrumbItems} />
-
-      {/* Content */}
-      <Content style={{ minHeight: "calc(100vh - 160px)", padding: "24px" }}>
-        <Outlet />
-      </Content>
-
-      {/* Footer */}
-      <ExtraUserFooter />
+    <Layout className={`extra-user-layout ${mode}`}>
+      <div className="scroll-content ">
+        <ExtraHeader />
+        <Breadcrumb
+          className="breadcrumb-extra-user-layout"
+          items={breadcrumbItems}
+        />
+        <Content className="content-extra-user-layout">
+          <Outlet />
+        </Content>
+        <div className="footer-extra-user-layout">
+          <ExtraUserFooter />
+        </div>
+      </div>
     </Layout>
   );
 };
