@@ -1,0 +1,21 @@
+.profile-tabs .ant-tabs-tab.ant-tabs-tab-active .ant-tabs-tab-btn {
+  background: linear-gradient(135deg, #6e8efb, #a777e3);
+  -webkit-background-clip: text;
+  -webkit-text-fill-color: transparent;
+  font-weight: bold;
+  color: transparent !important; 
+}
+
+/* gradient khi hover tab */
+.profile-tabs .ant-tabs-tab:hover .ant-tabs-tab-btn {
+  background: linear-gradient(135deg, #6e8efb, #a777e3);
+  -webkit-background-clip: text;
+  -webkit-text-fill-color: transparent;
+  color: transparent !important;
+}
+
+.profile-tabs .ant-tabs-ink-bar {
+  background: linear-gradient(135deg, #6e8efb, #a777e3);
+  height: 3px;
+  border-radius: 3px;
+}
