@@ -9,6 +9,12 @@ export const postcardColumnsConfig = [
     type: "search",
   },
   {
+    title: "Author",
+    dataIndex: "author",
+    key: "author",
+    type: "search",
+  },
+  {
     title: "Image",
     dataIndex: "image",
     key: "image",

@@ -23,8 +23,8 @@ export default function Home() {
   const chats = paginatedChats.filter((c) => c.isDisabled === false);
   const categories = paginatedCategories.filter((c) => c.isDisabled === false);
   console.log("categories", categories);
-  const postcardHandle = () => {
-    navigate("/user/postcards");
+  const postcardHandle = (category) => {
+    navigate("/user/postcards", { state: { category } });
   };
   return (
     <main>
@@ -90,7 +90,10 @@ export default function Home() {
                   className="card-text"
                   dangerouslySetInnerHTML={{ __html: c.description }}
                 />
-                <Button className="arrow-card-home" onClick={postcardHandle}>
+                <Button
+                  className="arrow-card-home"
+                  onClick={() => postcardHandle({ name: c.name })}
+                >
                   <ArrowRightOutlined />
                 </Button>
               </div>

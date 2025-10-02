@@ -30,14 +30,28 @@ export const createComment = createAsyncThunk(
     }
   }
 );
-
+// === EDIT COMMENT ===
+export const editComment = createAsyncThunk(
+  "comment/editComment",
+  async ({ id, userId, content }, { rejectWithValue }) => {
+    try {
+      const res = await Api.put(`/comment/${id}`, {
+        userId,
+        content,
+      });
+      return res.data; // backend trả về comment đã update
+    } catch (err) {
+      return rejectWithValue(err.response?.data?.error || err.message);
+    }
+  }
+);
 // === DELETE COMMENT + NESTED REPLIES ===
 export const deleteComment = createAsyncThunk(
   "comment/deleteComment",
-  async ({ commentId }, { rejectWithValue }) => {
+  async ({ id }, { rejectWithValue }) => {
     try {
-      await Api.delete(`/comment/${commentId}`);
-      return commentId; // trả về commentId đã xóa
+      await Api.delete(`/comment/${id}`);
+      return id; // trả về commentId đã xóa
     } catch (err) {
       return rejectWithValue(err.response?.data?.error || err.message);
     }
@@ -74,6 +88,27 @@ const PostcardCommentSlice = createSlice({
         const arr = state.commentsByPostcard[comment.postcardId] || [];
         arr.push(comment); // thêm trực tiếp, backend đã build tree
         state.commentsByPostcard[comment.postcardId] = arr;
+      })
+      // === EDIT COMMENT ===
+      .addCase(editComment.fulfilled, (state, action) => {
+        const updated = action.payload;
+        const pid = updated.postcardId;
+        const updateInTree = (nodes) =>
+          nodes.map((c) => {
+            if (c.id === updated.id) {
+              return {
+                ...c,
+                content: updated.content,
+                editedAt: updated.editedAt,
+              }; // chỉ update nội dung
+            }
+            return { ...c, replies: updateInTree(c.replies || []) };
+          });
+        if (state.commentsByPostcard[pid]) {
+          state.commentsByPostcard[pid] = updateInTree(
+            state.commentsByPostcard[pid]
+          );
+        }
       })
 
       // --- DELETE COMMENT + NESTED REPLIES ---

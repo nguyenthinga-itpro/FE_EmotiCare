@@ -51,6 +51,7 @@ export default function PostcardManagement() {
   const justCreatedRef = useRef(false);
   const [realtimeActive, setRealtimeActive] = useState(true);
   const [searchText, setSearchText] = useState("");
+  
   useEffect(() => {
     dispatch(getAllCategories({ pageSize: 100 }));
   }, [dispatch]);
@@ -148,6 +149,7 @@ export default function PostcardManagement() {
         id: selected.id,
         title: values.title,
         description: values.description,
+        author: values.author,
         image: imageUrl,
         categoryId: values.category,
       };
@@ -249,6 +251,7 @@ export default function PostcardManagement() {
         fields={[
           { label: "Title", key: "title" },
           { label: "Description", key: "description", type: "html" },
+          { label: "Author", key: "author" },
           { label: "Category", key: "category" },
           {
             label: "Image",
@@ -284,13 +287,20 @@ export default function PostcardManagement() {
             type: "input",
             rules: [{ required: true, message: "Enter title" }],
           },
+
+          { name: "description", label: "Description", type: "textarea" },
+          {
+            name: "author",
+            label: "Author",
+            type: "input",
+            rules: [{ required: true, message: "Enter author" }],
+          },
           {
             name: "category",
             label: "Category",
             type: "select",
             options: categoryOptions,
           },
-          { name: "description", label: "Description", type: "textarea" },
           { name: "music", label: "Music URL", type: "input" },
           {
             name: "image",
@@ -315,6 +325,12 @@ export default function PostcardManagement() {
             rules: [{ required: true, message: "Enter title" }],
           },
           { name: "description", label: "Description", type: "textarea" },
+          {
+            name: "author",
+            label: "Author",
+            type: "input",
+            rules: [{ required: true, message: "Enter author" }],
+          },
           {
             name: "category",
             label: "Category",

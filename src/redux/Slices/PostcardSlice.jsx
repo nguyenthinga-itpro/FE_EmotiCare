@@ -20,7 +20,7 @@ export const getAllPostcards = createAsyncThunk(
 export const createPostcard = createAsyncThunk(
   "postcard/createPostcard",
   async (
-    { title, description, image, categoryId, music },
+    { title, description, image, categoryId, music, author },
     { rejectWithValue }
   ) => {
     try {
@@ -30,6 +30,7 @@ export const createPostcard = createAsyncThunk(
         image,
         categoryId,
         music,
+        author,
       });
       return res.data.postcard;
     } catch (err) {
@@ -42,7 +43,7 @@ export const createPostcard = createAsyncThunk(
 export const updatePostcard = createAsyncThunk(
   "postcard/updatePostcard",
   async (
-    { id, title, description, image, categoryId, music },
+    { id, title, description, image, categoryId, music, author },
     { rejectWithValue }
   ) => {
     try {
@@ -52,6 +53,7 @@ export const updatePostcard = createAsyncThunk(
         image,
         categoryId,
         music,
+        author,
       });
       return res.data.postcard;
     } catch (err) {
