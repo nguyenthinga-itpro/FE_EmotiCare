@@ -16,21 +16,22 @@ const { Footer } = Layout;
 export default function CustomFooter() {
   return (
     <>
-      {/* Top logos, tách riêng khỏi Footer */}
-      <div className="footer-topcontainer">
-        <Row gutter={[16, 16]} justify="space-between" align="middle">
-          {[1, 2, 3, 4, 5, 6, 7].map((i) => (
-            <Col key={i} span={3}>
-              <img
-                src={Images.Happy}
-                alt={`Logo ${i}`}
-                className="footer-logo"
-              />
-            </Col>
-          ))}
-        </Row>
+    <div className="marquee-container">
+    <section className="marquee">
+      <div className="w-layout-blockcontainer container container-full w-container">
+        <div className="marquee-wrapper">
+          <div className="marquee-content">
+            <div className="marquee-text">❤️ Your journey begins with a single step. Let’s take it together </div>
+            <div className="marquee-text">❤️ Your journey begins with a single step. Let’s take it together </div>
+            <div className="marquee-text">❤️ Your journey begins with a single step. Let’s take it together </div>
+            <div className="marquee-text">❤️ Your journey begins with a single step. Let’s take it together </div>
+            <div className="marquee-text">❤️ Your journey begins with a single step. Let’s take it together </div>
+            <div className="marquee-text">❤️ Your journey begins with a single step. Let’s take it together </div>
+          </div>
+        </div>
       </div>
-
+    </section>
+</div>
       {/* Footer chính */}
       <Footer className="custom-footer">
         <div className="footer-container">
@@ -43,16 +44,16 @@ export default function CustomFooter() {
               <p>Social Media</p>
               <div className="social-icons">
                 <a href="#">
-                  <FacebookOutlined />
+                  <FacebookOutlined className="social-name-icon" />
                 </a>
                 <a href="#">
-                  <TwitterOutlined />
+                  <TwitterOutlined className="social-name-icon" />
                 </a>
                 <a href="#">
-                  <InstagramOutlined />
+                  <InstagramOutlined className="social-name-icon" />
                 </a>
                 <a href="#">
-                  <LinkedinOutlined />
+                  <LinkedinOutlined className="social-name-icon" />
                 </a>
               </div>
             </Col>
@@ -70,13 +71,13 @@ export default function CustomFooter() {
             <Col xs={24} sm={12} md={5}>
               <h3 className="footer-title">Address</h3>
               <p>
-                <EnvironmentOutlined /> Cần thơ quê tôi nè các bạn ơi!!!
+                <EnvironmentOutlined className="social-name-icon" /> Cần thơ quê tôi nè các bạn ơi!!!
               </p>
               <p>
-                <PhoneOutlined /> +8478 8890 998
+                <PhoneOutlined className="social-name-icon" /> +8478 8890 998
               </p>
               <p>
-                <MailOutlined /> nguyenthinga-itpro@gmail.com
+                <MailOutlined className="social-name-icon" /> nguyenthinga-itpro@gmail.com
               </p>
             </Col>
 

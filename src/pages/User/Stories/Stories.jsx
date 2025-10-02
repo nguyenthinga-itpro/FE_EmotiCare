@@ -1,16 +1,36 @@
-import React from "react";
-import { Collapse, Carousel } from "antd";
-
+import React, { useState } from "react";
+import { Pagination } from "antd";
 import Images from "../../../Constant/Images";
 import Videos from "../../../Constant/Videos";
 import "./Stories.css";
 
-const { Panel } = Collapse;
-
 export default function Stories() {
+  // State riêng cho phân trang Stories video
+  const [characterPage, setCharacterPage] = useState(1);
+
+  // PageSize riêng
+  const characterPageSize = 3;
+
+  // Dữ liệu video cho stories (fake mẫu, có thể thêm nhiều)
+  const characterCards = [
+    { src: Videos.Story, type: "video" },
+    { src: Videos.Story, type: "video" },
+    { src: Videos.Story, type: "video" },
+    { src: Videos.Story, type: "video" },
+    { src: Videos.Story, type: "video" },
+
+  ];
+
+  // Slice cho cards
+  const startCharacterIndex = (characterPage - 1) * characterPageSize;
+  const currentCards = characterCards.slice(
+    startCharacterIndex,
+    startCharacterIndex + characterPageSize
+  );
+
   return (
     <main>
-
+      {/* Video chính */}
       <div className="video-container">
         <video
           src={Videos.Storya}
@@ -20,6 +40,7 @@ export default function Stories() {
         />
       </div>
 
+      {/* Daily Stories */}
       <section className="stories-section" id="stories">
         <div className="container">
           <div className="stories-header">
@@ -27,63 +48,32 @@ export default function Stories() {
             <h3 className="stories-subtitle">Click on stories</h3>
           </div>
 
+          {/* Stories Carousel */}
           <section className="stories-carousel">
-            <Carousel dots={{ className: "custom-dots" }}>
-              <div>
-                <div className="stories-grid">
-                  <div className="story-card">
-                    <video
-                      src={Videos.Story}
-                      controls
-                      className="story-video"
-                    />
-                  </div>
-                  <div className="story-card">
-                    <video
-                      src={Videos.Story}
-                      controls
-                      className="story-video"
-                    />
-                  </div>
-                  <div className="story-card">
-                    <video
-                      src={Videos.Story}
-                      controls
-                      className="story-video"
-                    />
-                  </div>
+            <div className="stories-grid">
+              {currentCards.map((card, index) => (
+                <div className="story-card" key={index}>
+                  <video src={card.src} controls className="story-video" />
                 </div>
-              </div>
+              ))}
+            </div>
 
-              <div>
-                <div className="stories-grid">
-                  <div className="story-card">
-                    <video
-                      src={Videos.Story}
-                      controls
-                      className="story-video"
-                    />
-                  </div>
-                  <div className="story-card">
-                    <video
-                      src={Videos.Story}
-                      controls
-                      className="story-video"
-                    />
-                  </div>
-                  <div className="story-card">
-                    <video
-                      src={Videos.Story}
-                      controls
-                      className="story-video"
-                    />
-                  </div>
-                </div>
-              </div>
-            </Carousel>
+            {/* Pagination */}
+<Pagination
+  className="custom-pagination"
+  current={characterPage}
+  pageSize={characterPageSize}
+  total={characterCards.length}
+  onChange={(page) => setCharacterPage(page)}
+  showSizeChanger={false}   // ẩn chọn size
+  showQuickJumper={false}   // ẩn nhảy nhanh
+/>
+
           </section>
         </div>
       </section>
+
+      {/* Interactive Stories */}
       <section className="stories-sections">
         <h1 className="stories-titles">Interactive Stories</h1>
         <p className="stories-subtitle">You choose mood today</p>

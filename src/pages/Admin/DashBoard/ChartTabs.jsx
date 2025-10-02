@@ -117,6 +117,7 @@ export default function ChartTabs({ statsByPeriod, onFetchStats }) {
   });
 
   return (
+    
     <Card className="chart-tabs-dashboard">
       <Tabs
         activeKey={activeTabKey}
@@ -137,43 +138,47 @@ export default function ChartTabs({ statsByPeriod, onFetchStats }) {
             </Space>
 
             {period === "week" && (
-              <RangePicker
-                picker="week"
-                disabledDate={(current) => {
-                  const currentYear = dayjs().year();
-                  const minYear = currentYear - 5;
-                  const year = current.year();
-                  return year < minYear || year > currentYear;
-                }}
-                onChange={(dates) => handleRangeChange(dates, "week")}
-              />
-            )}
+  <RangePicker
+    className="custom-range-picker"
+    picker="week"
+    disabledDate={(current) => {
+      const currentYear = dayjs().year();
+      const minYear = currentYear - 5;
+      const year = current.year();
+      return year < minYear || year > currentYear;
+    }}
+    onChange={(dates) => handleRangeChange(dates, "week")}
+  />
+)}
 
-            {period === "month" && (
-              <RangePicker
-                picker="month"
-                disabledDate={(current) => {
-                  const currentYear = dayjs().year();
-                  const minYear = currentYear - 5;
-                  const year = current.year();
-                  return year < minYear || year > currentYear;
-                }}
-                onChange={(dates) => handleRangeChange(dates, "month")}
-              />
-            )}
+{period === "month" && (
+  <RangePicker
+    className="custom-range-picker"
+    picker="month"
+    disabledDate={(current) => {
+      const currentYear = dayjs().year();
+      const minYear = currentYear - 5;
+      const year = current.year();
+      return year < minYear || year > currentYear;
+    }}
+    onChange={(dates) => handleRangeChange(dates, "month")}
+  />
+)}
 
-            {period === "year" && (
-              <RangePicker
-                picker="year"
-                disabledDate={(current) => {
-                  const currentYear = dayjs().year();
-                  const minStartYear = currentYear - 5;
-                  const year = current.year();
-                  return year > currentYear || year < minStartYear;
-                }}
-                onChange={(dates) => handleRangeChange(dates, "year")}
-              />
-            )}
+{period === "year" && (
+  <RangePicker
+    className="custom-range-picker"
+    picker="year"
+    disabledDate={(current) => {
+      const currentYear = dayjs().year();
+      const minStartYear = currentYear - 5;
+      const year = current.year();
+      return year > currentYear || year < minStartYear;
+    }}
+    onChange={(dates) => handleRangeChange(dates, "year")}
+  />
+)}
+
           </div>
         }
         items={[
