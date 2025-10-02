@@ -33,12 +33,18 @@ body,html{
 .profile-info {
   flex: 1;
   padding: 40px; /* tăng padding */
-  background: #f8f9ff;
+  background: var(--sectionp);
   font-size: 18px; /* chữ to hơn */
   line-height: 1.8;
     flex-direction: column;
   min-height: 100%;   /* đảm bảo chiếm hết chiều cao container */
   position : relative;
+}
+.profile-info-text{
+color: #000;
+}
+.profile-info-textone{
+color: #000;
 }
 
 .profile-buttons {
@@ -63,12 +69,6 @@ gap:120px;
   color: #222;
   
 }
-
-
-
-
-
-
 
 .btn-more {
   background: transparent;
@@ -161,20 +161,6 @@ gap:120px;
   transform: translateY(1px);
   box-shadow: 0 3px 8px rgba(102, 124, 231, 0.4);
 }
-
-
-
-
-
-
-
-
-
-
-
-
-
-
 
 /* Responsive cho tablet và mobile */
 @media (max-width: 1024px) {

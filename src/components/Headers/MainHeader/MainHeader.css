@@ -141,3 +141,30 @@
   color: var(--menuHover);
   font-weight: 600;
 }
+.anticon svg {
+  color: inherit !important;
+}
+
+
+/* Responsive cho màn hình rất nhỏ (mobile < 480px) */
+@media (max-width: 540px) {
+  .menu-mobile {
+    gap: 12px;             /* giảm khoảng cách giữa các link */
+    margin-top: 10px;      /* thu nhỏ khoảng cách trên */
+  }
+.language-toggle {
+  margin-left: 8px;
+}
+  .menu-mobile a {
+    font-size: 14px;       /* chữ nhỏ hơn */
+  }
+
+  .ant-drawer-header {
+    padding: 12px 0 !important; /* header drawer gọn lại */
+  }
+
+  .menu-btn {
+    font-size: 20px;       /* icon hamburger nhỏ hơn */
+    padding: 4px;
+  }
+}

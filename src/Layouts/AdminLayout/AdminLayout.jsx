@@ -37,7 +37,6 @@ const AdminLayout = () => {
         <Content
           style={{
             margin: "0 16px",
-            padding: 10,
             background: theme.colorBgContainer,
             borderRadius: theme.borderRadiusLG,
             minHeight: "calc(90vh - 160px)",

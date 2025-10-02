@@ -52,25 +52,25 @@ export default function LoginPage() {
   };
 
   return (
-    <div className="w-100 vh-100 d-flex justify-content-center align-items-center">
+    <div className="login-container">
       <div className="container w-100">
         <div className="row w-100">
           {/* Login Form */}
           <div className="col-md-6 d-flex flex-column justify-content-center align-items-end">
+            
             <div
-              className="p-4 shadow-sm rounded bg-white bg-opacity-80"
-              style={{ maxWidth: "400px", width: "100%" }}
+              className="custom-card"
             >
               {/* Title */}
               <div className="title-login text-center mb-4">
                 <Text
-                  className="title"
+                  className="title-lg"
                   style={gradientTextStyle(theme.primarycolors, 180)}
                 >
                   WELCOME EMOTICARE
                 </Text>
                 <Text
-                  className="subtitle d-block mt-2"
+                  className="subtitle-tx d-block mt-2"
                   style={gradientTextStyle(theme.primarycolors, 180)}
                 >
                   Please enter your information to login.
@@ -81,38 +81,33 @@ export default function LoginPage() {
               <Form form={form} layout="vertical" onFinish={onFinish}>
                 {/* Email */}
                 <Form.Item
-                  name="email"
-                  label={
-                    <span style={gradientTextStyle(theme.primarycolors, 180)}>
-                      Email
-                    </span>
-                  }
-                  rules={[
-                    { required: true, message: "Please input your email!" },
-                  ]}
-                >
-                  <div className="input-gradient-wrapper">
-                    <Input placeholder="Enter your email" />
-                  </div>
-                </Form.Item>
+  className="form-name-email"
+  name="email"
+  label={<span className="form-label-gradient">Email</span>}
+  rules={[{ required: true, message: "Please input your email!" }]}
+>
+  <div className="input-gradient-wrapper">
+    <Input
+      className="input-gradient"
+      placeholder="Enter your email"
+    />
+  </div>
+</Form.Item>
 
-                <Form.Item
-                  name="password"
-                  label={
-                    <span
-                      style={{ ...gradientTextStyle(theme.primarycolors, 180) }}
-                    >
-                      Password
-                    </span>
-                  }
-                  rules={[
-                    { required: true, message: "Please input your password!" },
-                  ]}
-                >
-                  <div className="input-gradient-wrapper-password">
-                    <Input.Password placeholder="********" />
-                  </div>
-                </Form.Item>
+<Form.Item
+  className="form-name-password"
+  name="password"
+  label={<span className="form-label-gradient">Password</span>}
+  rules={[{ required: true, message: "Please input your password!" }]}
+>
+  <div className="input-gradient-wrapper">
+    <Input.Password
+      className="input-gradient"
+      placeholder="********"
+    />
+  </div>
+</Form.Item>
+
 
                 {/* Remember & Forgot */}
                 <Form.Item name="remember" valuePropName="checked">
@@ -126,6 +121,7 @@ export default function LoginPage() {
                   </Checkbox>
 
                   <Link
+                    className="forgot-password"
                     to="/forgotpassword"
                     style={{
                       float: "right",
@@ -182,6 +178,7 @@ export default function LoginPage() {
                     }}
                   />
                   <Text
+                    className="google-gradientTextStyle"
                     style={{
                       ...gradientTextStyle(theme.primarycolors, 180),
                     }}
@@ -200,7 +197,10 @@ export default function LoginPage() {
                         ...gradientTextStyle(theme.primarycolors, 180),
                       }}
                     >
-                      <span> Register for free!</span>
+                      <span className="link-register-for-free">
+                        {" "}
+                        Register for free!
+                      </span>
                     </Link>
                   </Text>
                 </div>

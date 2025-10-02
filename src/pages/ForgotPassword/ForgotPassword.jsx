@@ -4,7 +4,7 @@ import { sendPasswordResetEmail } from "firebase/auth";
 import { auth } from "../../config/firebase"; // ⚠️ nhớ import từ config firebase của bạn
 import { useTheme } from "../../Themes/ThemeContext";
 import { gradientTextStyle, gradientButtonStyle } from "../../Constant/Colors";
-
+import "./ForgotPassword.css";
 const { Title, Text } = Typography;
 
 export default function ForgotPassword() {
@@ -34,7 +34,8 @@ export default function ForgotPassword() {
   };
 
   return (
-    <div className="d-flex justify-content-center align-items-center vh-100">
+    <div className="forgotPassword-container">
+    <div className=" d-flex justify-content-center align-items-center vh-100">
       <Card
         style={{
           maxWidth: 400,
@@ -42,19 +43,19 @@ export default function ForgotPassword() {
           padding: 20,
           borderRadius: "12px",
           boxShadow: "0 8px 16px rgba(0,0,0,0.2)",
+              background: "var(--postcardssections)",
         }}
       >
         <Title
           level={3}
-          style={{
-            textAlign: "center",
-            ...gradientTextStyle(theme.primarycolors, 180),
-          }}
+
+
         >
-          Forgot Password
+          <div className="title-forgot-password">Forgot Password</div>
         </Title>
 
-        <Text
+
+        <Text className="title-text-password"
           style={{ display: "block", textAlign: "center", marginBottom: 20 }}
         >
           Enter your email address and we’ll send you a link to reset your
@@ -62,9 +63,9 @@ export default function ForgotPassword() {
         </Text>
 
         <Form form={form} layout="vertical" onFinish={onFinish}>
-          <Form.Item
+          <Form.Item 
             label={
-              <span style={gradientTextStyle(theme.primarycolors, 180)}>
+              <span className="title-email-password">
                 Email
               </span>
             }
@@ -74,7 +75,7 @@ export default function ForgotPassword() {
               { type: "email", message: "Please enter a valid email!" },
             ]}
           >
-            <Input placeholder="Enter your email" />
+            <Input className="title-input-enter-your-email" placeholder="Enter your email" />
           </Form.Item>
 
           <Form.Item>
@@ -103,6 +104,7 @@ export default function ForgotPassword() {
           </Text>
         )}
       </Card>
+    </div>
     </div>
   );
 }

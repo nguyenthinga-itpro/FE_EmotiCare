@@ -21,8 +21,9 @@ body,html{
 
 
 .stories-section {
+  border-radius: 10px;
   padding: 60px 0;
-  background: #f3f2fc; /* màu nền nhẹ */
+  background: var(--postcardssections);
   text-align: center;
 }
 .stories-section {
@@ -36,7 +37,7 @@ body,html{
 .stories-title {
   font-size: 32px;
   line-height:1.6;
-  background:linear-gradient(90deg,#6f82e4,#754da5);
+  background:var(--panelGradient);
   -webkit-background-clip:text;
   -webkit-text-fill-color:transparent;
   font-weight:700
@@ -45,8 +46,9 @@ body,html{
 
 .stories-subtitle {
   font-size: 16px;
-
-  background:linear-gradient(90deg,#6f82e4,#754da5);
+display: flex;
+justify-content: center;
+  background:var(--panelGradient);
   -webkit-background-clip:text;
   -webkit-text-fill-color:transparent;
   font-weight:700
@@ -82,7 +84,7 @@ body,html{
 .stories-title {
     font-size: 48px;
   font-weight: 700;
-  background: linear-gradient(90deg, #6366f1, #744ea6);
+  background: var(--panelGradient);
   -webkit-background-clip: text;
   -webkit-text-fill-color: transparent;
   background-clip: text; 
@@ -92,7 +94,7 @@ body,html{
 .stories-titles {
   font-size: 50px;
   font-weight: 700;
-  background: linear-gradient(90deg, #6366f1, #744EA6);
+  background: var(--panelGradient);
   -webkit-background-clip: text;
   -webkit-text-fill-color: transparent;
   background-clip: text; 
@@ -118,14 +120,8 @@ body,html{
   animation: rainbow 4s linear infinite;
 }
 
-.stories-subtitle {
-  font-size: 14px;
-  background: linear-gradient(90deg, #6c6eeb, #8f50e3);
-  -webkit-background-clip: text;
-  -webkit-text-fill-color: transparent;
-  margin-bottom: 30px;
-  text-align: center;   
-}
+
+
 
 .stories-grid {
   display: flex;
@@ -228,4 +224,43 @@ margin-bottom: 100px;
   }
 
 
+}
+
+/* Pagination container */
+.custom-pagination {
+  display: flex;
+  justify-content: center;
+  margin-top: 20px;
+}
+
+/* Ẩn số mặc định */
+.custom-pagination .ant-pagination-item {
+  min-width: unset !important;
+  width: 12px;
+  height: 12px;
+  border-radius: 50%;
+  background: #d9d9d9;
+  margin: 0 6px;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  border: none;
+  cursor: pointer;
+}
+
+/* Ẩn số bên trong */
+.custom-pagination .ant-pagination-item a {
+  display: none;
+}
+
+/* Dot active */
+.custom-pagination .ant-pagination-item-active {
+  background: #722ed1 !important;
+}
+
+/* Bỏ prev/next */
+.custom-pagination .ant-pagination-prev,
+.custom-pagination .ant-pagination-next,
+.custom-pagination .ant-pagination-item-ellipsis {
+  display: none !important;
 }

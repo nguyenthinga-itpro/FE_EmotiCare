@@ -17,8 +17,10 @@ export const light = {
   profileBgDetail: "linear-gradient(135deg, #ebf0ff, #f6edff)",
   labelStyleProfileDeatail: "#4a4a4a",
   contentStyleProfileDeatail: "#222",
+  panelGradient: "linear-gradient(90deg,#667ce7,#754da5)",
   gradientPrimary: "linear-gradient(135deg, #6e8efb, #a777e3)",
   gradientHeader: "linear-gradient(0deg, #6e8efb, #a777e3)",
+  gradientFooter: "linear-gradient(180deg, #6e8efb, #a777e3)",
   gradientBlue: "linear-gradient(135deg, #22E4F0, #029DF0)",
   gradientGreen: "linear-gradient(135deg, #A2F078, #60D56C)",
   gradientPurple: "linear-gradient(135deg, #F761DF, #B526E4)",
@@ -32,6 +34,11 @@ export const light = {
   tooltipBg: "#000",
   characterData: "#fff",
   postcardsSection: "#f3f0ff",
+  anticonSvg: "#000000",
+  generalP: "#e6e4fb",
+  sectionp: "#F3F0FF",
+  socialicon: "#ffff",
+  postcardssections: "#f3f0ff",
 };
 
 export const dark = {
@@ -50,8 +57,10 @@ export const dark = {
   profileBgDetail: "linear-gradient(135deg, #212124ff, #333136ff)",
   labelStyleProfileDeatail: "#fff8f8ff",
   contentStyleProfileDeatail: "#ffffffff",
+  panelGradient: "linear-gradient(90deg,#667ce7,#754da5)",
   gradientPrimary: "linear-gradient(135deg, #6e8efb, #a777e3)",
   gradientHeader: "linear-gradient(0deg, #6e8efb, #a777e3)",
+  gradientFooter: "linear-gradient(180deg, #6e8efb, #a777e3)",
   gradientBlue: "linear-gradient(135deg, #22E4F0, #029DF0)",
   gradientGreen: "linear-gradient(135deg, #A2F078, #60D56C)",
   gradientPurple: "linear-gradient(135deg, #F761DF, #B526E4)",
@@ -65,7 +74,13 @@ export const dark = {
   tooltipBg: "#000",
   characterData: "#333",
   postcardsSection: "#333",
-};
+  anticonSvg: "#000000",
+  generalP: "#e6e4fb",
+  sectionp: "#F3F0FF",
+  socialicon: "#ffff",
+  postcardssections: "#333",
 
+
+};
 const colors = { light, dark };
 export default colors;
