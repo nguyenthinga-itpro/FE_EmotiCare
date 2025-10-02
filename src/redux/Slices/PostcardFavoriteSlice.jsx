@@ -80,9 +80,11 @@ const PostcardFavoriteSlice = createSlice({
         const { postcardId, isFavorite } = action.payload;
         if (!state.favorites[postcardId]) state.favorites[postcardId] = {};
         state.favorites[postcardId].isFavorite = isFavorite;
-        state.favorites[postcardId].totalFavorites =
-          (state.favorites[postcardId].totalFavorites || 0) +
-          (isFavorite ? 1 : -1);
+        const prevCount = state.favorites[postcardId].totalFavorites || 0;
+        state.favorites[postcardId].totalFavorites = Math.max(
+          0,
+          isFavorite ? prevCount + 1 : prevCount - 1
+        );
       })
       .addCase(toggleFavorite.rejected, (state, action) => {
         state.error = action.payload;

@@ -15,7 +15,7 @@ const { Footer } = Layout;
 
 export default function CustomFooter() {
   return (
-    <Footer className="custom-footer">
+    <Footer className="extra-custom-footer">
       <div className="footer-container">
         <Row gutter={[32, 32]}>
           <Col xs={24} sm={12} md={3}></Col>
@@ -25,17 +25,17 @@ export default function CustomFooter() {
             <p>Social Media</p>
             <div className="social-icons">
               <a href="#">
-                <FacebookOutlined />
-              </a>
-              <a href="#">
-                <TwitterOutlined />
-              </a>
-              <a href="#">
-                <InstagramOutlined />
-              </a>
-              <a href="#">
-                <LinkedinOutlined />
-              </a>
+                  <FacebookOutlined className="social-name-icon" />
+                </a>
+                <a href="#">
+                  <TwitterOutlined className="social-name-icon" />
+                </a>
+                <a href="#">
+                  <InstagramOutlined className="social-name-icon" />
+                </a>
+                <a href="#">
+                  <LinkedinOutlined className="social-name-icon" />
+                </a>
             </div>
           </Col>
 
@@ -51,15 +51,15 @@ export default function CustomFooter() {
 
           <Col xs={24} sm={12} md={5}>
             <h3 className="footer-title">Address</h3>
-            <p>
-              <EnvironmentOutlined /> Cần thơ quê tôi nè các bạn ơi!!!
-            </p>
-            <p>
-              <PhoneOutlined /> +8478 8890 998
-            </p>
-            <p>
-              <MailOutlined /> nguyenthinga-itpro@gmail.com
-            </p>
+           <p>
+                <EnvironmentOutlined className="social-name-icon" /> Cần thơ quê tôi nè các bạn ơi!!!
+              </p>
+              <p>
+                <PhoneOutlined className="social-name-icon" /> +8478 8890 998
+              </p>
+              <p>
+                <MailOutlined className="social-name-icon" /> nguyenthinga-itpro@gmail.com
+              </p>
           </Col>
 
           <Col xs={24} sm={12} md={6}>

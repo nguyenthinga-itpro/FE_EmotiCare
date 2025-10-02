@@ -14,7 +14,10 @@
   background: var(--gradientPrimary);
   -webkit-background-clip: text;
   -webkit-text-fill-color: transparent;
-  font-size: 24px;
+  font-size: 32px;
+  font-weight: 700 !important;
+  margin-top: 5px;
+  margin-bottom: 20px;
 }
 .filter-bar-container {
   margin-bottom: 20px;
@@ -182,6 +185,10 @@
 }
 .comment-container .button-comment {
   background: var(--gradientPrimary);
+}
+.postcards-scroll-container {
+  height: 80vh;
+  overflow-y: auto;
 }
 .row-postcards-scroll {
   margin-left: 0;

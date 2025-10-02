@@ -1,8 +1,22 @@
 .extra-user-layout {
   background: var(--colorBgContainer);
+  height: 100vh; /* chiều cao container */
+  overflow: hidden; /* ẩn scrollbar */
 }
+.scroll-content {
+  height: 100%;
+  overflow-y: scroll; /* vẫn scroll được */
+  scrollbar-width: none; /* Firefox */
+  -ms-overflow-style: none; /* IE/Edge */
+}
+
+.scroll-content::-webkit-scrollbar {
+  width: 0;
+  background: transparent; /* Chrome, Safari, Cốc Cốc */
+}
+
 .breadcrumb-extra-user-layout {
-  margin: 16px 24px;
+  margin: 8px 24px;
 }
 .breadcrumb-extra-user-layout a {
   color: var(--menuHover) !important;
@@ -15,6 +29,6 @@
 }
 .content-extra-user-layout {
   min-height: calc(100vh - 160px);
-  padding: 10px 10px 10px 10px;
+  padding: 5px;
   background: var(--BgPrimary);
 }

@@ -24,15 +24,19 @@ const ExtraUserLayout = () => {
 
   return (
     <Layout className={`extra-user-layout ${mode}`}>
-      <ExtraHeader />
-      <Breadcrumb
-        className="breadcrumb-extra-user-layout"
-        items={breadcrumbItems}
-      />
-      <Content className="content-extra-user-layout">
-        <Outlet />
-      </Content>
-      <ExtraUserFooter />
+      <div className="scroll-content ">
+        <ExtraHeader />
+        <Breadcrumb
+          className="breadcrumb-extra-user-layout"
+          items={breadcrumbItems}
+        />
+        <Content className="content-extra-user-layout">
+          <Outlet />
+        </Content>
+        <div className="footer-extra-user-layout">
+          <ExtraUserFooter />
+        </div>
+      </div>
     </Layout>
   );
 };

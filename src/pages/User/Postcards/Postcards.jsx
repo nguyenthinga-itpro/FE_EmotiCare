@@ -33,19 +33,18 @@ export default function Postcards() {
     }
   }, [initialCategoryF]);
 
-const filters = useMemo(
-  () => ({
-    categoryFilter,
-    favoriteFilter,
-    searchText,
-  }),
-  [categoryFilter, favoriteFilter, searchText]
-);
+  const filters = useMemo(
+    () => ({
+      categoryFilter,
+      favoriteFilter,
+      searchText,
+    }),
+    [categoryFilter, favoriteFilter, searchText]
+  );
 
-const { cards, loadMore, loading, paginatedCategories, favorites } =
-  usePostcards(10, filters);
+  const { cards, loadMore, loading, paginatedCategories, favorites } =
+    usePostcards(10, filters);
 
-console.log("location.pathname",location.pathname)
   const {
     comments,
     addComment,
@@ -90,6 +89,7 @@ console.log("location.pathname",location.pathname)
     setFlipped((prev) => {
       const next = [...prev];
       next[index] = !next[index];
+      console.log("FLIP INDEX", index, "CARD", cards[index]?.id);
       if (next[index] && cards[index]) {
         dispatch(
           getFavoriteInfo({
@@ -182,12 +182,7 @@ console.log("location.pathname",location.pathname)
     <div className="postcards-container">
       <section className="title-container">
         <div className="content">
-          <img
-            className="title-image"
-            src={Images.Sunnyvibes}
-            alt="Sunny vibes"
-          />
-          <h1 className="title-postcard-type">Sunny Vibes</h1>
+          <h1 className="title-postcard-type">POST CARDS</h1>
         </div>
       </section>
       <div className="filter-bar-container">
@@ -199,48 +194,48 @@ console.log("location.pathname",location.pathname)
           favoriteFilter={favoriteFilter}
           setFavoriteFilter={setFavoriteFilter}
           toggleAll={toggleAll}
+          allOpen={flipped.every((f) => f === true)}
           paginatedCategories={paginatedCategories}
         />
       </div>
-      <div
-        className="postcards-scroll-container"
-        ref={scrollRef}
-        style={{ height: 600, overflowY: "auto" }}
-      >
-        <Row
-          gutter={[16, 16]}
-          justify="center"
-          className="row-postcards-scroll"
-        >
-          {cards.map((card, i) => {
-            const fav = favorites?.[card.id] || {
-              isFavorite: false,
-              totalFavorites: 0,
-            };
-            const categoryDetail = paginatedCategories.find(
-              (c) => c?.id === card.categoryId
-            );
-            const commentCount = countCommentsTree(comments[card.id]);
-            return (
-              <PostcardItem
-                key={card.id}
-                card={card}
-                categoryDetail={categoryDetail}
-                flipped={flipped[i]}
-                onFlip={() => handleFlip(i)}
-                fav={fav}
-                onLike={() => handleLike(card.id)}
-                onOpenModal={() => openModal(card)}
-                commentCount={commentCount}
-              />
-            );
-          })}
-        </Row>
-        {loading && (
-          <div style={{ textAlign: "center", padding: 20 }}>
-            <Spin />
-          </div>
-        )}
+      <div className="postcards-scroll-container" ref={scrollRef}>
+        <div className="postcards-scroll-content">
+          <Row
+            gutter={[16, 16]}
+            justify="center"
+            className="row-postcards-scroll"
+          >
+            {cards.map((card, i) => {
+              const fav = favorites?.[card.id] || {
+                isFavorite: false,
+                totalFavorites: 0,
+              };
+              console.log("CARD:", card.id, "FAV STATE:", fav);
+              const categoryDetail = paginatedCategories.find(
+                (c) => c?.id === card.categoryId
+              );
+              const commentCount = countCommentsTree(comments[card.id]);
+              return (
+                <PostcardItem
+                  key={card.id}
+                  card={card}
+                  categoryDetail={categoryDetail}
+                  flipped={flipped[i]}
+                  onFlip={() => handleFlip(i)}
+                  fav={fav}
+                  onLike={() => handleLike(card.id)}
+                  onOpenModal={() => openModal(card)}
+                  commentCount={commentCount}
+                />
+              );
+            })}
+          </Row>
+          {loading && (
+            <div style={{ textAlign: "center", padding: 20 }}>
+              <Spin />
+            </div>
+          )}
+        </div>
       </div>
 
       <CommentSection

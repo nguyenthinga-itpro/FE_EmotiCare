@@ -5,7 +5,11 @@
   padding: 60px 10%;
   background: var(--colorBgContainer);
 }
-
+.cta1-button-login{
+ display: flex;
+  align-items: center;
+  justify-content:center;
+}
 .hero-text {
   flex: 1;
   max-width: 500px;
@@ -64,8 +68,9 @@
 
 .highlight-margin-left {
   margin-top: 16px;
-  font-size: 14px;
-  margin-left: 50px;
+  font-size: 16px;
+display: flex;
+justify-content: center;
   background: var(--gradientPrimary);
   -webkit-background-clip: text;
   -webkit-text-fill-color: transparent;
@@ -137,11 +142,11 @@
 }
 
 .postcards-section-home .subtitle {
-  background: var(--gradientPrimary);
+  background: var(--gradientPrimary) ;
   -webkit-background-clip: text;
   -webkit-text-fill-color: transparent;
   background-clip: text;
-  font-size: 14px;
+  font-size: 16px;
 }
 .postcards-section-home .titles {
   font-size: 40px;
@@ -159,7 +164,10 @@
   -webkit-text-fill-color: transparent;
   background-clip: text;
 }
-
+.subtitle{
+  display: flex;
+  justify-content: center;
+}
 .menu-section .title {
   font-size: 50px;
   font-weight: 700;
@@ -402,8 +410,8 @@
   max-width: 500px;
 }
 
-.about-content .subtitle {
-  font-size: 14px;
+.about-content .subtitles {
+  font-size: 16px;
   font-weight: 600;
   text-transform: uppercase;
   background: var(--gradientPrimary);

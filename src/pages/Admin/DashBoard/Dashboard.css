@@ -52,8 +52,8 @@
 }
 .chart-tabs-dashboard {
   margin-top: 24px;
-  background: linear-gradient(180deg, #9f9e9e41, #ffffff);
-  box-shadow: 0 8px 12px rgba(0, 0, 0, 0.2);
+  background: var(--sidebarBorder);
+  /* box-shadow: 0 8px 12px rgba(0, 0, 0, 0.2); */
   .container-Dashboard-Style {
     display: flex;
     justify-content: space-between;
@@ -61,6 +61,7 @@
     margin-right: 10px;
   }
 }
+
 /* tabs */
 .chart-tabs-dashboard .ant-tabs-tab.ant-tabs-tab-active .ant-tabs-tab-btn {
   background: var(--gradientPrimary);
@@ -110,7 +111,7 @@
 /* RangePicker*/
 .chart-tabs-dashboard .container-Dashboard-Style .ant-picker {
   border: 1px solid var(--colorText);
-  background-color: var(--BgPrimary);
+  background-color: var(--BgPrimary) ;
   color: var(--colorText) !important;
   transition: all 0.3s;
 }
@@ -172,4 +173,91 @@
   -webkit-background-clip: text;
   -webkit-text-fill-color: transparent;
   opacity: 1;
+}
+
+
+/* Custom RangePicker riêng */
+.custom-range-picker {
+  border-radius: 8px;
+}
+
+
+
+
+
+/* Separator icon */
+.custom-range-picker .ant-picker-range-separator .anticon {
+  color: var(--colorText);
+  transform: translateY(-1px); /* căn giữa lại */
+  font-size: 1em;
+}
+
+
+/* Toàn bộ panel lịch */
+.ant-picker-panel {
+  border-radius: 12px;
+  background: #fdfdff; /* màu nền nhẹ */
+  box-shadow: 0 4px 12px rgba(0, 0, 0, 0.08);
+}
+
+/* Header: tháng + năm */
+.ant-picker-header {
+  background: linear-gradient(90deg, #7a5cff, #4facfe);
+  color: white !important;
+  font-weight: 600;
+}
+
+/* Nút prev/next tháng */
+.ant-picker-header button {
+  color: white !important;
+}
+
+/* Tên thứ (Su, Mo, …) */
+.ant-picker-content thead th {
+  color: #7a5cff;
+  font-weight: 600;
+}
+
+/* Ngày bình thường */
+.ant-picker-cell-inner {
+  color: #333;
+  font-weight: 500;
+}
+
+/* Ngày hover */
+.ant-picker-cell-inner:hover {
+  background: rgba(124, 77, 255, 0.1);
+  color: #7a5cff;
+}
+
+/* Ngày được chọn */
+.ant-picker-cell-selected .ant-picker-cell-inner,
+.ant-picker-cell-range-start .ant-picker-cell-inner,
+.ant-picker-cell-range-end .ant-picker-cell-inner {
+  background: linear-gradient(90deg, #7a5cff, #4facfe) !important;
+  color: #fff !important;
+  font-weight: bold;
+}
+
+/* Range giữa start và end */
+.ant-picker-cell-in-range::before {
+  background: rgba(124, 77, 255, 0.15) !important;
+}
+
+/* Ngày disabled */
+.ant-picker-cell-disabled .ant-picker-cell-inner {
+  color: #ccc !important;
+}
+.ant-picker-dropdown .ant-picker-content th {
+  height: 36px;
+  vertical-align: middle;
+}
+
+.ant-picker-content thead th {
+    color: #7a5cff !important;
+    font-weight: 600;
+}
+
+ .chart-tabs-dashboard .ant-layout-content{
+  padding: none !important  ;
 }

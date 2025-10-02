@@ -75,7 +75,7 @@
 }
 
 .send-btnM {
-  background: linear-gradient(90deg, #7b2ff7, #4096ff);
+  background: var(--gradientFooter);
   color: #fff;
   border: none;
   cursor: pointer;
@@ -109,3 +109,85 @@
   object-fit: contain; 
 }
 
+.anticon.social-name-icon svg {
+  fill: #fff !important;
+  color: #fff !important;
+}
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+/* Marquee Start */
+.marquee-container{
+  padding: 60px 0px;
+}
+.marquee {
+  background: var(--gradientPrimary); /* gradient header */
+  color: #fff;
+  padding: 8px 0px;
+  overflow: hidden;
+}
+.marquee .container,
+.marquee .w-container {
+  max-width: 100% !important;
+  padding-left: 0 !important;
+  padding-right: 0 !important;
+}
+.marquee-wrapper {
+  overflow: hidden;
+  width: 100%;
+
+}
+
+.marquee-content {
+  display: flex;
+  width: max-content;
+  animation: scroll-marquee 30s linear infinite;
+}
+
+.marquee-text {
+  white-space: nowrap;
+  padding-right: 2rem; /* khoảng cách giữa text */
+  font-size: 1.2rem;
+  font-weight: 500;
+}
+
+
+@keyframes scroll-marquee {
+  0% {
+    transform: translateX(0%);
+  }
+  100% {
+    transform: translateX(-50%);
+  }
+}
+/* Marquee End */

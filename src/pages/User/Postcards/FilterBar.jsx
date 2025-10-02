@@ -9,6 +9,7 @@ export default function FilterBar({
   setFavoriteFilter,
   toggleAll,
   paginatedCategories = [],
+  allOpen,
 }) {
   return (
     <div
@@ -21,23 +22,36 @@ export default function FilterBar({
       }}
     >
       <Button type="dashed" onClick={toggleAll}>
-        Toggle All Cards
+        {allOpen ? "Close All Cards" : "Show All Cards"}
       </Button>
 
       <Input.Search
         placeholder="Search music..."
         value={searchText}
         onChange={(e) => setSearchText(e.target.value)}
-        style={{ width: 200 }}
+        style={{ width: 170 }}
         allowClear
       />
 
       <Select
         value={categoryFilter}
         onChange={(value) => setCategoryFilter(value || "")}
-        style={{ width: 220 }}
+        style={{ width: 150 }}
         placeholder="Category"
         allowClear
+        dropdownRender={(menu) => (
+          <>
+            {menu}
+            <div style={{ padding: 8, borderTop: "1px solid #eee" }}>
+              <Checkbox
+                checked={favoriteFilter}
+                onChange={(e) => setFavoriteFilter(e.target.checked)}
+              >
+                Only Favorites
+              </Checkbox>
+            </div>
+          </>
+        )}
       >
         <Select.Option value="">All</Select.Option>
         {paginatedCategories.map((c) => (
@@ -46,14 +60,6 @@ export default function FilterBar({
           </Select.Option>
         ))}
       </Select>
-
-      {/* ✅ Thêm nút lọc Favorites */}
-      <Checkbox
-        checked={favoriteFilter}
-        onChange={(e) => setFavoriteFilter(e.target.checked)}
-      >
-        ⭐ Only Favorites
-      </Checkbox>
     </div>
   );
 }
