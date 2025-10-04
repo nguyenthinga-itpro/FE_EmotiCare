@@ -1,17 +1,18 @@
-import React, { useEffect, useState } from "react";
+import React, { useEffect, useRef } from "react";
 import { Pagination, Button } from "antd";
 import { Link, useNavigate } from "react-router-dom";
+import { useLocation } from "react-router-dom";
 import Images from "../../../Constant/Images";
 import "./Home.css";
 import { getAllChats } from "../../../redux/Slices/ChatAISlice";
 import { getAllCategories } from "../../../redux/Slices/CategorySlice";
 import { useDispatch, useSelector } from "react-redux";
 import { ArrowRightOutlined } from "@ant-design/icons";
-
+import "slick-carousel/slick/slick.css";
+import "slick-carousel/slick/slick-theme.css";
+import Slider from "react-slick";
 export default function Home() {
-  const [currentPage, setCurrentPage] = useState(1);
-  const localPageSize = 3; // số card mỗi trang
-
+  const location = useLocation();
   const navigate = useNavigate();
   const dispatch = useDispatch();
 
@@ -41,11 +42,34 @@ export default function Home() {
   const postcardHandle = (category) => {
     navigate("/user/postcards", { state: { category } });
   };
+  const profileRefs = useRef({});
 
-  // tính toán dữ liệu hiển thị cho pagination
-  const startIndex = (currentPage - 1) * localPageSize;
-  const currentChats = chats.slice(startIndex, startIndex + localPageSize);
+  const scrollToProfile = (chatId) => {
+    const profileEl = profileRefs.current[chatId];
+    if (profileEl)
+      profileEl.scrollIntoView({ behavior: "smooth", block: "start" });
+  };
 
+  useEffect(() => {
+    if (location.state?.scrollTo) {
+      setTimeout(() => {
+        scrollToProfile(location.state.scrollTo);
+      }, 300); // delay nhẹ để DOM render xong
+    }
+  }, [location, chats]);
+
+
+  const sliderSettings = {
+    dots: true,
+    infinite: false,
+    speed: 500,
+    slidesToShow: 5,
+    slidesToScroll: 1,
+    responsive: [
+      { breakpoint: 1024, settings: { slidesToShow: 2 } },
+      { breakpoint: 600, settings: { slidesToShow: 1 } },
+    ],
+  };
   return (
     <main>
       {/* Hero Section */}
@@ -79,33 +103,29 @@ export default function Home() {
       </section>
 
       {/* Characters Section */}
-      <section className="name-section">
+      <section className="chat-container">
         {loading && <p>Loading chats...</p>}
-        {error && <p style={{ color: "red" }}>Error loading chats</p>}
+        {error && <p style={{ color: "red" }}>Error loading chats: {error}</p>}
         {!loading && chats.length === 0 && <p>No chats available</p>}
 
-        {currentChats.length > 0 && (
-          <div className="character-grid-container">
-            <div className="character-grid">
-              {currentChats.map((chat) => (
-                <div key={chat.id} className="character-card-home">
+        {chats.length > 0 && (
+          <Slider {...sliderSettings}>
+            {chats.map((chat) => (
+              <div
+                key={chat.id}
+                className="chat-card-home-container"
+                onClick={() =>
+                  navigate("/user/Chatbox", { state: { scrollTo: chat.id } })
+                }
+              >
+                <div className="chat-card-home">
                   <h3>{chat.name}</h3>
                   <img src={chat.image} alt={chat.name} />
                 </div>
-              ))}
-            </div>
-          </div>
+              </div>
+            ))}
+          </Slider>
         )}
-
-        {/* Pagination */}
-        <Pagination
-          className="custom-Pagination"
-          align="center"
-          current={currentPage}
-          pageSize={localPageSize}
-          total={chats.length}
-          onChange={(page) => setCurrentPage(page)}
-        />
       </section>
 
       {/* Postcards Section */}
