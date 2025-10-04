@@ -11,7 +11,7 @@ import {
   Typography,
   Popover,
 } from "antd";
-import { Link, useNavigate } from "react-router-dom";
+import { Link } from "react-router-dom";
 import { BulbOutlined, MenuOutlined, MoonFilled } from "@ant-design/icons";
 import "./MainHeader.css";
 import { logout } from "../../../redux/Slices/AuthSlice";
@@ -24,7 +24,6 @@ const { Text } = Typography;
 
 const HeaderBar = () => {
   const [open, setOpen] = useState(false);
-  const navigate = useNavigate();
   const dispatch = useDispatch();
 
   const { currentUser } = useSelector((state) => state.user);

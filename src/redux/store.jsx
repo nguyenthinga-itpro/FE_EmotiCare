@@ -11,6 +11,7 @@ import categoryReducer from "../redux/Slices/CategorySlice";
 import themeReducer from "../redux/Slices/ThemeSlice";
 import postcardCommentReducer from "../redux/Slices/PostcardCommentSlice";
 import postcardFavoriteReducer from "../redux/Slices/PostcardFavoriteSlice";
+import chatSessionReducer from "../redux/Slices/ChatSessionSlice";
 export const store = configureStore({
   reducer: {
     user: authReducer,
@@ -24,5 +25,6 @@ export const store = configureStore({
     comment: postcardCommentReducer,
     favorite: postcardFavoriteReducer,
     theme: themeReducer,
+    chatSession: chatSessionReducer,
   },
 });
