@@ -6,6 +6,7 @@ import { useDispatch, useSelector } from "react-redux";
 import { getAllResources } from "../../../redux/Slices/ResourseSlice";
 import { getAllCategories } from "../../../redux/Slices/CategorySlice";
 import "./More.css";
+import { Navigate } from "react-router-dom";
 
 const { Option } = Select;
 
@@ -16,7 +17,7 @@ export default function Resources() {
   );
   const { paginatedCategories } = useSelector((s) => s.category);
 
-  const [selectedType, setSelectedType] = useState(null); // news / youtube
+  const [selectedType, setSelectedType] = useState("Articles / Tips & Guides"); // news / youtube
   const [selectedCategory, setSelectedCategory] = useState(null);
   const [searchText, setSearchText] = useState("");
 
@@ -53,10 +54,10 @@ export default function Resources() {
 
   return (
     <section className="postcards-sections" id="resources">
+      <h1 className="about-lineFAQ">Resources</h1>
       <div className="container">
-        <h1 className="resources-title">Resources</h1>
         {/* Filters */}
-        <div className="resources-filters" >
+        <div className="resources-filters">
           {/* Type selector luôn hoạt động */}
           <Select
             placeholder="Select Type"
@@ -104,6 +105,7 @@ export default function Resources() {
                 title: res.title,
                 text: res.description,
                 link: res.url,
+                id: res.id,
               }}
             />
           ))}
@@ -122,6 +124,7 @@ export default function Resources() {
                 title: res.title,
                 text: res.description,
                 link: res.url,
+                id: res.id,
               }}
             />
           ))}
@@ -129,8 +132,12 @@ export default function Resources() {
 
         {/* Load More */}
         {nextCursor && (
-          <div style={{ textAlign: "center", marginTop: 20 }}>
-            <Button onClick={handleLoadMore} loading={loading}>
+          <div className="button-resource-container">
+            <Button
+              className="button-resource"
+              onClick={handleLoadMore}
+              loading={loading}
+            >
               Load More
             </Button>
           </div>

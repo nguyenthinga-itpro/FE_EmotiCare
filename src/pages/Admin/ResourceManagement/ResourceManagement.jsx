@@ -194,7 +194,17 @@ export default function ResourceManagement() {
       />
     ),
     categoryDisplay: <div>{e.categoryId}</div>,
-    image: <img src={"e.image"} alt={e.title} className="table-image" />,
+    image: (
+      <img
+        src={e.image}
+        alt={e.title}
+        className="table-image"
+        onError={(e) => {
+          e.target.onerror = null;
+          e.target.src = "/images/default.png";
+        }}
+      />
+    ),
     toggle: (
       <Switch
         checked={!e.isDisabled}

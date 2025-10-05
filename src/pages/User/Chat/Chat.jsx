@@ -20,13 +20,14 @@ import { useDispatch, useSelector } from "react-redux";
 import { useLocation } from "react-router-dom";
 import Sounds from "../../../Constant/Sounds";
 import "./Chat.css";
+import OverlayLoader from "../../../components/OverlayLoader/OverlayLoader";
 
 const PAGE_SIZE = 10;
 
 export default function Chat() {
   const dispatch = useDispatch();
   const location = useLocation();
-  const { sessionId, aiAvatar } = location.state || {};
+  const { sessionId } = location.state || {};
   const { sessions, nextCursor, currentSessionId, messages, loading } =
     useSelector((state) => state.chatSession);
   console.log("sessionId", sessionId);
@@ -140,6 +141,7 @@ export default function Chat() {
 
   return (
     <main className="chat-main">
+      <OverlayLoader loading={loading} />
       <div className={`chat-wrapper ${sidebarOpen ? "sidebar-open" : ""}`}>
         {/* Sidebar */}
         <div className={`chat-sidebar ${sidebarOpen ? "active" : ""}`}>

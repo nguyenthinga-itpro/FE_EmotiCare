@@ -1,10 +1,16 @@
 import React from "react";
 import { Card } from "antd";
 import "./More.css";
+import { useNavigate } from "react-router-dom";
 
 export default function CharacterCard({ card }) {
-  const { img, title, text, link } = card;
-
+  const { img, title, text, id } = card;
+  const navigate = useNavigate();
+  const handleView = () => {
+    navigate("/user/articlecard", {
+      state: { id },
+    });
+  };
   return (
     <Card
       hoverable
@@ -17,18 +23,11 @@ export default function CharacterCard({ card }) {
         )
       }
     >
-     <h3 className="card-title">{title}</h3>
+      <h3 className="card-title">{title}</h3>
       <p className="card-text">{text}</p>
-      {link && (
-        <a
-          href={link}
-          target="_blank"
-          rel="noopener noreferrer"
-          className="card-btn"
-        >
-          View
-        </a>
-      )}
+      <button className="card-btn" onClick={handleView}>
+        View
+      </button>
     </Card>
   );
 }

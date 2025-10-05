@@ -1,10 +1,17 @@
 import React from "react";
 import { Card } from "antd";
 import "./More.css";
+import { useNavigate } from "react-router-dom";
 
 export default function VideoCard({ video }) {
-  const { src, title, link } = video;
-
+  const { src, title, id } = video;
+  const navigate = useNavigate();
+  console.log("src", src);
+  const handleView = () => {
+    navigate("/user/articlecard", {
+      state: { id, src },
+    });
+  };
   return (
     <Card hoverable className="character-card">
       <div className="video-wrapper">
@@ -19,18 +26,22 @@ export default function VideoCard({ video }) {
         />
       </div>
       <div className="card-content">
-        <h3 className="card-title">{title}</h3>
+        <h3 className="card-title-resource">{title}</h3>
         {/* <p className="card-text">{text}</p> */}
-        {link && (
+        {/* {link && (
           <a
-            href={link}
+            // href={link}
             target="_blank"
             rel="noopener noreferrer"
             className="card-btn"
+            onClick={handleView}
           >
             View
           </a>
-        )}
+        )} */}
+        <button className="card-btn" onClick={handleView}>
+          View
+        </button>
       </div>
     </Card>
   );

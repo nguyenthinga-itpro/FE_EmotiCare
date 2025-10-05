@@ -15,6 +15,7 @@ import {
 } from "../../../redux/Slices/PostcardFavoriteSlice";
 import "./Postcards.css";
 import { useLocation } from "react-router-dom";
+import OverlayLoader from "../../../components/OverlayLoader/OverlayLoader";
 
 export default function Postcards() {
   const dispatch = useDispatch();
@@ -180,6 +181,7 @@ export default function Postcards() {
 
   return (
     <div className="postcards-container">
+      <OverlayLoader loading={loading} />
       <section className="title-container">
         <div className="content">
           <h1 className="title-postcard-type">POST CARDS</h1>

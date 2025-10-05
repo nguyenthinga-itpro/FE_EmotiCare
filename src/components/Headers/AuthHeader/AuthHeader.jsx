@@ -1,6 +1,6 @@
 import React, { useState } from "react";
 import { Layout, Col, Row, Drawer } from "antd";
-import { Link } from "react-router-dom";
+import { Link, useNavigate } from "react-router-dom";
 import { LockOutlined, MenuOutlined } from "@ant-design/icons";
 import Images from "../../../Constant/Images";
 import "./AuthHeader.css";
@@ -9,7 +9,11 @@ const { Header } = Layout;
 
 const HeaderBar = () => {
   const [open, setOpen] = useState(false);
+  const navigate = useNavigate();
   const currentPath = window.location.pathname; // Lấy đường dẫn hiện tại
+  const handleLogin = () => {
+    navigate("/login"); // Điều hướng đến /login
+  };
   return (
     <Header className="custom-header">
       <Row align="middle" justify="space-between" style={{ width: "100%" }}>
@@ -31,12 +35,12 @@ const HeaderBar = () => {
             <a href="/More" className={currentPath === "/More" ? "active" : ""}>
               More
             </a>
-            <a
+            {/* <a
               href="/Stories"
               className={currentPath === "/Stories" ? "active" : ""}
             >
               Stories
-            </a>
+            </a> */}
             <a
               href="/Chatbox"
               className={currentPath === "/Chatbox" ? "active" : ""}
@@ -55,14 +59,14 @@ const HeaderBar = () => {
         {/* Avatar + menu-btn */}
         <Col xs={12} md={6} className="login-col">
           <div className="right-wrapper">
-            <Link to="/login">
-              <button className="login-btns">
+            <button className="login-btns" onClick={handleLogin}>
+              <span className="text-login-btns">
                 <LockOutlined /> Login
-              </button>
-            </Link>
-            <button className="menu-btn" onClick={() => setOpen(true)}>
-              <MenuOutlined />
+              </span>
             </button>
+            {/* <button className="menu-btn" onClick={() => setOpen(true)}>
+              <MenuOutlined />
+            </button> */}
           </div>
         </Col>
       </Row>
@@ -81,12 +85,12 @@ const HeaderBar = () => {
           <a href="/More" className={currentPath === "/More" ? "active" : ""}>
             More
           </a>
-          <a
+          {/* <a
             href="/Stories"
             className={currentPath === "/Stories" ? "active" : ""}
           >
             Stories
-          </a>
+          </a> */}
           <a
             href="/Chatbox"
             className={currentPath === "/Chatbox" ? "active" : ""}

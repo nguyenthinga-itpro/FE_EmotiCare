@@ -3,12 +3,13 @@ import Api from "../../api/api";
 // === GET ALL CHAT SESSIONS WITH PAGINATION ===
 export const getAllChatSessions = createAsyncThunk(
   "chatSession/getAllChatSessions",
-  async ({ pageSize = 10, startAfter }, thunkAPI) => {
+  async ({ pageSize = 10, startAfter, userId }, thunkAPI) => {
     try {
       const thirtyDaysAgo = Date.now() - 30 * 24 * 60 * 60 * 1000;
-      const res = await Api.get("/chatsession", {
+      const res = await Api.get(`/chatsession/${userId}`, {
         params: { pageSize, startAfter, startAt: thirtyDaysAgo },
       });
+      console.log("res.data", res.data);
       return res.data; // { sessions, nextCursor, pageSize }
     } catch (err) {
       return thunkAPI.rejectWithValue(err.response?.data?.error || err.message);
