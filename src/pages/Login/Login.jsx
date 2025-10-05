@@ -57,10 +57,7 @@ export default function LoginPage() {
         <div className="row w-100">
           {/* Login Form */}
           <div className="col-md-6 d-flex flex-column justify-content-center align-items-end">
-            
-            <div
-              className="custom-card"
-            >
+            <div className="custom-card">
               {/* Title */}
               <div className="title-login text-center mb-4">
                 <Text
@@ -81,33 +78,36 @@ export default function LoginPage() {
               <Form form={form} layout="vertical" onFinish={onFinish}>
                 {/* Email */}
                 <Form.Item
-  className="form-name-email"
-  name="email"
-  label={<span className="form-label-gradient">Email</span>}
-  rules={[{ required: true, message: "Please input your email!" }]}
->
-  <div className="input-gradient-wrapper">
-    <Input
-      className="input-gradient"
-      placeholder="Enter your email"
-    />
-  </div>
-</Form.Item>
+                  className="form-name-email"
+                  name="email"
+                  label={<span className="form-label-gradient">Email</span>}
+                  rules={[
+                    { required: true, message: "Please input your email!" },
+                  ]}
+                >
+                  <div className="input-gradient-wrapper">
+                    <Input
+                      className="input-gradient"
+                      placeholder="Enter your email"
+                    />
+                  </div>
+                </Form.Item>
 
-<Form.Item
-  className="form-name-password"
-  name="password"
-  label={<span className="form-label-gradient">Password</span>}
-  rules={[{ required: true, message: "Please input your password!" }]}
->
-  <div className="input-gradient-wrapper">
-    <Input.Password
-      className="confirm-password-input-custom"
-      placeholder="********"
-    />
-  </div>
-</Form.Item>
-
+                <Form.Item
+                  className="form-name-password"
+                  name="password"
+                  label={<span className="form-label-gradient">Password</span>}
+                  rules={[
+                    { required: true, message: "Please input your password!" },
+                  ]}
+                >
+                  <div className="input-gradient-wrapper">
+                    <Input.Password
+                      className="confirm-password-input-custom"
+                      placeholder="********"
+                    />
+                  </div>
+                </Form.Item>
 
                 {/* Remember & Forgot */}
                 <Form.Item name="remember" valuePropName="checked">
@@ -136,8 +136,8 @@ export default function LoginPage() {
                 {error && <Text type="danger">{error}</Text>}
 
                 {/* Login Button */}
-                <Form.Item>
-                  <Button
+                <Form.Item className="button-text">
+                  <Button 
                     htmlType="submit"
                     block
                     loading={loading}
@@ -149,14 +149,14 @@ export default function LoginPage() {
                       boxShadow: "0 8px 12px rgba(0, 0, 0, 0.3)",
                     }}
                   >
-                    <Text className="button-text ">Log in</Text>
+                    <Text  className="button-text-text" >Log in</Text>
                   </Button>
                 </Form.Item>
               </Form>
 
               {/* Google Login */}
               <Space direction="vertical" style={{ width: "100%" }}>
-                <Button
+                <Button className="button-login"
                   onClick={handleGoogleLogin}
                   block
                   style={{
@@ -179,9 +179,7 @@ export default function LoginPage() {
                   />
                   <Text
                     className="google-gradientTextStyle"
-                    style={{
-                      ...gradientTextStyle(theme.primarycolors, 180),
-                    }}
+                    
                   >
                     Sign in with Google
                   </Text>
@@ -198,7 +196,6 @@ export default function LoginPage() {
                       }}
                     >
                       <span className="link-register-for-free">
-                        {" "}
                         Register for free!
                       </span>
                     </Link>

@@ -3,7 +3,7 @@ import { Form, Input, Button, Typography, Card } from "antd";
 import { sendPasswordResetEmail } from "firebase/auth";
 import { auth } from "../../config/firebase"; // ⚠️ nhớ import từ config firebase của bạn
 import { useTheme } from "../../Themes/ThemeContext";
-import { gradientTextStyle, gradientButtonStyle } from "../../Constant/Colors";
+import { gradientButtonStyle } from "../../Constant/Colors";
 import "./ForgotPassword.css";
 const { Title, Text } = Typography;
 

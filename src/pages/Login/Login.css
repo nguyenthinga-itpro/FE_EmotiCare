@@ -24,10 +24,19 @@
 .password-input-custom .anticon:hover {
   color: #722ed1 !important; /* đổi màu khi hover */
 }
+.button-text .ant-btn.ant-btn-default.ant-btn-color-default.ant-btn-variant-outlined.ant-btn-block{
+  background: var(--panelGradient) !important;  /* Gradient từ biến */
 
-.button-text {
-  color: white !important;
 }
+.button-text-text {
+   font-size: 18px !important;
+   font-weight: bold;
+}
+
+.button-login{
+    color: #000 !important; /* đổi màu khi hover */
+}
+
 .link-register {
   text-align: center;
 }
@@ -98,13 +107,23 @@
   -webkit-text-fill-color: transparent !important;
   background-clip: text !important;
 }
-.google-gradientTextStyle{
-  font-weight: 500 ;
-  background: var(--panelGradient) !important;
+.ant-btn.ant-btn-default.ant-btn-color-default.ant-btn-variant-outlined.ant-btn-block {
+  background: var(--sidebarHover) !important;  /* Gradient từ biến */
+}
+
+
+
+
+.google-gradientTextStyle {
+  background: linear-gradient(90deg, #4285F4, #34A853, #FBBC05, #EA4335) !important; /* gradient Google */
   -webkit-background-clip: text !important;
   -webkit-text-fill-color: transparent !important;
+  font-weight: 600;
 }
+
+
 .link-register-for-free{
+  margin-left: 5px;
     font-weight: 500;
   background: var(--panelGradient) ;
   -webkit-background-clip: text ;
