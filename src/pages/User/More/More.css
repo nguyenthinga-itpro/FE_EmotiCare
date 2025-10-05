@@ -69,12 +69,13 @@ section h3 {
   font-size: 22px;
   font-weight: 700;
 }
-section p {
+/* .section p {
   font-size: 16px;
   line-height: 1.6;
   display: flex;
   margin-top: 10px;
-}
+} */
+
 section ul {
   list-style-type: disc;
   padding-left: 20px;
@@ -486,8 +487,7 @@ section ul li {
 .faq-menu.ant-menu-light.ant-menu-root.ant-menu-inline {
   border-inline-end: none !important;
 }
-.faq-menu .ant-menu-item,
-.faq-menu .ant-menu-submenu-title {
+.faq-menu .ant-menu-item {
   background: var(--sectionp) !important;
 }
 .faq-menu .ant-menu-sub.ant-menu-inline {
@@ -565,6 +565,98 @@ section ul li {
   background: var(--panelGradient);
   -webkit-background-clip: text;
   -webkit-text-fill-color: transparent;
+    display: inline-block;
+}
+.faq-lines .ant-menu-submenu-title{
+background: var(--BgPrimary);
+
+}
+.faq-lines .ant-menu-inline.ant-menu-root .ant-menu-item{
+  background: var(--BgPrimary) !important;
+  padding-left: 20px !important;
+ display : flex;
+ 
+}
+.general-line-container.ant-menu-inline {
+  border-inline-end: none !important; /* Tắt viền phải mặc định */
+  box-shadow: none !important;        /* Nếu có bóng mờ */
+}
+
+.ant-menu-light.ant-menu-inline .ant-menu-sub.ant-menu-inline{
+  background: none !important;
+}
+.faq-lines .ant-menu-light .ant-menu-item-selected span {
+  background: var(--panelGradient) !important;
+  -webkit-background-clip: text !important;
+  -webkit-text-fill-color: transparent !important;  display: inline-block;
+}
+.faq-lines p{
+  background: var(--panelGradient) !important;
+  -webkit-background-clip: text !important;
+  -webkit-text-fill-color: transparent !important;
+  display: inline-block;
+  
+}
+/* Áp dụng cho Select có class my-custom-select */
+.my-custom-select .ant-select-selector .ant-select-selection-item,
+.my-custom-select .ant-select-selector .ant-select-selection-placeholder {
+  color: var(--colorTexts) !important;
+}
+/* Option chung */
+.ant-select-item-option {
+  transition: all 0.3s ease;
+  color: #754da5 !important;
+}
+
+.ant-menu-title-content p {
+  display: flex;
+  align-items: center;      /* Căn giữa theo chiều dọc */ /* Căn giữa theo chiều ngang */   /* Dự phòng nếu có text thuần */
+  height: 100%;             /* Đảm bảo chiếm hết chiều cao container */
+  margin: 0;                /* Xóa margin mặc định của <p> */
+}
+
+/* Hover effect cho tất cả */
+.ant-select-item-option:hover {
+  opacity: 0.85;
+}
+
+/* Option được chọn */
+.ant-select-item-option-selected {
+  border: 1px solid var(--colorPrimary) !important;
+    background: var(--panelGradient)!important;
+  font-weight: 600;
+}
+
+.ant-select .ant-select-arrow{
+  color: var(--colorText) !important;
+}
+/* Đổi màu chữ riêng cho từng option */
+.option-news {
+  color: #667ce7 !important;
+}
+
+.option-youtube {
+  color: #754da5 !important;
+}
+/* Ví dụ: đổi màu riêng cho từng category */
+.option-1 {
+  color: #667ce7 !important;
+}
+.option-2 {
+  color: #754da5 !important;
+}
+
+  
+/* Màu placeholder */
+.option-search::placeholder {
+  color: #754da5 !important;
+  opacity: 1; /* giúp placeholder không bị mờ */
+}
+
+
+
+
+
 }
 .button-resource-container {
   display: flex;

@@ -106,51 +106,29 @@ export default function RegisterPage() {
                       />
                     </Form.Item>
 
-                    <Form.Item
-                      className="form-name-gender"
-                      name="gender"
-                      label={
-                        <span className="form-label-gradient">Gender</span>
-                      }
-                      rules={[
-                        {
-                          required: true,
-                          message: "Please select your gender!",
-                        },
-                      ]}
-                    >
-                      <Select
-                        className="input-gradient"
-                        placeholder="Select your gender"
-                      >
-                        <Option className="option-gradient" value="male">
-                          Male
-                        </Option>
-                        <Option className="option-gradient" value="female">
-                          Female
-                        </Option>
-                        <Option className="option-gradient" value="other">
-                          Other
-                        </Option>
-                      </Select>
-                    </Form.Item>
+<Form.Item
+  className="form-name-gender"
+  name="gender"
+  label={<span className="form-label-gradient">Gender</span>}
+  rules={[{ required: true, message: "Please select your gender!" }]}
+>
+  <Select className="input-gradient" placeholder="Select your gender">
+    <Option className="option-gradient" value="male">Male</Option>
+    <Option className="option-gradient" value="female">Female</Option>
+    <Option className="option-gradient" value="other">Other</Option>
+  </Select>
+</Form.Item>
 
-                    <Form.Item
-                      className="form-name-password"
-                      name="password"
-                      label={
-                        <span className="form-label-gradient">Password</span>
-                      }
-                      rules={[
-                        {
-                          required: true,
-                          message: "Please input your password!",
-                        },
-                      ]}
-                    >
-                      <Input.Password placeholder="********" />
-                    </Form.Item>
-                  </div>
+
+  <Form.Item
+    className="form-name-password"
+    name="password"
+    label={<span className="form-label-gradient">Password</span>}
+    rules={[{ required: true, message: "Please input your password!" }]}
+  >
+    <Input.Password className="confirm-password-input-custom"  placeholder="********" />
+  </Form.Item>
+</div>
 
                   {/* Cột 2 */}
                   <div className="col-md-6">

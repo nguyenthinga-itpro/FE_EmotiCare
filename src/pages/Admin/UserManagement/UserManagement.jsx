@@ -197,7 +197,7 @@ export default function UserManagement() {
   return (
     <div className="users-management">
       <h3 className="title-users-management">Users Management</h3>
-      <TableHeader
+      <TableHeader className="search-users-management"
         searchText={searchText}
         setSearchText={setSearchText}
         // onAddClick={() => setCreateOpen(true)}
@@ -218,6 +218,7 @@ export default function UserManagement() {
       <OverlayLoader loading={loading} />
       {/* Detail Modal */}
       <DetailModal
+      className="test-ne"
         visible={detailOpen}
         onClose={() => setDetailOpen(false)}
         data={selected}

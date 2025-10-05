@@ -48,14 +48,14 @@ export default function AccountForm({ user, loading }) {
       <Form.Item label="Address" name="address">
         <Input />
       </Form.Item>
-      <Form.Item label="Gender" name="gender">
+      <Form.Item className="gender-gradient" label="Gender" name="gender">
         <Select>
-          <Option value="male">Male</Option>
-          <Option value="female">Female</Option>
-          <Option value="other">Other</Option>
+          <Option className="option-gradient" value="male">Male</Option>
+          <Option className="option-gradient" value="female">Female</Option>
+          <Option className="option-gradient" value="other">Other</Option>
         </Select>
       </Form.Item>
-      <Form.Item label="Date of Birth" name="dateOfBirth">
+      <Form.Item className="dateOfBirth-gradient" label="Date of Birth" name="dateOfBirth">
         <DatePicker style={{ width: "100%" }} />
       </Form.Item>
       <Button

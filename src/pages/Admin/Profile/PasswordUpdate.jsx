@@ -49,7 +49,8 @@ export default function PasswordForm() {
           <Spin size="large" />
         </div>
       )}
-      <Form.Item
+      <Form.Item       className="confirm-password-input-custom"
+
         label="Current Password"
         name="currentPassword"
         rules={[{ required: true, message: "Please enter current password" }]}
@@ -57,7 +58,8 @@ export default function PasswordForm() {
         <Input.Password />
       </Form.Item>
 
-      <Form.Item
+      <Form.Item       className="confirm-password-input-custom"
+
         label="New Password"
         name="newPassword"
         rules={[{ required: true, message: "Please enter new password" }]}

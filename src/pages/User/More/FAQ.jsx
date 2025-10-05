@@ -47,18 +47,18 @@ export default function FAQSection() {
       <h1 className="about-lineFAQ">FAQ</h1>
       <div className="faq-columns" style={{ display: "flex", gap: 50 }}>
         {/* Cột 1 */}
-        <div style={{ flex: 1 }}>
+        <div  style={{ flex: 1 }}>
           {["general", "privacy"].map((cat) => {
             const items = faqsByCategory[cat] || [];
             if (!items.length) return null; // không render nếu rỗng
             return (
-              <div key={cat}>
-                <h3>{cat.charAt(0).toUpperCase() + cat.slice(1)}</h3>
-                <Menu
+              <div className="test-test"  key={cat}>
+                <h3 className="general-line">{cat.charAt(0).toUpperCase() + cat.slice(1)}</h3>
+                <Menu className="general-line-container"
                   mode="inline"
                   items={items}
                   expandIcon={({ isOpen }) => (
-                    <span
+                    <span 
                       className={`menu-arrow ${isOpen ? "open" : ""}`}
                     ></span>
                   )}
@@ -74,7 +74,7 @@ export default function FAQSection() {
             return (
               <div key={cat}>
                 <h3>{cat.charAt(0).toUpperCase() + cat.slice(1)}</h3>
-                <Menu
+                <Menu className="general-line-container"
                   mode="inline"
                   items={items}
                   expandIcon={({ isOpen }) => (

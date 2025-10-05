@@ -95,24 +95,20 @@ export default function LoginPage() {
                   </div>
                 </Form.Item>
 
-                <Form.Item
-                  className="form-name-password"
-                  name="password"
-                  label={<span className="form-label-gradient">Password</span>}
-                  rules={[
-                    {
-                      required: true,
-                      message: "Please input your password!",
-                    },
-                  ]}
-                >
-                  <div className="input-gradient-wrapper">
-                    <Input.Password
-                      className="input-gradient"
-                      placeholder="********"
-                    />
-                  </div>
-                </Form.Item>
+<Form.Item
+  className="form-name-password"
+  name="password"
+  label={<span className="form-label-gradient">Password</span>}
+  rules={[{ required: true, message: "Please input your password!" }]}
+>
+  <div className="input-gradient-wrapper">
+    <Input.Password
+      className="confirm-password-input-custom"
+      placeholder="********"
+    />
+  </div>
+</Form.Item>
+
 
                 {/* Remember & Forgot */}
                 <Form.Item name="remember" valuePropName="checked">

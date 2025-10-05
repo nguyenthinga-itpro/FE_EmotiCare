@@ -18,11 +18,28 @@
 .sidebar .sidebarGroup {
   color: var(--sidebarText);
   font-weight: bold;
+  background: var(--panelGradient); /* màu gradient */
+  -webkit-background-clip: text;
+  -webkit-text-fill-color: transparent;
 }
 .sidebar .sidebarLogout {
   cursor: "pointer";
   color: var(--sidebarText);
   font-weight: 600;
+  background: var(--panelGradient); /* màu gradient */
+  -webkit-background-clip: text;
+  -webkit-text-fill-color: transparent;
+}
+.sidebar
+ .sidebarProfile{
+
+  cursor: "pointer";
+  color: var(--sidebarText);
+  font-weight: 600;
+  background: var(--panelGradient); /* màu gradient */
+  -webkit-background-clip: text;
+  -webkit-text-fill-color: transparent;
+
 }
 .sidebar {
   background: var(--sidebarBg);
@@ -39,7 +56,24 @@
   font-size: 16px;
   color: var(--colorText);
   transition: all 0.3s;
+  font-weight: bold;
+  background: var(--panelGradient); /* màu gradient */
+  -webkit-background-clip: text;
+  -webkit-text-fill-color: transparent;
 }
 .sidebar .sidebarLogoTitle {
   margin-right: 20px;
+}
+.sidebar .menu-label-custom{
+font-weight: bold;
+ background: var(--panelGradient); /* màu gradient */
+  -webkit-background-clip: text;
+  -webkit-text-fill-color: transparent;
+}
+
+.ant-breadcrumb ol{
+font-weight: bold;
+ background: var(--panelGradient); /* màu gradient */
+  -webkit-background-clip: text;
+  -webkit-text-fill-color: transparent;
 }

@@ -4,26 +4,38 @@
 
 .top-statictis {
   margin-bottom: 10px;
+   
   .container-top-statictis {
     .card-total-users-top-statictis {
       background: var(--gradientBlue);
-      box-shadow: 0 8px 12px rgba(0, 0, 0, 0.2);
+
+       box-shadow:
+    6px 6px 12px rgba(100, 50, 255, 0.8),   /* tím nhạt */
+    -6px -6px 12px rgba(255, 255, 255, 0.2) !important;
     }
     .card-today-users-top-statictis {
       background: var(--gradientGreen);
-      box-shadow: 0 8px 12px rgba(0, 0, 0, 0.2);
+       box-shadow:
+    6px 6px 12px rgba(100, 50, 255, 0.8),   /* tím nhạt */
+    -6px -6px 12px rgba(255, 255, 255, 0.2) !important;
     }
     .card-total-chatsession-top-statictis {
       background: var(--gradientPurple);
-      box-shadow: 0 8px 12px rgba(0, 0, 0, 0.2);
+       box-shadow:
+    6px 6px 12px rgba(100, 50, 255, 0.8),   /* tím nhạt */
+    -6px -6px 12px rgba(255, 255, 255, 0.2) !important;
     }
     .card-total-chatsession-top-statictis {
       background: var(--gradientPurple);
-      box-shadow: 0 8px 12px rgba(0, 0, 0, 0.2);
+      box-shadow:
+    6px 6px 12px rgba(100, 50, 255, 0.8),   /* tím nhạt */
+    -6px -6px 12px rgba(255, 255, 255, 0.2) !important;
     }
     .card-total-newchatsession-top-statictis {
       background: var(--gradientOrange);
-      box-shadow: 0 8px 12px rgba(0, 0, 0, 0.2);
+       box-shadow:
+    6px 6px 12px rgba(100, 50, 255, 0.8),   /* tím nhạt */
+    -6px -6px 12px rgba(255, 255, 255, 0.2) !important;
     }
     .title-top-statictis,
     .value-top-statictis,
@@ -31,29 +43,34 @@
       color: var(--textTopStatictis);
     }
   }
-  .render-percent-top-statictis {
+  .render-percent-top-statictis  {
     display: inline-flex;
     align-items: center;
     gap: 10;
     margin-left: 10px;
     font-size: 25px;
     font-weight: 500;
+    /* color: #fff  !important; */
   }
 }
 .middle-card-statistic {
   .container-middle-card-statistic {
     .card-middle-card-statistic {
-      background: var(--BgPrimary);
+      background: var(--sidebarHover) !important;
       color: var(--colorText);
-      box-shadow: 0 8px 12px rgba(0, 0, 0, 0.2);
+       box-shadow:
+    6px 6px 12px rgba(100, 50, 255, 0.8),   /* tím nhạt */
+    -6px -6px 12px rgba(255, 255, 255, 0.2) !important;
       height: 200px;
     }
   }
 }
 .chart-tabs-dashboard {
   margin-top: 24px;
-  background: var(--sidebarBorder);
-  /* box-shadow: 0 8px 12px rgba(0, 0, 0, 0.2); */
+  background: linear-gradient(90deg, #676972, #7c6b8f);
+   box-shadow:
+    6px 6px 12px rgba(100, 50, 255, 0.8),   /* tím nhạt */
+    -6px -6px 12px rgba(255, 255, 255, 0.2) !important;
   .container-Dashboard-Style {
     display: flex;
     justify-content: space-between;
@@ -123,9 +140,7 @@
 }
 /* Hover*/
 .chart-tabs-dashboard .container-Dashboard-Style .ant-picker:hover {
-  border: 1px solid transparent;
-  background: linear-gradient(#fff, #fff) padding-box,
-    var(--gradientPrimary) border-box;
+
   background-clip: padding-box, border-box;
 }
 
@@ -260,4 +275,44 @@
 
  .chart-tabs-dashboard .ant-layout-content{
   padding: none !important  ;
+}
+.first-title-middle-card-statistic {
+  font-size: 24px; /* chỉnh tùy ý */
+  font-weight: bold;
+  background: var(--panelGradient); /* màu gradient */
+  -webkit-background-clip: text;
+  -webkit-text-fill-color: transparent;
+
+}
+.container-middle-card-statistic .card-middle-card-statistic {
+    background: var(--sidebarBorder) !important;
+}
+.second-title-middle-card-statistic{
+  font-weight: bold;
+  background: var(--panelGradient); /* màu gradient */
+  -webkit-background-clip: text;
+  -webkit-text-fill-color: transparent;
+}
+.footer-dashboard{
+  background: var(--panelGradient); /* màu gradient */
+  -webkit-background-clip: text;
+  -webkit-text-fill-color: transparent;
+  font-weight: bold;
+  font-size: 20px;
+  /* Bóng chữ tím nhẹ */
+  text-shadow:
+    0 2px 4px rgba(123, 50, 255, 0.4),
+    0 4px 8px rgba(100, 50, 255, 0.3);
+}
+.first-content-middle-card-statistic{
+    background: var(--panelGradient); /* màu gradient */
+  -webkit-background-clip: text;
+  -webkit-text-fill-color: transparent;
+
+}
+
+.ant-empty-normal .ant-empty-description{
+    background: var(--panelGradient); /* màu gradient */
+  -webkit-background-clip: text;
+  -webkit-text-fill-color: transparent;
 }

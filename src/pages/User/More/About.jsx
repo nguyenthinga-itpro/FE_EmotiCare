@@ -12,7 +12,7 @@ export default function About() {
       <Row gutter={50}>
         <Col xs={24} md={12}>
           <h3>Welcome to EmotiCare!</h3>
-          <p>
+          <p >
             We are a friendly digital space where you can share your thoughts,
             find empathy, and nurture your emotions. EmotiCare was created to be
             a trustworthy companion, always ready to listen and provide a sense

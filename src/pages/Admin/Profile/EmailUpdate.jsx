@@ -150,7 +150,8 @@ export default function EmailUpdateFlow({ userDetail }) {
           layout="vertical"
           onFinish={handleVerifyPassword}
         >
-          <Form.Item
+          <Form.Item       className="confirm-password-input-custom"
+
             label="Current Password"
             name="currentPassword"
             rules={[

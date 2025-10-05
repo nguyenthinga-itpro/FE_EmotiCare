@@ -59,31 +59,38 @@ export default function Resources() {
         {/* Filters */}
         <div className="resources-filters">
           {/* Type selector luôn hoạt động */}
-          <Select
-            placeholder="Select Type"
-            style={{ width: 200, marginRight: 10 }}
-            onChange={(value) => setSelectedType(value)}
-            value={selectedType}
-          >
-            <Option value="news">Articles / Tips & Guides</Option>
-            <Option value="youtube">Videos</Option>
-          </Select>
+<Select
+  className="my-custom-select"
+  placeholder="Select Type"
+  style={{ width: 200, marginRight: 10 }}
+  onChange={(value) => setSelectedType(value)}
+  value={selectedType}
+>
+  <Option value="news" className="option-news">
+    Articles / Tips & Guides
+  </Option>
+  <Option value="youtube" className="option-youtube">
+    Videos
+  </Option>
+</Select>
 
-          {/* Filter + Search luôn hiển thị nhưng vô hiệu khi chưa chọn type */}
-          <Select
-            placeholder="Filter by Category"
-            style={{ width: 200, marginRight: 10 }}
-            allowClear
-            onChange={(value) => setSelectedCategory(value)}
-          >
-            {paginatedCategories.map((cat) => (
-              <Option key={cat.id} value={cat.id}>
-                {cat.name}
-              </Option>
-            ))}
-          </Select>
 
-          <Input
+<Select
+  className="my-custom-select"
+  placeholder="Filter by Category"
+  style={{ width: 200, marginRight: 10 }}
+  allowClear
+  onChange={(value) => setSelectedCategory(value)}
+>
+  {paginatedCategories.map((cat) => (
+    <Option  key={cat.id} value={cat.id} className={`option-${cat.id}`}>
+      {cat.name}
+    </Option>
+  ))}
+</Select>
+
+
+          <Input className="option-search"
             placeholder="Search by title"
             style={{ width: 200, height: 32 }}
             value={searchText}
