@@ -1,48 +1,82 @@
-import React, { useEffect, useState } from "react";
-import {  Pagination } from "antd";
-import { Link } from "react-router-dom";
+import React, { useEffect, useRef, useState } from "react";
+import { Button } from "antd";
+import { useNavigate } from "react-router-dom";
 import { useDispatch, useSelector } from "react-redux";
-import Images from "../../../Constant/Images";
+import Slider from "react-slick";
 import { getAllChats } from "../../../redux/Slices/ChatAISlice";
 import { getAllCategories } from "../../../redux/Slices/CategorySlice";
+import {
+  createSession,
+  getAllChatSessions,
+} from "../../../redux/Slices/ChatSessionSlice";
 import "./Chatbox.css";
+import "slick-carousel/slick/slick.css";
+import "slick-carousel/slick/slick-theme.css";
 
 export default function Chatbox() {
-  const [currentPage, setCurrentPage] = useState(1);
-  const localPageSize = 3; // số card mỗi trang
-
   const dispatch = useDispatch();
+  const navigate = useNavigate();
+  const [currentPage] = useState(1);
 
-  // lấy state từ redux
+  const { currentUser } = useSelector((state) => state.user);
   const {
     paginatedChats = [],
     loading,
     error,
-  } = useSelector((s) => s.chat);
+    pageSize = 10,
+  } = useSelector((state) => state.chat);
+  const { sessions = [] } = useSelector((state) => state.chatSession);
+  console.log("sessions", sessions);
+  const profileRefs = useRef({});
 
-  const { paginatedCategories = [] } = useSelector((s) => s.category);
-
-  // fetch chats
   useEffect(() => {
     dispatch(getAllChats({ pageSize: 100 }));
-  }, [dispatch]);
-
-  // fetch categories
-  useEffect(() => {
     dispatch(getAllCategories({ pageSize: 100 }));
   }, [dispatch]);
+  // 🔹 Load chat sessions list
+  useEffect(() => {
+    dispatch(getAllChatSessions({ pageSize: 100 }));
+    // return () => dispatch(clearSession());
+  }, [dispatch]);
+  const chats = paginatedChats.filter((c) => !c.isDisabled);
+  const startIndex = (currentPage - 1) * pageSize;
+  const currentChats = chats.slice(startIndex, startIndex + pageSize);
 
-  // filter bỏ disabled
-  const chats = paginatedChats.filter((c) => c.isDisabled === false);
-  const categories = paginatedCategories.filter((c) => c.isDisabled === false);
+  const scrollToProfile = (chatId) => {
+    const profileEl = profileRefs.current[chatId];
+    if (profileEl)
+      profileEl.scrollIntoView({ behavior: "smooth", block: "start" });
+  };
 
-  // tính toán slice cho Pagination
-  const startIndex = (currentPage - 1) * localPageSize;
-  const currentChats = chats.slice(startIndex, startIndex + localPageSize);
+  const handleStartChat = async (chatAIId) => {
+    const result = await dispatch(
+      createSession({
+        userId: currentUser.uid,
+        chatAIId,
+      })
+    );
+
+    if (result.meta.requestStatus === "fulfilled") {
+      const sessionId = result.payload.sessionId;
+      const aiAvatar = result.payload.aiAvatar;
+      navigate("/user/Chat", { state: { sessionId, aiAvatar } });
+    }
+  };
+
+  const sliderSettings = {
+    dots: true,
+    infinite: false,
+    speed: 500,
+    slidesToShow: 5,
+    slidesToScroll: 1,
+    responsive: [
+      { breakpoint: 1024, settings: { slidesToShow: 2 } },
+      { breakpoint: 600, settings: { slidesToShow: 1 } },
+    ],
+  };
 
   return (
     <main>
-      {/* Menu Section */}
       <section className="menu-section">
         <div className="content">
           <p className="subtitle">WHAT WE DO</p>
@@ -50,82 +84,85 @@ export default function Chatbox() {
         </div>
       </section>
 
-      {/* Characters Section */}
-      <section className="name-section">
+      <section className="chat-container">
         {loading && <p>Loading chats...</p>}
-        {error && <p style={{ color: "red" }}>Error loading chats</p>}
+        {error && <p style={{ color: "red" }}>Error loading chats: {error}</p>}
         {!loading && chats.length === 0 && <p>No chats available</p>}
 
         {currentChats.length > 0 && (
-            <div className="character-grid-container">
-              <div className="character-grid">
-                {currentChats.map((chat) => (
-                  <div key={chat.id} className="character-card-home">
-                    <h3>{chat.name}</h3>
-                    <img src={chat.image} alt={chat.name} />
-                  </div>
-                ))}
+          <Slider {...sliderSettings}>
+            {currentChats.map((chat) => (
+              <div
+                key={chat.id}
+                className="chat-card-home-container"
+                onClick={() => scrollToProfile(chat.id)}
+              >
+                <div className="chat-card-home">
+                  <h3>{chat.name}</h3>
+                  <img src={chat.image} alt={chat.name} />
+                </div>
+              </div>
+            ))}
+          </Slider>
+        )}
+      </section>
+
+      <section className="profile-section">
+        <h1 className="profile-title">Informations</h1>
+        {chats.map((chat) => {
+          const existingSession = sessions.find((s) => s.chatAIId === chat.id);
+          console.log("Chat:", chat.name, "Existing Session:", existingSession);
+
+          return (
+            <div
+              key={chat.id}
+              className="profile-containers"
+              ref={(el) => (profileRefs.current[chat.id] = el)}
+            >
+              <div className="profile-image">
+                <img src={chat.image} alt={chat.name} />
+              </div>
+              <div className="profile-info">
+                <h2>{chat.name}</h2>
+                {chat.defaultGreeting && (
+                  <p>
+                    <strong>Greeting:</strong> {chat.defaultGreeting}
+                  </p>
+                )}
+                {chat.description && (
+                  <p dangerouslySetInnerHTML={{ __html: chat.description }} />
+                )}
+                <h3>System Prompt</h3>
+                <p>{chat.systemPrompt}</p>
+                <div className="profile-buttons">
+                  {existingSession ? (
+                    <button
+                      className="btn-chat"
+                      onClick={() =>
+                        navigate("/user/Chat", {
+                          state: {
+                            sessionId: existingSession.id,
+                            aiAvatar: existingSession.aiAvatar,
+                          },
+                        })
+                      }
+                    >
+                      Open a chat
+                    </button>
+                  ) : (
+                    <button
+                      className="btn-chat"
+                      onClick={() => handleStartChat(chat.id)}
+                    >
+                      Chat
+                    </button>
+                  )}
+                </div>
               </div>
             </div>
-        )}
-
-        {/* Pagination */}
-        <Pagination
-          className="custom-Pagination"
-          align="center"
-          current={currentPage}
-          pageSize={localPageSize}
-          total={chats.length}
-          onChange={(page) => setCurrentPage(page)}
-        />
+          );
+        })}
       </section>
-
-      {/* Profiles Section */}
-      <section className="profile-section">
-        <h1 className="profile-title">Profiles</h1>
-        <div className="profile-containers">
-          {/* Left image */}
-          <div className="profile-image">
-            <img src={Images.Sunny} alt="Sunny" />
-          </div>
-
-          {/* Right info */}
-          <div className="profile-info">
-            <ul>
-              <li className="profile-info-textone">
-                <strong className="profile-info-text">Name:</strong> Sunny
-              </li>
-              <li className="profile-info-textone">
-                <strong className="profile-info-text">Age:</strong> 18
-              </li>
-            </ul>
-            <h3>Personality</h3>
-            <ul>
-              <li className="profile-info-textone">Optimistic and warm, always spreading positive vibes.</li>
-              <li className="profile-info-textone">Empathetic, a good listener who comforts gently.</li>
-              <li className="profile-info-textone">
-                Playful, cheerful, and a bit witty – like a peer and close
-                friend.
-              </li>
-              <li className="profile-info-textone">
-                Communicates in a youthful, friendly way, often using emojis.
-              </li>
-            </ul>
-
-            <div className="profile-buttons">
-              <button className="btn-more">More</button>
-              <Link to="/user/Chat" className="btn-chat">
-                Chat
-              </Link>
-            </div>
-          </div>
-        </div>
-      </section>
-
-      {/* More button */}
-      <div className="more-sections">
-        <button className="btn-mores">More...</button>
-      </div>
     </main>
   );
 }
