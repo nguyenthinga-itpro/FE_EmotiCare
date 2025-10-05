@@ -139,6 +139,7 @@ justify-content: center;
   background: var(--postcardsSection);
   text-align: center;
   padding: 80px 20px;
+  border-radius: 12px;
 }
 
 .postcards-section-home .subtitle {
@@ -356,21 +357,25 @@ justify-content: center;
   -webkit-background-clip: text;
   -webkit-text-fill-color: transparent !important;
 }
+
 .arrow-card-home,
 .arrow-card-home:hover,
 .arrow-card-home:focus,
 .arrow-card-home:active {
-  background: none !important;
   border: none !important;
+  background: transparent !important;
   box-shadow: none !important;
+  outline: none !important;
 }
 
-.arrow-card-home {
-  background: none;
+.arrow-card-home .anticon {
   border: none !important;
-  box-shadow: none !important;
-  padding: 0; /* nếu muốn icon gọn hơn */
+  background: transparent !important;
 }
+.arrow-card-home-container .arrow-card-home{
+    border: none !important;
+}
+
 
 /* Style chung cho icon */
 .card-home .arrow-card-home .anticon {
@@ -450,6 +455,11 @@ justify-content: center;
   transform: translateY(-2px);
   opacity: 0.9;
 }
+
+
+
+
+
 
 /* 📱 Responsive cho màn nhỏ */
 @media (max-width: 768px) {

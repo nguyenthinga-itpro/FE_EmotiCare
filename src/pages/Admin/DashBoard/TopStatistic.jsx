@@ -20,7 +20,7 @@ export default function TopStats({ stats }) {
     return (
       <span
         style={{
-          color,
+          color ,
         }}
         className="render-percent-top-statictis"
       >

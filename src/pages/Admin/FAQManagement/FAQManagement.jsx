@@ -187,6 +187,7 @@ export default function FAQManagement() {
       <OverlayLoader loading={loading} />
       {/* Detail Modal */}
       <DetailModal
+      className="faq-detail-modal"
         visible={detailModalOpen}
         onClose={() => setDetailModalOpen(false)}
         data={selected}

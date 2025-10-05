@@ -98,7 +98,7 @@ function App() {
           <Route path="contact" element={<Contact />} />
           <Route path="chatbox" element={<Chatbox />} />
           <Route path="postcards" element={<Postcards />} />
-          <Route path="error" element={<Error />} />
+       
         </Route>
 
         {/* User routes */}
@@ -159,7 +159,7 @@ function App() {
         <Route path="/login" element={<Login />} />
         <Route path="/register" element={<Register />} />
         <Route path="/forgotpassword" element={<ForgotPassword />} />
-        <Route path="/verify" element={<Verify />} />
+        <Route path="/verify" element={<Verify />} />   <Route path="error" element={<Error />} />
       </Routes>
 
       {/* Toast container */}

@@ -145,12 +145,16 @@ export default function Home() {
                   className="card-text"
                   dangerouslySetInnerHTML={{ __html: c.description }}
                 />
+                <div                   className="arrow-card-home-container"
+>
                 <Button
                   className="arrow-card-home"
+                  icon={<ArrowRightOutlined />}
                   onClick={() => postcardHandle({ name: c.name })}
                 >
-                  <ArrowRightOutlined />
+                  {/* <ArrowRightOutlined  /> */}
                 </Button>
+              </div>
               </div>
             ))}
           </div>

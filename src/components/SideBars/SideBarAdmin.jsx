@@ -31,59 +31,60 @@ const Sidebar = () => {
   const menuItems = [
     {
       key: "/admin/dashboard",
-      label: "Dashboard",
+      label: <span className="menu-label-custom">Dashboard</span>,
       defaultIcon: <AppstoreOutlined />,
       hoverIcon: <AppstoreAddOutlined />,
       path: "/admin/dashboard",
     },
     {
       key: "/admin/users",
-      label: "Users Management",
+      label: <span className="menu-label-custom">Users Management</span>,
       defaultIcon: <UserOutlined />,
       hoverIcon: <UserSwitchOutlined />,
       path: "/admin/users",
     },
     {
       key: "/admin/emotions",
-      label: "Emotions Management",
+      label: <span className="menu-label-custom">Emotions Management</span>,
       defaultIcon: <MailOutlined />,
       hoverIcon: <SmileOutlined />,
       path: "/admin/emotions",
     },
     {
       key: "/admin/chatais",
-      label: "ChatAIs Management",
+      label: <span className="menu-label-custom">ChatAIs Management</span>,
       defaultIcon: <AppstoreOutlined />,
       hoverIcon: <RobotOutlined />,
       path: "/admin/chatais",
     },
     {
       key: "/admin/postcards",
-      label: "Postcards Management",
+      label: <span className="menu-label-custom">Postcards Management</span>,
       defaultIcon: <AppstoreOutlined />,
       hoverIcon: <AppstoreAddOutlined />,
       path: "/admin/postcards",
     },
     {
       key: "/admin/faqs",
-      label: "FAQs Management",
+      label: <span className="menu-label-custom">FAQs Management</span>,
       defaultIcon: <QuestionCircleOutlined />,
       hoverIcon: <QuestionCircleFilled />,
       path: "/admin/faqs",
     },
     {
       key: "/admin/resources",
-      label: "Resources Management",
+      label: <span className="menu-label-custom">Resources Management</span>,
       defaultIcon: <ReadOutlined />,
       hoverIcon: <ReadFilled />,
       path: "/admin/resources",
     },
     {
       key: "/admin/categories",
-      label: "Categories Management",
+      label: <span className="menu-label-custom">Categories Management</span>,
       defaultIcon: <MenuOutlined />,
       hoverIcon: <MenuFoldOutlined />,
       path: "/admin/categories",
+
     },
   ];
 
@@ -107,7 +108,11 @@ const Sidebar = () => {
           ) : (
             <UserOutlined />
           ),
-        label: <Link to="/admin/profile">Profile</Link>,
+        label: (
+          <Link className="sidebarProfile" to="/admin/profile">
+            Profile
+          </Link>
+        ),
         onMouseEnter: () => setHoveredKey("/admin/profile"),
         onMouseLeave: () => setHoveredKey(null),
       },

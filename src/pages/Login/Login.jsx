@@ -102,7 +102,7 @@ export default function LoginPage() {
 >
   <div className="input-gradient-wrapper">
     <Input.Password
-      className="input-gradient"
+      className="confirm-password-input-custom"
       placeholder="********"
     />
   </div>
