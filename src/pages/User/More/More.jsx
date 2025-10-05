@@ -6,8 +6,9 @@ import FAQSection from "./FAQ";
 import Resources from "./Resources";
 import Settings from "./Setting";
 import "./More.css";
+import OverlayLoader from "../../../components/OverlayLoader/OverlayLoader";
 
-export default function More() {
+export default function More({ loading }) {
   const [activeMainSection, setActiveMainSection] = useState("about");
 
   // Scroll tới section
@@ -29,6 +30,7 @@ export default function More() {
 
   return (
     <main>
+      <OverlayLoader loading={loading} />
       {/* Navbar */}
       <Row align="middle" justify="space-between" style={{ width: "100%" }}>
         <Col xs={0} md={5}></Col>

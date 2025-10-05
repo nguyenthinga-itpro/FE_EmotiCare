@@ -12,6 +12,7 @@ import {
 import "./Chatbox.css";
 import "slick-carousel/slick/slick.css";
 import "slick-carousel/slick/slick-theme.css";
+import OverlayLoader from "../../../components/OverlayLoader/OverlayLoader";
 
 export default function Chatbox() {
   const dispatch = useDispatch();
@@ -26,6 +27,7 @@ export default function Chatbox() {
     pageSize = 10,
   } = useSelector((state) => state.chat);
   const { sessions = [] } = useSelector((state) => state.chatSession);
+
   console.log("sessions", sessions);
   const profileRefs = useRef({});
 
@@ -35,10 +37,11 @@ export default function Chatbox() {
   }, [dispatch]);
   // 🔹 Load chat sessions list
   useEffect(() => {
-    dispatch(getAllChatSessions({ pageSize: 100 }));
+    dispatch(getAllChatSessions({ pageSize: 100, userId: currentUser.uid }));
     // return () => dispatch(clearSession());
   }, [dispatch]);
   const chats = paginatedChats.filter((c) => !c.isDisabled);
+  console.log("chat:", chats);
   const startIndex = (currentPage - 1) * pageSize;
   const currentChats = chats.slice(startIndex, startIndex + pageSize);
 
@@ -77,6 +80,7 @@ export default function Chatbox() {
 
   return (
     <main>
+      <OverlayLoader loading={loading} />
       <section className="menu-section">
         <div className="content">
           <p className="subtitle">WHAT WE DO</p>
@@ -111,7 +115,10 @@ export default function Chatbox() {
         <h1 className="profile-title">Informations</h1>
         {chats.map((chat) => {
           const existingSession = sessions.find((s) => s.chatAIId === chat.id);
-          console.log("Chat:", chat.name, "Existing Session:", existingSession);
+          console.log(
+            `Chat ${chat.name} (${chat.id}) -> Session?`,
+            existingSession ? "✅ Yes" : "❌ No"
+          );
 
           return (
             <div

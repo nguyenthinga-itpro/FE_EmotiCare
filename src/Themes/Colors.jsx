@@ -20,7 +20,7 @@ export const light = {
   profileBgDetail: "linear-gradient(135deg, #ebf0ff, #f6edff)",
   labelStyleProfileDeatail: "#4a4a4a",
   contentStyleProfileDeatail: "#222",
-  panelGradient: "linear-gradient(90deg,#667ce7,#754da5)",
+  panelGradient: "linear-gradient(90deg, #667ce7, #754da5)",
   gradientPrimary: "linear-gradient(135deg, #6e8efb, #a777e3)",
   gradientHeader: "linear-gradient(0deg, #6e8efb, #a777e3)",
   gradientFooter: "linear-gradient(180deg, #6e8efb, #a777e3)",

@@ -11,7 +11,7 @@ import {
   Typography,
   Popover,
 } from "antd";
-import { Link } from "react-router-dom";
+import { Link, useLocation } from "react-router-dom";
 import { BulbOutlined, MenuOutlined, MoonFilled } from "@ant-design/icons";
 import "./MainHeader.css";
 import { logout } from "../../../redux/Slices/AuthSlice";
@@ -25,6 +25,7 @@ const { Text } = Typography;
 const HeaderBar = () => {
   const [open, setOpen] = useState(false);
   const dispatch = useDispatch();
+  const location = useLocation();
 
   const { currentUser } = useSelector((state) => state.user);
   const { userDetail, loading } = useSelector((s) => s.users);
@@ -73,11 +74,30 @@ const HeaderBar = () => {
         {/* Menu desktop */}
         <Col md={14} className="menu-desktop">
           <nav className="menu">
-            <Link to="/user">Home</Link>
-            <Link to="/user/More">More</Link>
-            <Link to="/user/Stories">Stories</Link>
-            <Link to="/user/Chatbox">ChatBox</Link>
-            <Link to="/user/Contact">Contact</Link>
+            <Link
+              to="/user"
+              className={location.pathname === "/user" ? "active" : ""}
+            >
+              Home
+            </Link>
+            <Link
+              to="/user/More"
+              className={location.pathname === "/user/More" ? "active" : ""}
+            >
+              More
+            </Link>
+            <Link
+              to="/user/Chatbox"
+              className={location.pathname === "/user/Chatbox" ? "active" : ""}
+            >
+              ChatBox
+            </Link>
+            <Link
+              to="/user/Contact"
+              className={location.pathname === "/user/Contact" ? "active" : ""}
+            >
+              Contact
+            </Link>
           </nav>
         </Col>
 
@@ -176,9 +196,9 @@ const HeaderBar = () => {
           <Link to="/user/More" onClick={() => setOpen(false)}>
             More
           </Link>
-          <Link to="/user/Stories" onClick={() => setOpen(false)}>
+          {/* <Link to="/user/Stories" onClick={() => setOpen(false)}>
             Stories
-          </Link>
+          </Link> */}
           <Link to="/user/Chatbox" onClick={() => setOpen(false)}>
             ChatBox
           </Link>
