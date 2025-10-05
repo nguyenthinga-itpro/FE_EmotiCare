@@ -41,6 +41,7 @@ export default function Chatbox() {
     // return () => dispatch(clearSession());
   }, [dispatch]);
   const chats = paginatedChats.filter((c) => !c.isDisabled);
+  console.log("chat:", chats);
   const startIndex = (currentPage - 1) * pageSize;
   const currentChats = chats.slice(startIndex, startIndex + pageSize);
 
@@ -88,7 +89,7 @@ export default function Chatbox() {
       </section>
 
       <section className="chat-container">
-        {/* {loading && <p>Loading chats...</p>} */}
+        {loading && <p>Loading chats...</p>}
         {error && <p style={{ color: "red" }}>Error loading chats: {error}</p>}
         {!loading && chats.length === 0 && <p>No chats available</p>}
 
@@ -114,7 +115,10 @@ export default function Chatbox() {
         <h1 className="profile-title">Informations</h1>
         {chats.map((chat) => {
           const existingSession = sessions.find((s) => s.chatAIId === chat.id);
-          console.log("Chat:", chat.name, "Existing Session:", existingSession);
+          console.log(
+            `Chat ${chat.name} (${chat.id}) -> Session?`,
+            existingSession ? "✅ Yes" : "❌ No"
+          );
 
           return (
             <div

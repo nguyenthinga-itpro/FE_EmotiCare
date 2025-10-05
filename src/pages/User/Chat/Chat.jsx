@@ -28,16 +28,22 @@ export default function Chat() {
   const dispatch = useDispatch();
   const location = useLocation();
   const { sessionId } = location.state || {};
+
   const { sessions, nextCursor, currentSessionId, messages, loading } =
     useSelector((state) => state.chatSession);
-  console.log("sessionId", sessionId);
+  const { currentUser } = useSelector((state) => state.user);
+
   const [input, setInput] = useState("");
   const [sidebarOpen, setSidebarOpen] = useState(true);
   const [searchTerm, setSearchTerm] = useState("");
 
   const chatBodyRef = useRef(null);
+  const loadMoreRef = useRef(null);
+  useEffect(() => {
+    console.log("currentSessionId changed:", currentSessionId);
+  }, [currentSessionId]);
 
-  // 🔹 Load session
+  // Load session nếu có sessionId được truyền từ Router
   useEffect(() => {
     if (sessionId) {
       dispatch(fetchSessionById(sessionId));
@@ -45,25 +51,33 @@ export default function Chat() {
     }
   }, [dispatch, sessionId]);
 
-  // 🔹 Load chat sessions list
   useEffect(() => {
-    dispatch(getAllChatSessions({ pageSize: PAGE_SIZE }));
-    return () => dispatch(clearSession());
-  }, [dispatch]);
-  useEffect(() => {
-    if (!sessionId && sessions.length > 0) {
-      const firstSession = sessions[0];
-      dispatch(fetchSessionById(firstSession.id));
-      dispatch(subscribeSession({ sessionId: firstSession.id }));
+    if (currentUser?.uid) {
+      dispatch(
+        getAllChatSessions({ pageSize: PAGE_SIZE, userId: currentUser.uid })
+      );
     }
-  }, [sessions, sessionId, dispatch]);
+  }, [dispatch, currentUser]); // Không return cleanup ở đây
 
-  // 🔹 Cleanup khi unmount
+  // Cleanup chỉ khi unmount
   useEffect(() => {
     return () => dispatch(clearSession());
   }, [dispatch]);
 
-  // 🔹 Scroll chat body xuống cuối khi có tin nhắn mới
+const initializedRef = useRef(false);
+
+useEffect(() => {
+  if (!initializedRef.current && !currentSessionId && sessions.length > 0) {
+    const firstSession = sessions[0];
+    dispatch(setCurrentSessionId(firstSession.id));
+    dispatch(subscribeSession({ sessionId: firstSession.id }));
+    dispatch(fetchSessionById(firstSession.id));
+    initializedRef.current = true; // Đánh dấu đã chạy
+  }
+}, [sessions, currentSessionId, dispatch]);
+
+
+  // Scroll xuống khi có tin nhắn mới
   useEffect(() => {
     if (chatBodyRef.current) {
       chatBodyRef.current.scrollTo({
@@ -73,14 +87,18 @@ export default function Chat() {
     }
   }, [messages]);
 
+  // Load thêm session khi scroll
   const loadMoreSessions = () => {
-    if (nextCursor) {
+    if (nextCursor && currentUser?.uid) {
       dispatch(
-        getAllChatSessions({ pageSize: PAGE_SIZE, startAfter: nextCursor })
+        getAllChatSessions({
+          pageSize: PAGE_SIZE,
+          startAfter: nextCursor,
+          userId: currentUser.uid, // ✅ FIX QUAN TRỌNG
+        })
       );
     }
   };
-  const loadMoreRef = useRef(null);
 
   useEffect(() => {
     if (!nextCursor || loading) return;
@@ -99,16 +117,21 @@ export default function Chat() {
     return () => observer.disconnect();
   }, [nextCursor, loading]);
 
-  // 🔹 Gửi tin nhắn (Optimistic Update)
+  // Gửi tin nhắn
   const playSound = (type) => {
     const audio = new Audio(
-      type === "send" ? Sounds.Messagesend : Sounds.Message // hoặc ngược lại nếu bạn muốn
+      type === "send" ? Sounds.Messagesend : Sounds.Message
     );
     audio.play();
   };
 
   const handleSend = () => {
     if (!input.trim()) return;
+
+    if (!currentSessionId) {
+      alert("⚠️ Chưa có session nào để gửi tin nhắn.");
+      return;
+    }
 
     const tempMsg = {
       id: Date.now(),
@@ -119,7 +142,7 @@ export default function Chat() {
     };
 
     dispatch(addRealtimeMessage(tempMsg));
-    playSound("send"); // Phát âm thanh gửi
+    playSound("send");
     setInput("");
 
     dispatch(
@@ -129,7 +152,6 @@ export default function Chat() {
     });
   };
 
-  // Phát âm thanh khi nhận tin
   useEffect(() => {
     if (messages.length > 0) {
       const lastMsg = messages[messages.length - 1];
@@ -143,7 +165,6 @@ export default function Chat() {
     <main className="chat-main">
       <OverlayLoader loading={loading} />
       <div className={`chat-wrapper ${sidebarOpen ? "sidebar-open" : ""}`}>
-        {/* Sidebar */}
         <div className={`chat-sidebar ${sidebarOpen ? "active" : ""}`}>
           <div className="sidebar-header">
             <h3>Chat sections</h3>
@@ -200,13 +221,14 @@ export default function Chat() {
             )}
           </div>
         </div>
+
         {!sidebarOpen && (
           <MenuOutlined
             className="sidebar-toggle-btn"
             onClick={() => setSidebarOpen(true)}
           />
         )}
-        {/* Chat content */}
+
         <div className={`chat-content ${sidebarOpen ? "" : "expanded"}`}>
           <div className="chat-header">
             {sessions
@@ -221,16 +243,10 @@ export default function Chat() {
               ))}
           </div>
 
-          {/* Chat messages */}
           <div
             className={`chat-body ${sidebarOpen ? "" : "full-width"}`}
             ref={chatBodyRef}
           >
-            {loading && (
-              <div className="loading">
-                <Spin /> Loading...
-              </div>
-            )}
             {messages.map((msg) => {
               const currentSession = sessions.find(
                 (s) => s.id === currentSessionId
@@ -261,7 +277,6 @@ export default function Chat() {
             })}
           </div>
 
-          {/* Input */}
           <div className="chat-footer">
             <Input
               value={input}
