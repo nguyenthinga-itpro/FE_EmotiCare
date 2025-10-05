@@ -169,7 +169,7 @@
   color: var(--colorText) !important;
 }
 /* Icon con mắt */
-.confirm-password-input-custom .anticon {
+.confirm-password-input-custom .anticon svg{
   color: var(--colorText) !important;
   transition: color 0.3s ease;
 }
@@ -178,7 +178,7 @@
   color: #722ed1 !important;
 }
 .account-text{
-  color: var(--colorText) ;
+  color: var(--colorText) !important;
 }
 
 .account-wrapper {
@@ -196,4 +196,9 @@
 .link-register-for-free {
   font-weight: 600;
   cursor: pointer;
+}
+
+.ant-card-bordered{
+    box-shadow: 0 0 10px rgba(255, 255, 255, 0.8) !important;
+
 }

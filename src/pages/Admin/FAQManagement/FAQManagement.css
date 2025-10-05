@@ -1,0 +1,10 @@
+/* Màu chữ label */
+:where(.users-management) .ant-descriptions-item-label {
+  color: #754da5 !important; /* đổi thành màu bạn muốn */
+  font-weight: 600 !important; /* in đậm nếu muốn nổi bật hơn */
+}
+
+/* Nếu muốn đổi luôn màu nền của label */
+.faq-detail-modal .ant-descriptions-bordered .ant-descriptions-item-label {
+  background-color: #f5f0ff !important; /* tím nhạt hoặc tone sáng */
+}

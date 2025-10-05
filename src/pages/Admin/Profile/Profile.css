@@ -1,5 +1,5 @@
 .profile-tabs .ant-tabs-tab.ant-tabs-tab-active .ant-tabs-tab-btn {
-  background: linear-gradient(135deg, #6e8efb, #a777e3);
+  background: var(--panelGradient);
   -webkit-background-clip: text;
   -webkit-text-fill-color: transparent;
   font-weight: bold;
@@ -8,14 +8,77 @@
 
 /* gradient khi hover tab */
 .profile-tabs .ant-tabs-tab:hover .ant-tabs-tab-btn {
-  background: linear-gradient(135deg, #6e8efb, #a777e3);
+  background: var(--panelGradient);
   -webkit-background-clip: text;
   -webkit-text-fill-color: transparent;
   color: transparent !important;
 }
 
 .profile-tabs .ant-tabs-ink-bar {
-  background: linear-gradient(135deg, #6e8efb, #a777e3);
+  background: var(--panelGradient);
   height: 3px;
   border-radius: 3px;
+}
+.profile-texth2{
+  background: var(--panelGradient);
+  -webkit-background-clip: text;
+  -webkit-text-fill-color: transparent;
+  display: flex;
+  align-items: center;
+    justify-content: center;
+}
+.profile-h2{
+  background: var(--panelGradient);
+  height: 3px;
+  border-radius: 3px;
+}
+.ant-card-head-title{
+    background: var(--panelGradient);
+  -webkit-background-clip: text;
+  -webkit-text-fill-color: transparent;
+  color: aqua !important;
+}
+.ant-card .ant-card-head{
+    border-bottom:1px solid var(--colorTitle) ;
+}
+.ant-descriptions .ant-descriptions-item-label{
+      background: var(--panelGradient);
+  -webkit-background-clip: text;
+  -webkit-text-fill-color: transparent;
+   position: relative;
+font-size: 14px;
+}
+/* Khôi phục màu cho dấu ":" */
+.ant-descriptions .ant-descriptions-item-label::after {
+  color: #754da5; /* hoặc var(--TextPrimary) hay màu bạn muốn */
+  -webkit-text-fill-color: initial;
+}
+
+.ant-form-item-vertical .ant-form-item-label > label{
+        background: var(--panelGradient);
+  -webkit-background-clip: text;
+  -webkit-text-fill-color: transparent;
+   position: relative;
+}
+.ant-input, .ant-input-textarea{
+      border: 1px solid #754da5;
+}
+
+.ant-select-outlined:not(.ant-select-customize-input) .ant-select-selector{
+  border: 1px solid #754da5;
+}
+.ant-picker-outlined  {
+  border: 1px solid #754da5 !important;
+  color: var(--colorText) !important;
+}
+  .ant-picker
+  .ant-picker-input
+  > input::placeholder {
+  color: var(--colorText) !important;
+  opacity: 1; /* đảm bảo không bị làm mờ */
+}
+
+.ant-input-affix-wrapper{
+    border: 1px solid #754da5 !important;
+
 }

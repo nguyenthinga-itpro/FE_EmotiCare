@@ -114,7 +114,7 @@ export default function RegisterPage() {
     label={<span className="form-label-gradient">Password</span>}
     rules={[{ required: true, message: "Please input your password!" }]}
   >
-    <Input.Password placeholder="********" />
+    <Input.Password className="confirm-password-input-custom"  placeholder="********" />
   </Form.Item>
 </div>
 

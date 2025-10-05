@@ -45,10 +45,10 @@ const AdminLayout = () => {
         >
           <Outlet />
         </Content>
-        <Footer
+        <Footer className="footer-dashboard"
           style={{
             textAlign: "center",
-            background: theme.sidebarBg,
+           
             color: theme.colorText,
           }}
         >
