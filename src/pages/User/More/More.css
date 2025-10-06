@@ -290,6 +290,9 @@ section ul li {
   -webkit-box-orient: vertical;
   overflow: hidden;
 }
+.article-card{
+  
+}
 .card-text {
   font-size: 14px;
   color: var(--colorText);
@@ -486,6 +489,10 @@ section ul li {
 
 .faq-menu.ant-menu-light.ant-menu-root.ant-menu-inline {
   border-inline-end: none !important;
+
+}
+.ant-menu-light.ant-menu-root.ant-menu-inline {
+  background: none !important
 }
 .faq-menu .ant-menu-item {
   background: var(--sectionp) !important;
@@ -653,11 +660,6 @@ background: var(--BgPrimary);
   opacity: 1; /* giúp placeholder không bị mờ */
 }
 
-
-
-
-
-}
 .button-resource-container {
   display: flex;
   justify-content: center;

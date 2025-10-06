@@ -71,7 +71,7 @@ html {
 .profile-info {
   flex: 1;
   padding: 40px; /* tăng padding */
-  background: var(--sectionp);
+  background: var(--postcardsSection);
   font-size: 18px; /* chữ to hơn */
   line-height: 1.8;
   flex-direction: column;
@@ -103,7 +103,7 @@ html {
   margin-top: 20px;
   margin-bottom: 12px;
   font-size: 22px;
-  color: #222;
+
 }
 
 .btn-more {

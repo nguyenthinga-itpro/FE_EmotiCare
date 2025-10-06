@@ -205,7 +205,7 @@ export default function RegisterPage() {
                 </div>
 
                 {/* Submit Button */}
-                <Form.Item>
+                <Form.Item className="button-text">
                   <Button
                     htmlType="submit"
                     block

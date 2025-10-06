@@ -11,7 +11,8 @@
 }
 
 .article-card {
-  max-width: 1000px;
+  max-width: 1400px;
+  min-height: 500px;
   margin: 0 auto;
   text-align: center;
   margin-bottom: 20px;
@@ -35,12 +36,10 @@
   margin-top: 15px;
 }
 .article-image {
-  /* width: 100px; */
-  height: 200px;
   object-fit: cover;
 }
 .article-description {
-  font-size: 6px;
+  font-size: 11px;
   font-style: italic;
   color: var(--sidebarText);
   /* background: linear-gradient(90deg, #667ce7, #754da5); */

@@ -7,3 +7,71 @@
   cursor: pointer;
   font-weight: 600;
 }
+
+/* Dành cho trường Description */
+.ant-input-textarea textarea {
+  background-color: #1f1b2e !important;  /* nền tím đậm */
+  color: #ffffff !important;             /* chữ trắng */
+  border-radius: 8px;
+  border: 1px solid #7c4dff !important;  /* viền tím */
+  transition: all 0.2s ease-in-out;
+}
+
+.ck.ck-toolbar{
+  background: var(--sidebarHoverBg)!important;
+}
+.ck.ck-dropdown.ck-heading-dropdown .ck-dropdown__button .ck-button__label{
+  color: var(--colorText) !important;
+
+}
+/* Toolbar */
+.ck.ck-toolbar {
+  background: rgba(255, 255, 255, 0.05) !important;
+  border: 1px solid rgba(117, 77, 165, 0.3) !important;
+}
+
+/* Nút bình thường */
+.ck.ck-toolbar .ck-button {
+  color: var(--colorText) !important;
+  transition: all 0.2s ease;
+    background: var(--sidebarHover) !important;
+
+}
+
+/* Hover */
+.ck.ck-toolbar .ck-button:hover {
+    background: var(--panelGradient) !important;
+  color: #000 !important;
+  border-radius: 6px;
+}
+
+/* Khi click (Bold, Italic, v.v.) */
+.ck.ck-toolbar .ck-button.ck-on {
+    background: var(--sidebarHover) !important;
+  color: #fff !important;
+  border-radius: 6px;
+  box-shadow: 0 0 8px rgba(117, 77, 165, 0.6) !important;
+}
+body .ck.ck-reset.ck-dropdown__panel,
+body .ck.ck-reset.ck-dropdown__panel.ck-dropdown__panel_se {
+  background: #2a1b3d !important; /* 💜 màu bạn muốn */
+    color: #000 !important;
+}
+
+/* Nếu bạn đang dùng dark theme */
+.ck-content {
+  background: transparent !important;
+  color: var(--colorText) !important;
+}
+
+/* Đổi màu placeholder (nếu có) */
+.ck-placeholder {
+  color: rgba(255, 255, 255, 0.4) !important;
+}
+
+
+.ant-select-dropdown .ant-select-item-option-selected {
+    background: var(--panelGradient) !important;
+  color: #fff !important;
+  font-weight: 600;
+}

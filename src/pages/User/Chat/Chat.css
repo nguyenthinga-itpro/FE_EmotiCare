@@ -113,7 +113,9 @@
   flex: 1;
   margin-right: 10px;
 }
-
+.chat-footer .ant-input::placeholder{
+  color: var(--colorText) !important;
+}
 /* Chat bubbles */
 .chat-row {
   display: flex;
