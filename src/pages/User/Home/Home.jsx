@@ -11,6 +11,7 @@ import { ArrowRightOutlined } from "@ant-design/icons";
 import "slick-carousel/slick/slick.css";
 import "slick-carousel/slick/slick-theme.css";
 import Slider from "react-slick";
+import OverlayLoader from "../../../components/OverlayLoader/OverlayLoader";
 export default function Home() {
   const location = useLocation();
   const navigate = useNavigate();
@@ -58,7 +59,6 @@ export default function Home() {
     }
   }, [location, chats]);
 
-
   const sliderSettings = {
     dots: true,
     infinite: false,
@@ -72,6 +72,7 @@ export default function Home() {
   };
   return (
     <main>
+      <OverlayLoader loading={loading} />
       {/* Hero Section */}
       <section className="hero-section">
         <div className="hero-text">
@@ -83,7 +84,7 @@ export default function Home() {
             You speak, we listen — every emotion matters.
           </span>
           <div className="cta1-button-login">
-            <Link to="/login">
+            <Link to="/user/Chatbox">
               <button className="cta-button">Get Started</button>
             </Link>
           </div>

@@ -9,9 +9,9 @@ import "bootstrap/dist/css/bootstrap.min.css";
 import "./Login.css";
 import { Link, useNavigate } from "react-router-dom";
 import { gradientTextStyle, gradientButtonStyle } from "../../Constant/Colors";
-
+import { toast } from "react-toastify";
 const { Text } = Typography;
-
+import OverlayLoader from "../../components/OverlayLoader/OverlayLoader";
 export default function LoginPage() {
   const dispatch = useDispatch();
   const { loading, error } = useSelector((state) => state.user);
@@ -33,7 +33,8 @@ export default function LoginPage() {
         navigate("/");
       }
     } catch (err) {
-      console.error("Login failed:", err);
+      // console.error("Login failed:", err);
+      toast.error(err?.message || "Login failed!");
     }
   };
 
@@ -47,7 +48,8 @@ export default function LoginPage() {
         navigate("/");
       }
     } catch (err) {
-      console.error("Google login failed:", err);
+      // console.error("Google login failed:", err);
+      toast.error(err?.message || "Google login failed!");
     }
   };
 
@@ -73,7 +75,7 @@ export default function LoginPage() {
                   Please enter your information to login.
                 </Text>
               </div>
-
+              <OverlayLoader loading={loading} />
               {/* Form */}
               <Form form={form} layout="vertical" onFinish={onFinish}>
                 {/* Email */}
@@ -153,7 +155,6 @@ export default function LoginPage() {
                   </Button>
                 </Form.Item>
               </Form>
-
               {/* Google Login */}
               <Space direction="vertical" style={{ width: "100%" }}>
                 <Button className="button-login"

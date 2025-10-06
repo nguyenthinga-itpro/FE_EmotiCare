@@ -5,10 +5,10 @@
   padding: 60px 10%;
   background: var(--colorBgContainer);
 }
-.cta1-button-login{
- display: flex;
+.cta1-button-login {
+  display: flex;
   align-items: center;
-  justify-content:center;
+  justify-content: center;
 }
 .hero-text {
   flex: 1;
@@ -69,8 +69,8 @@
 .highlight-margin-left {
   margin-top: 16px;
   font-size: 16px;
-display: flex;
-justify-content: center;
+  display: flex;
+  justify-content: center;
   background: var(--gradientPrimary);
   -webkit-background-clip: text;
   -webkit-text-fill-color: transparent;
@@ -84,7 +84,7 @@ justify-content: center;
 
 .cta-button {
   margin-top: 24px;
-  padding: 12px ;
+  padding: 12px;
   font-size: 16px;
   font-weight: 600;
   color: white;
@@ -94,6 +94,7 @@ justify-content: center;
   cursor: pointer;
   transition: all 0.3s ease;
   display: inline-block;
+  box-shadow: 0 4px 8px rgba(0, 0, 0, 0.3);
 }
 
 .cta-button:hover {
@@ -143,7 +144,7 @@ justify-content: center;
 }
 
 .postcards-section-home .subtitle {
-  background: var(--gradientPrimary) ;
+  background: var(--gradientPrimary);
   -webkit-background-clip: text;
   -webkit-text-fill-color: transparent;
   background-clip: text;
@@ -165,7 +166,7 @@ justify-content: center;
   -webkit-text-fill-color: transparent;
   background-clip: text;
 }
-.subtitle{
+.subtitle {
   display: flex;
   justify-content: center;
 }

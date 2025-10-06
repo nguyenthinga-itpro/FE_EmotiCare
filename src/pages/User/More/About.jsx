@@ -7,7 +7,6 @@ export default function About() {
     <section
       className="about-lines"
       id="about"
-      style={{ padding: "30px 50px" }}
     >
       <h1 className="about-line">About Us</h1>
       <Row gutter={50}>

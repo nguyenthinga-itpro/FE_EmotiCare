@@ -12,7 +12,7 @@ export default function FAQSection() {
 
   // Load FAQ lần đầu
   useEffect(() => {
-    dispatch(getAllFaqs({ pageSize }));
+    dispatch(getAllFaqs({ pageSize: 100 }));
   }, [dispatch, pageSize]);
 
   // Chia theo category để render Menu
@@ -36,14 +36,14 @@ export default function FAQSection() {
     return map;
   }, [paginatedFaqs]);
 
-  const handleLoadMore = () => {
-    if (nextCursor && !loading) {
-      dispatch(getAllFaqs({ pageSize, startAfterId: nextCursor }));
-    }
-  };
+  // const handleLoadMore = () => {
+  //   if (nextCursor && !loading) {
+  //     dispatch(getAllFaqs({ pageSize, startAfterId: nextCursor }));
+  //   }
+  // };
 
   return (
-    <section className="faq-lines" style={{ padding: "30px 50px" }} id="faq">
+    <section className="faq-lines" id="faq">
       <h1 className="about-lineFAQ">FAQ</h1>
       <div className="faq-columns" style={{ display: "flex", gap: 50 }}>
         {/* Cột 1 */}
@@ -90,13 +90,13 @@ export default function FAQSection() {
       </div>
 
       {/* Load More nếu còn */}
-      {nextCursor && (
+      {/* {nextCursor && (
         <div style={{ textAlign: "center", marginTop: 20 }}>
           <Button onClick={handleLoadMore} loading={loading}>
             Load More
           </Button>
         </div>
-      )}
+      )} */}
     </section>
   );
 }

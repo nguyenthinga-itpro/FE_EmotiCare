@@ -16,9 +16,12 @@ import "bootstrap/dist/css/bootstrap.min.css";
 import "./Register.css";
 import { Link } from "react-router-dom";
 import { toast } from "react-toastify";
-import { gradientTextStyle, gradientButtonStyle } from "../../../Constant/Colors";
+import {
+  gradientTextStyle,
+  gradientButtonStyle,
+} from "../../../Constant/Colors";
 import moment from "moment";
-
+import OverlayLoader from "../../../components/OverlayLoader/OverlayLoader";
 const { Text } = Typography;
 
 export default function RegisterPage() {
@@ -50,18 +53,18 @@ export default function RegisterPage() {
   };
 
   return (
-    <div
-    className="login-container"
-  >
+    <div className="login-container">
       <div className="container w-100">
         <div className="row w-100">
           {/* Register Form */}
           <div className="col-md-6 d-flex flex-column justify-content-center align-items-end">
             <div
               className="p-4 shadow-sm rounded bg-white bg-opacity-80"
-              style={{ maxWidth: "550px", width: "100%",
-                background: "var(--postcardssections) !important"
-               }}
+              style={{
+                maxWidth: "550px",
+                width: "100%",
+                background: "var(--postcardssections) !important",
+              }}
             >
               {/* Title */}
               <div className="title-login text-center mb-4">
@@ -78,21 +81,30 @@ export default function RegisterPage() {
                   Please enter your information to register an account.
                 </Text>
               </div>
-
+              <OverlayLoader loading={loading} />
               {/* Form */}
               <Form form={form} layout="vertical" onFinish={onFinish}>
                 <div className="row">
                   {/* Cột 1 */}
-<div className="col-md-6">
-  <Form.Item
-    className="form-name-username"
-    name="username"
-    label={<span className="form-label-gradient">Username</span>}
-    rules={[{ required: true, message: "Please input your username!" }]}
-  >
-    <Input       className="input-gradient"
- placeholder="Enter your username" />
-  </Form.Item>
+                  <div className="col-md-6">
+                    <Form.Item
+                      className="form-name-username"
+                      name="username"
+                      label={
+                        <span className="form-label-gradient">Username</span>
+                      }
+                      rules={[
+                        {
+                          required: true,
+                          message: "Please input your username!",
+                        },
+                      ]}
+                    >
+                      <Input
+                        className="input-gradient"
+                        placeholder="Enter your username"
+                      />
+                    </Form.Item>
 
 <Form.Item
   className="form-name-gender"
@@ -118,55 +130,78 @@ export default function RegisterPage() {
   </Form.Item>
 </div>
 
-{/* Cột 2 */}
-<div className="col-md-6">
-  <Form.Item
-    className="form-name-email"
-    name="email"
-    label={<span className="form-label-gradient">Email</span>}
-    rules={[{ required: true, message: "Please input your email!" }]}
-  >
-    <Input  className="input-gradient" placeholder="Enter your email" />
-  </Form.Item>
+                  {/* Cột 2 */}
+                  <div className="col-md-6">
+                    <Form.Item
+                      className="form-name-email"
+                      name="email"
+                      label={<span className="form-label-gradient">Email</span>}
+                      rules={[
+                        { required: true, message: "Please input your email!" },
+                      ]}
+                    >
+                      <Input
+                        className="input-gradient"
+                        placeholder="Enter your email"
+                      />
+                    </Form.Item>
 
-  <Form.Item
-    className="form-name-birthday"
-    name="birthday"
-    label={<span className="form-label-birthday">Birthday</span>}
-    rules={[{ required: true, message: "Please select your birthday!" }]}
-  >
-<DatePicker
-  className="form-label-birthday-years"
-  dropdownClassName="birthday-dropdown"
-  style={{ width: "100%" }}
-  format="YYYY-MM-DD"
-  disabledDate={(current) => current && current > moment().endOf("day")}
-/>
+                    <Form.Item
+                      className="form-name-birthday"
+                      name="birthday"
+                      label={
+                        <span className="form-label-birthday">Birthday</span>
+                      }
+                      rules={[
+                        {
+                          required: true,
+                          message: "Please select your birthday!",
+                        },
+                      ]}
+                    >
+                      <DatePicker
+                        className="form-label-birthday-years"
+                        dropdownClassName="birthday-dropdown"
+                        style={{ width: "100%" }}
+                        format="YYYY-MM-DD"
+                        disabledDate={(current) =>
+                          current && current > moment().endOf("day")
+                        }
+                      />
+                    </Form.Item>
 
-  </Form.Item>
-
-<Form.Item
-  className="form-name-confirmPassword"
-  name="confirmPassword"
-  label={<span className="form-label-gradient">Confirm Password</span>}
-  dependencies={["password"]}
-  rules={[
-    { required: true, message: "Please confirm your password!" },
-    ({ getFieldValue }) => ({
-      validator(_, value) {
-        if (!value || getFieldValue("password") === value) {
-          return Promise.resolve();
-        }
-        return Promise.reject(new Error("The two passwords do not match!"));
-      },
-    }),
-  ]}
->
-  <Input.Password className="confirm-password-input-custom" placeholder="********" />
-</Form.Item>
-
-</div>
-
+                    <Form.Item
+                      className="form-name-confirmPassword"
+                      name="confirmPassword"
+                      label={
+                        <span className="form-label-gradient">
+                          Confirm Password
+                        </span>
+                      }
+                      dependencies={["password"]}
+                      rules={[
+                        {
+                          required: true,
+                          message: "Please confirm your password!",
+                        },
+                        ({ getFieldValue }) => ({
+                          validator(_, value) {
+                            if (!value || getFieldValue("password") === value) {
+                              return Promise.resolve();
+                            }
+                            return Promise.reject(
+                              new Error("The two passwords do not match!")
+                            );
+                          },
+                        }),
+                      ]}
+                    >
+                      <Input.Password
+                        className="confirm-password-input-custom"
+                        placeholder="********"
+                      />
+                    </Form.Item>
+                  </div>
                 </div>
 
                 {/* Submit Button */}
@@ -198,7 +233,10 @@ export default function RegisterPage() {
                         ...gradientTextStyle(theme.primarycolors, 180),
                       }}
                     >
-                      <span className="link-register-for-free"> Login here!</span>
+                      <span className="link-register-for-free">
+                        {" "}
+                        Login here!
+                      </span>
                     </Link>
                   </Text>
                 </div>

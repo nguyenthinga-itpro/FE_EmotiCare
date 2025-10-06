@@ -19,6 +19,18 @@ export const getAllResources = createAsyncThunk(
     }
   }
 );
+// === GET RESOURCE BY ID ===
+export const getResourceById = createAsyncThunk(
+  "resource/getResourceById",
+  async (id, { rejectWithValue }) => {
+    try {
+      const res = await Api.get(`/resource/${id}`);
+      return res.data; // trả về object resource luôn
+    } catch (err) {
+      return rejectWithValue(err.response?.data?.error || err.message);
+    }
+  }
+);
 
 // === CREATE RESOURCE ===
 export const createResource = createAsyncThunk(
@@ -148,7 +160,19 @@ const resourceSlice = createSlice({
         state.loading = false;
         state.error = action.payload;
       })
-
+      .addCase(getResourceById.fulfilled, (state, action) => {
+        const resource = action.payload;
+        state.allResourcesMap[resource.id] = resource;
+        const exist = state.paginatedResources.some(
+          (e) => e.id === resource.id
+        );
+        if (!exist) {
+          state.paginatedResources.unshift(resource);
+        }
+      })
+      .addCase(getResourceById.rejected, (state, action) => {
+        state.error = action.payload;
+      })
       .addCase(createResource.pending, (state) => {
         state.loading = true;
         state.error = null;

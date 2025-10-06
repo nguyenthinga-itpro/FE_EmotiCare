@@ -4,28 +4,40 @@ html {
 }
 .chat-container {
   width: 100%;
-
 }
 .chat-card-home-container {
   display: flex !important;
   justify-content: center;
   transition: transform 0.3s ease;
   width: 100% !important;
+
+  gap: 10px;
+}
+.chat-card-home {
+  text-align: center;
+  background: var(--characterData);
+  border-radius: 20px;
+  border: 2px solid var(--textTopStatictis);
+  border: 1px solid #000;
+  box-shadow: 0 4px 10px rgba(0, 0, 0, 0.6);
+}
+.chat-container .slick-slide {
+  overflow: visible !important;
+}
+
+.chat-container .slick-list {
+  overflow: visible !important;
+  padding-bottom: 15px;
 }
 
 .chat-card-home-container img {
   width: 220px;
   height: 280px;
   object-fit: cover;
-  border-bottom-left-radius: 16px;
-  border-bottom-right-radius: 16px;
+  border-bottom-left-radius: 20px;
+  border-bottom-right-radius: 20px;
 }
-.chat-card-home {
-  text-align: center;
-   background: var(--characterData);
-  border-radius: 20px;
-  border: 2px solid var(--textTopStatictis);
-}
+
 .profile-section {
   padding: 40px;
 }
