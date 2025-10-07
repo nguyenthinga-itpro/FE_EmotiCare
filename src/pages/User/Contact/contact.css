@@ -77,8 +77,8 @@
 
 .send-btnss {
   background: var(--panelGradient);
-  padding: 18px 36px; /* tăng kích thước */
-  border-radius: 12px; /* bo góc mềm mại */
+  padding: 18px 36px;
+  border-radius: 12px; 
   font-weight: bold;
   font-size: 22px; /* chữ to */
   color: #fff;
