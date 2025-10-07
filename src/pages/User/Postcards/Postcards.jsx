@@ -13,7 +13,7 @@ import {
   getFavoriteInfo,
   toggleFavorite,
 } from "../../../redux/Slices/PostcardFavoriteSlice";
-import "./Postcards.css";
+import "./Postcard.css";
 import { useLocation } from "react-router-dom";
 import OverlayLoader from "../../../components/OverlayLoader/OverlayLoader";
 
