@@ -7,7 +7,7 @@ import { ToastContainer } from "react-toastify";
 import "react-toastify/dist/ReactToastify.css";
 
 // Layouts
-import AuthLayout from "./Layouts/AuthLayout/Authlayout.jsx";
+import AuthLayout from "./Layouts/AuthLayout/AuthLayout.jsx";
 import MainUserLayout from "./Layouts/MainUserLayout/MainUserLayout.jsx";
 import ExtraUserLayout from "./Layouts/ExtraUserLayout/ExtraUserLayout.jsx";
 import AdminLayout from "./Layouts/AdminLayout/AdminLayout.jsx";
@@ -98,9 +98,7 @@ function App() {
           <Route path="contact" element={<Contact />} />
           <Route path="chatbox" element={<Chatbox />} />
           <Route path="postcards" element={<Postcards />} />
-       
         </Route>
-
         {/* User routes */}
         <Route
           path="/user/*"
@@ -118,7 +116,6 @@ function App() {
 
           <Route path="error" element={<Error />} />
         </Route>
-
         {/* Extra user routes */}
         <Route
           path="/user/*"
@@ -133,7 +130,6 @@ function App() {
           <Route path="chat" element={<Chat />} />
           <Route path="error" element={<Error />} />
         </Route>
-
         {/* Admin routes */}
         <Route
           path="/admin/*"
@@ -154,12 +150,12 @@ function App() {
           <Route path="profile" element={<Profile />} />
           <Route path="categories" element={<Category />} />
         </Route>
-
         {/* Auth pages (login/register) */}
         <Route path="/login" element={<Login />} />
         <Route path="/register" element={<Register />} />
         <Route path="/forgotpassword" element={<ForgotPassword />} />
-        <Route path="/verify" element={<Verify />} />   <Route path="error" element={<Error />} />
+        <Route path="/verify" element={<Verify />} />{" "}
+        <Route path="error" element={<Error />} />
       </Routes>
 
       {/* Toast container */}
