@@ -8,7 +8,7 @@ import "./AdminLayout.css";
 const { Content, Footer } = Layout;
 
 const AdminLayout = () => {
-  const { theme, mode } = useTheme();
+  const { theme } = useTheme();
 
   const location = useLocation();
   const pathSnippets = location.pathname.split("/").filter(Boolean);
@@ -45,14 +45,9 @@ const AdminLayout = () => {
         >
           <Outlet />
         </Content>
-        <Footer className="footer-dashboard"
-          style={{
-            textAlign: "center",
-           
-            color: theme.colorText,
-          }}
-        >
-          © {new Date().getFullYear()} Soft UI Dashboard ({mode} mode)
+        <Footer className="footer-dashboard" style={{}}>
+          © {new Date().getFullYear()} EmotiCare Dashboard · Version 1.0.3 ·
+          <span> Developed by N&H</span>
         </Footer>
       </Layout>
     </Layout>

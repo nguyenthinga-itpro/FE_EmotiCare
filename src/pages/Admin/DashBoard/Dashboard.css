@@ -4,38 +4,28 @@
 
 .top-statictis {
   margin-bottom: 10px;
-   
+
   .container-top-statictis {
     .card-total-users-top-statictis {
       background: var(--gradientBlue);
 
-       box-shadow:
-    6px 6px 12px rgba(100, 50, 255, 0.8),   /* tím nhạt */
-    -6px -6px 12px rgba(255, 255, 255, 0.2) !important;
+      box-shadow: 0 6px 12px rgba(0, 0, 0, 0.19) !important;
     }
     .card-today-users-top-statictis {
       background: var(--gradientGreen);
-       box-shadow:
-    6px 6px 12px rgba(100, 50, 255, 0.8),   /* tím nhạt */
-    -6px -6px 12px rgba(255, 255, 255, 0.2) !important;
+      box-shadow: 0 6px 12px rgba(0, 0, 0, 0.19) !important;
     }
     .card-total-chatsession-top-statictis {
       background: var(--gradientPurple);
-       box-shadow:
-    6px 6px 12px rgba(100, 50, 255, 0.8),   /* tím nhạt */
-    -6px -6px 12px rgba(255, 255, 255, 0.2) !important;
+      box-shadow: 0 6px 12px rgba(0, 0, 0, 0.19) !important;
     }
     .card-total-chatsession-top-statictis {
       background: var(--gradientPurple);
-      box-shadow:
-    6px 6px 12px rgba(100, 50, 255, 0.8),   /* tím nhạt */
-    -6px -6px 12px rgba(255, 255, 255, 0.2) !important;
+      box-shadow: 0 6px 12px rgba(0, 0, 0, 0.19) !important;
     }
     .card-total-newchatsession-top-statictis {
       background: var(--gradientOrange);
-       box-shadow:
-    6px 6px 12px rgba(100, 50, 255, 0.8),   /* tím nhạt */
-    -6px -6px 12px rgba(255, 255, 255, 0.2) !important;
+      box-shadow: 0 6px 12px rgba(0, 0, 0, 0.19) !important;
     }
     .title-top-statictis,
     .value-top-statictis,
@@ -43,7 +33,7 @@
       color: var(--textTopStatictis);
     }
   }
-  .render-percent-top-statictis  {
+  .render-percent-top-statictis {
     display: inline-flex;
     align-items: center;
     gap: 10;
@@ -56,35 +46,32 @@
 .middle-card-statistic {
   .container-middle-card-statistic {
     .card-middle-card-statistic {
-      background: var(--sidebarHover) !important;
+      background: var(--BgPrimary) !important;
       color: var(--colorText);
-       box-shadow:
-    6px 6px 12px rgba(100, 50, 255, 0.8),   /* tím nhạt */
-    -6px -6px 12px rgba(255, 255, 255, 0.2) !important;
+      box-shadow: 0 6px 12px rgba(0, 0, 0, 0.19) !important;
       height: 200px;
     }
   }
 }
 .chart-tabs-dashboard {
   margin-top: 24px;
-  background: linear-gradient(90deg, #676972, #7c6b8f);
-   box-shadow:
-    6px 6px 12px rgba(100, 50, 255, 0.8),   /* tím nhạt */
-    -6px -6px 12px rgba(255, 255, 255, 0.2) !important;
-  .container-Dashboard-Style {
-    display: flex;
-    justify-content: space-between;
-    width: 100%;
-    margin-right: 10px;
-  }
+  background: var(--tabsdashboard);
+  color: var(--colorText) !important;
+  box-shadow: 0 6px 12px rgba(0, 0, 0, 0.19) !important;
 }
-
+.container-Dashboard-Style {
+  display: flex;
+  justify-content: space-between;
+  width: 100%;
+  margin-right: 10px;
+}
 /* tabs */
 .chart-tabs-dashboard .ant-tabs-tab.ant-tabs-tab-active .ant-tabs-tab-btn {
   background: var(--gradientPrimary);
   -webkit-background-clip: text;
   -webkit-text-fill-color: transparent;
   font-weight: bold;
+  display: inline-block;
   color: transparent !important;
 }
 
@@ -92,7 +79,6 @@
   background: var(--gradientPrimary);
   -webkit-background-clip: text;
   -webkit-text-fill-color: transparent;
-  color: transparent !important;
 }
 
 .chart-tabs-dashboard .ant-tabs-ink-bar {
@@ -103,57 +89,40 @@
 
 /* Button */
 .chart-tabs-dashboard .container-Dashboard-Style .ant-btn-default {
-  transition: all 0.3s;
-  border-color: var(--sidebarText) !important;
-  background: var(--colorPrimary);
+  transition: all 0.3s ease;
+  border: 1px solid var(--sidebarText) !important;
+  background: var(--BgPrimary) !important;
+  position: relative;
+  z-index: 1;
 }
-
-/* Hover*/
-.chart-tabs-dashboard .container-Dashboard-Style .ant-btn-default:hover {
-  background: var(--gradientPrimary);
-  -webkit-background-clip: text;
-  font-weight: bold;
+.chart-tabs-dashboard
+  .ant-space-item
+  .ant-btn-default
+  .ant-btn-color-default
+  .ant-btn-variant-outlined
+  .dashboard-button
+  span {
+  color: #333 !important;
 }
-
-/* active*/
+/* Khi nút đang được chọn (type="primary") */
 .chart-tabs-dashboard .container-Dashboard-Style .ant-btn-primary {
-  background: var(--gradientPrimary) !important;
+  background: var(--panelGradient) !important;
   border: none !important;
-  /* color: #fff !important; */
-  font-weight: bold;
+  font-weight: 600;
+  box-shadow: 0 3px 10px rgba(117, 77, 165, 0.3) !important;
 }
-
-/* RangePicker*/
-.chart-tabs-dashboard .container-Dashboard-Style .ant-picker {
-  border: 1px solid var(--colorText);
-  background-color: var(--BgPrimary) ;
-  color: var(--colorText) !important;
-  transition: all 0.3s;
-}
-.chart-tabs-dashboard
-  .container-Dashboard-Style
-  .ant-picker-input
-  > input::placeholder {
-  color: var(--colorText) !important;
-}
-/* Hover*/
-.chart-tabs-dashboard .container-Dashboard-Style .ant-picker:hover {
-  border: 1px solid transparent;
-  background: linear-gradient(#fff, #fff) padding-box,
-    var(--gradientPrimary) border-box;
-  background-clip: padding-box, border-box;
-}
-
-.chart-tabs-dashboard
-  .container-Dashboard-Style
-  .ant-picker:hover
-  .ant-picker-input
-  > input {
-  background: var(--gradientPrimary);
-  -webkit-background-clip: text;
-  -webkit-text-fill-color: transparent;
+/* Hover trên nút đang active */
+.chart-tabs-dashboard .container-Dashboard-Style .ant-btn-primary:hover {
+  transform: scale(1.03);
+  background: var(--panelGradient) !important;
+  box-shadow: 0 5px 14px rgba(117, 77, 165, 0.5) !important;
 }
 /* Icon*/
+/* placeholder (Select date) */
+.custom-range-picker.ant-picker .ant-picker-input > input::placeholder {
+  color: var(--colorText) !important; /* trắng mờ */
+  opacity: 1 !important; /* đảm bảo không bị mờ do browser */
+}
 .chart-tabs-dashboard
   .container-Dashboard-Style
   .ant-picker
@@ -187,21 +156,15 @@
   background: var(--gradientPrimary);
   -webkit-background-clip: text;
   -webkit-text-fill-color: transparent;
-      display: inline-block;
+  display: inline-block;
 
   opacity: 1;
 }
 
-
 /* Custom RangePicker riêng */
 .custom-range-picker {
   border-radius: 8px;
-  
 }
-
-
-
-
 
 /* Separator icon */
 .custom-range-picker .ant-picker-range-separator .anticon {
@@ -209,7 +172,6 @@
   transform: translateY(-1px); /* căn giữa lại */
   font-size: 1em;
 }
-
 
 /* Toàn bộ panel lịch */
 .ant-picker-panel {
@@ -272,11 +234,11 @@
 }
 
 .ant-picker-content thead th {
-    color: #7a5cff !important;
-    font-weight: 600;
+  color: #7a5cff !important;
+  font-weight: 600;
 }
 
- .chart-tabs-dashboard .ant-layout-content{
+.chart-tabs-dashboard .ant-layout-content {
   padding: none !important  ;
 }
 .first-title-middle-card-statistic {
@@ -285,47 +247,36 @@
   background: var(--panelGradient); /* màu gradient */
   -webkit-background-clip: text;
   -webkit-text-fill-color: transparent;
-
 }
 .container-middle-card-statistic .card-middle-card-statistic {
-    background: var(--sidebarBorder) !important;
+  background: var(--sidebarBorder) !important;
 }
-.second-title-middle-card-statistic{
+.second-title-middle-card-statistic {
   font-weight: bold;
   background: var(--panelGradient); /* màu gradient */
   -webkit-background-clip: text;
   -webkit-text-fill-color: transparent;
-      display: inline-block;
-
+  display: inline-block;
 }
-.footer-dashboard{
+
+.first-content-middle-card-statistic {
   background: var(--panelGradient); /* màu gradient */
   -webkit-background-clip: text;
   -webkit-text-fill-color: transparent;
-  font-weight: bold;
-  font-size: 20px;
-  /* Bóng chữ tím nhẹ */
-  text-shadow:
-    0 2px 4px rgba(123, 50, 255, 0.1),
-    0 4px 8px rgba(100, 50, 255, 0.3);
+  display: inline-block;
 }
-.first-content-middle-card-statistic{
-    background: var(--panelGradient); /* màu gradient */
+
+.ant-empty-normal .ant-empty-description {
+  background: var(--panelGradient); /* màu gradient */
   -webkit-background-clip: text;
   -webkit-text-fill-color: transparent;
-      display: inline-block;
-
-
+  display: inline-block;
 }
-
-.ant-empty-normal .ant-empty-description{
-    background: var(--panelGradient); /* màu gradient */
-  -webkit-background-clip: text;
-  -webkit-text-fill-color: transparent;
-      display: inline-block;
-
-}
-.ck.ck-button.ck-on{
+.ck.ck-button.ck-on {
   color: var(--ck-color-button-on-color) !important;
 }
 
+.chart-tabs-dashboard .ant-card-body {
+  box-shadow: 0 6px 12px rgba(0, 0, 0, 0.015) !important;
+  border-radius: 6px;
+}

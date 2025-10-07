@@ -122,12 +122,12 @@ export default function ChartTabs({ statsByPeriod, onFetchStats }) {
       <Tabs
         activeKey={activeTabKey}
         onChange={handleTabChange}
-        className="conainer-chart-tabs-dashboard"
+        className="container-chart-tabs-dashboard"
         tabBarExtraContent={
           <div className="container-Dashboard-Style">
-            <Space>
+            <Space className="container-Dashboard-button">
               {["Week", "Month", "Year"].map((name) => (
-                <Button
+                <Button className="dashboard-button"
                   key={name}
                   type={period === name.toLowerCase() ? "primary" : "default"}
                   onClick={() => handlePeriodChange(name)}

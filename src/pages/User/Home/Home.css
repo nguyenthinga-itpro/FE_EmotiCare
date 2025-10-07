@@ -141,6 +141,7 @@
   text-align: center;
   padding: 80px 20px;
   border-radius: 12px;
+  margin-top: 50px;
 }
 
 .postcards-section-home .subtitle {
@@ -373,10 +374,10 @@
   border: none !important;
   background: transparent !important;
 }
-.arrow-card-home-container .arrow-card-home{
-    border: none !important;
-}
 
+.arrow-card-home-container .arrow-card-home {
+  border: none !important;
+}
 
 /* Style chung cho icon */
 .card-home .arrow-card-home .anticon {
@@ -456,11 +457,6 @@
   transform: translateY(-2px);
   opacity: 0.9;
 }
-
-
-
-
-
 
 /* 📱 Responsive cho màn nhỏ */
 @media (max-width: 768px) {

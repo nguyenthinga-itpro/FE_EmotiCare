@@ -233,7 +233,7 @@ export default function ChatAIManagement() {
 
   return (
     <div className="users-management ">
-      <h3 className="title-users-management">Chat Personas Management</h3>
+      <h3 className="title-users-management">AIs Management</h3>
       <TableHeader
         searchText={searchText}
         setSearchText={setSearchText}
@@ -254,6 +254,7 @@ export default function ChatAIManagement() {
       />
       <OverlayLoader loading={loading} />
       <DetailModal
+        className="persona-image-container"
         visible={modalOpen}
         onClose={() => setModalOpen(false)}
         data={selected}
@@ -292,6 +293,7 @@ export default function ChatAIManagement() {
         ]}
       />
       <FormModal
+        className="create-image-container"
         visible={createModalOpen}
         onCancel={() => setCreateModalOpen(false)}
         onSubmit={handleCreate}
@@ -328,6 +330,7 @@ export default function ChatAIManagement() {
         ]}
       />
       <FormModal
+        className="update-image-container"
         visible={editModalOpen}
         onCancel={() => setEditModalOpen(false)}
         onSubmit={handleUpdate}

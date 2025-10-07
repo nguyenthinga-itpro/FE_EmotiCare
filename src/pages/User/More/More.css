@@ -246,7 +246,7 @@ section ul li {
   text-align: center;
   max-width: 280px;
   height: 400px;
-  box-shadow: 0 4px 6px rgba(0, 0, 0, 0.3);
+  box-shadow: 0 4px 6px rgba(0, 0, 0, 0.2) !important;
 }
 
 .video-wrapper {

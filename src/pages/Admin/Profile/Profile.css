@@ -45,7 +45,7 @@
   background: var(--panelGradient);
   -webkit-background-clip: text;
   -webkit-text-fill-color: transparent;
-  display: inline-block;
+  /* display: inline-block; */
   position: relative;
   font-size: 14px;
 }

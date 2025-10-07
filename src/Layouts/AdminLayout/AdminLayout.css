@@ -7,3 +7,17 @@
 .breadcrumb-custom span {
   color: var(--sidebarText) !important;
 }
+
+.footer-dashboard {
+  background: var(--panelGradient); /* màu gradient */
+  -webkit-background-clip: text;
+  -webkit-text-fill-color: transparent;
+  display: inline-block;
+  text-align: center;
+  color: var(--textColor);
+  font-size: 14px14px;
+  font-weight: none !important;
+}
+.footer-dashboard span {
+  font-weight: bold !important;
+}

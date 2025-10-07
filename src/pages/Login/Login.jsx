@@ -139,7 +139,8 @@ export default function LoginPage() {
 
                 {/* Login Button */}
                 <Form.Item className="button-text">
-                  <Button 
+                  <Button
+                    type="primary"
                     htmlType="submit"
                     block
                     loading={loading}
@@ -151,13 +152,14 @@ export default function LoginPage() {
                       boxShadow: "0 8px 12px rgba(0, 0, 0, 0.3)",
                     }}
                   >
-                    <Text  className="button-text-text" >Log in</Text>
+                    <Text className="button-text-text">Log in</Text>
                   </Button>
                 </Form.Item>
               </Form>
               {/* Google Login */}
               <Space direction="vertical" style={{ width: "100%" }}>
-                <Button className="button-login"
+                <Button
+                  className="button-login"
                   onClick={handleGoogleLogin}
                   block
                   style={{
@@ -178,10 +180,7 @@ export default function LoginPage() {
                       ...gradientTextStyle(theme.primarycolors, 180),
                     }}
                   />
-                  <Text
-                    className="google-gradientTextStyle"
-                    
-                  >
+                  <Text className="google-gradientTextStyle">
                     Sign in with Google
                   </Text>
                 </Button>

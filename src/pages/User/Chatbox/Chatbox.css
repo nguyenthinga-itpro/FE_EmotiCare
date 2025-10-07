@@ -18,7 +18,7 @@ html {
   background: var(--characterData);
   border-radius: 20px;
   border: 2px solid var(--textTopStatictis);
-  border: 1px solid #000;
+  /* border: 1px solid #000; */
   box-shadow: 0 4px 10px rgba(0, 0, 0, 0.6);
 }
 .chat-container .slick-slide {
@@ -50,7 +50,8 @@ html {
   width: 100%;
   max-width: 1200px;
   margin: 0 auto;
-  margin-bottom: 20px;
+  margin-bottom: 30px;
+  box-shadow: 0 4px 8px #00000043;
 }
 
 .profile-image {
@@ -103,7 +104,6 @@ html {
   margin-top: 20px;
   margin-bottom: 12px;
   font-size: 22px;
-
 }
 
 .btn-more {

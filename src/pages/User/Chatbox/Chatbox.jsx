@@ -115,10 +115,6 @@ export default function Chatbox() {
         <h1 className="profile-title">Informations</h1>
         {chats.map((chat) => {
           const existingSession = sessions.find((s) => s.chatAIId === chat.id);
-          console.log(
-            `Chat ${chat.name} (${chat.id}) -> Session?`,
-            existingSession ? "✅ Yes" : "❌ No"
-          );
 
           return (
             <div
