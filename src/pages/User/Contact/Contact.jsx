@@ -12,7 +12,6 @@ export default function Contact() {
     <main>
       <section className="contact-section">
         <div className="contact-container">
-   
           <div className="contact-form">
             <h1 className="gradient-texts">
               <span className="highlightt">Get in Touch</span>
