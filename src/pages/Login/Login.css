@@ -26,16 +26,12 @@
 }
 .button-text .ant-btn.ant-btn-default.ant-btn-color-default.ant-btn-variant-outlined.ant-btn-block{
   background: var(--panelGradient) !important;  /* Gradient từ biến */
-
 }
 .button-text-text {
-   font-size: 18px !important;
    font-weight: bold;
 }
 
-.button-login{
-    color: #000 !important; /* đổi màu khi hover */
-}
+
 
 .link-register {
   text-align: center;
@@ -108,7 +104,7 @@
   background-clip: text !important;
 }
 .ant-btn.ant-btn-default.ant-btn-color-default.ant-btn-variant-outlined.ant-btn-block {
-  background: var(--sidebarHover) !important;  /* Gradient từ biến */
+  background: var(--sidebarHover) !important;  
 }
 
 
@@ -233,8 +229,8 @@ color: #000000;
 }
 .ant-input-affix-wrapper >input.ant-input{
   color: var(--colorText) !important;                /* cho nổi trên gradient */
-
 }
+
 
 /* 📱 Mobile (≤576px) */
 @media (max-width: 576px) {

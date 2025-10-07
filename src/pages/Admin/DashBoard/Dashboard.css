@@ -67,24 +67,25 @@
 }
 .chart-tabs-dashboard {
   margin-top: 24px;
-  background: linear-gradient(90deg, #676972, #7c6b8f);
-   box-shadow:
+  background: var(--tabsdashboard);
+  color: var(--colorText) !important;
+  box-shadow:
     6px 6px 12px rgba(100, 50, 255, 0.8),   /* tím nhạt */
     -6px -6px 12px rgba(255, 255, 255, 0.2) !important;
+}
   .container-Dashboard-Style {
     display: flex;
     justify-content: space-between;
     width: 100%;
     margin-right: 10px;
   }
-}
-
 /* tabs */
 .chart-tabs-dashboard .ant-tabs-tab.ant-tabs-tab-active .ant-tabs-tab-btn {
   background: var(--gradientPrimary);
   -webkit-background-clip: text;
   -webkit-text-fill-color: transparent;
   font-weight: bold;
+      display: inline-block;
   color: transparent !important;
 }
 
@@ -92,7 +93,6 @@
   background: var(--gradientPrimary);
   -webkit-background-clip: text;
   -webkit-text-fill-color: transparent;
-  color: transparent !important;
 }
 
 .chart-tabs-dashboard .ant-tabs-ink-bar {
@@ -103,57 +103,34 @@
 
 /* Button */
 .chart-tabs-dashboard .container-Dashboard-Style .ant-btn-default {
-  transition: all 0.3s;
-  border-color: var(--sidebarText) !important;
-  background: var(--colorPrimary);
+  transition: all 0.3s ease;
+  border: 1px solid var(--sidebarText) !important;
+  background: var(--BgPrimary) !important;
+  position: relative;
+  z-index: 1;
 }
-
-/* Hover*/
-.chart-tabs-dashboard .container-Dashboard-Style .ant-btn-default:hover {
-  background: var(--gradientPrimary);
-  -webkit-background-clip: text;
-  font-weight: bold;
+.chart-tabs-dashboard .ant-space-item .ant-btn-default .ant-btn-color-default .ant-btn-variant-outlined .dashboard-button span{
+  color: #333 !important;
 }
-
-/* active*/
+/* Khi nút đang được chọn (type="primary") */
 .chart-tabs-dashboard .container-Dashboard-Style .ant-btn-primary {
-  background: var(--gradientPrimary) !important;
+  background: var(--panelGradient) !important;
   border: none !important;
-  /* color: #fff !important; */
-  font-weight: bold;
+  font-weight: 600;
+  box-shadow: 0 3px 10px rgba(117, 77, 165, 0.3) !important;
 }
-
-/* RangePicker*/
-.chart-tabs-dashboard .container-Dashboard-Style .ant-picker {
-  border: 1px solid var(--colorText);
-  background-color: var(--BgPrimary) ;
-  color: var(--colorText) !important;
-  transition: all 0.3s;
-}
-.chart-tabs-dashboard
-  .container-Dashboard-Style
-  .ant-picker-input
-  > input::placeholder {
-  color: var(--colorText) !important;
-}
-/* Hover*/
-.chart-tabs-dashboard .container-Dashboard-Style .ant-picker:hover {
-  border: 1px solid transparent;
-  background: linear-gradient(#fff, #fff) padding-box,
-    var(--gradientPrimary) border-box;
-  background-clip: padding-box, border-box;
-}
-
-.chart-tabs-dashboard
-  .container-Dashboard-Style
-  .ant-picker:hover
-  .ant-picker-input
-  > input {
-  background: var(--gradientPrimary);
-  -webkit-background-clip: text;
-  -webkit-text-fill-color: transparent;
+/* Hover trên nút đang active */
+.chart-tabs-dashboard .container-Dashboard-Style .ant-btn-primary:hover {
+  transform: scale(1.03);
+  background: var(--panelGradient) !important;
+  box-shadow: 0 5px 14px rgba(117, 77, 165, 0.5) !important;
 }
 /* Icon*/
+/* placeholder (Select date) */
+.custom-range-picker.ant-picker .ant-picker-input > input::placeholder {
+  color: var(--colorText) !important; /* trắng mờ */
+  opacity: 1 !important; /* đảm bảo không bị mờ do browser */
+}
 .chart-tabs-dashboard
   .container-Dashboard-Style
   .ant-picker
@@ -302,20 +279,19 @@
   background: var(--panelGradient); /* màu gradient */
   -webkit-background-clip: text;
   -webkit-text-fill-color: transparent;
+  display: inline-block;
   font-weight: bold;
-  font-size: 20px;
+  font-size: 16px;
   /* Bóng chữ tím nhẹ */
   text-shadow:
     0 2px 4px rgba(123, 50, 255, 0.1),
-    0 4px 8px rgba(100, 50, 255, 0.3);
+    0 4px 8px rgba(100, 50, 255, 0.2);
 }
 .first-content-middle-card-statistic{
-    background: var(--panelGradient); /* màu gradient */
+  background: var(--panelGradient); /* màu gradient */
   -webkit-background-clip: text;
   -webkit-text-fill-color: transparent;
-      display: inline-block;
-
-
+  display: inline-block;
 }
 
 .ant-empty-normal .ant-empty-description{
@@ -329,3 +305,7 @@
   color: var(--ck-color-button-on-color) !important;
 }
 
+.chart-tabs-dashboard .ant-card-body{
+  box-shadow: 0 4px 8px rgba(64, 0, 255, 0.8) !important;
+  border-radius: 6px;
+}

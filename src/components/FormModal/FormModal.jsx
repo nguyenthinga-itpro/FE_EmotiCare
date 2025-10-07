@@ -78,7 +78,7 @@ export default function FormModal({
   };
 
   return (
-    <Modal
+    <Modal className="modal-container"
       open={visible}
       title={title}
       onCancel={onCancel}
@@ -243,11 +243,8 @@ export default function FormModal({
                   >
                     <Button
                       icon={<UploadOutlined />}
-                      style={{
-                        backgroundColor: "#1890ff", // đổi màu nút
-                        color: "#fff",
-                        border: "none",
-                      }}
+                className="button-select-file"
+  
                     >
                       {f.buttonText || "Select File"}
                     </Button>

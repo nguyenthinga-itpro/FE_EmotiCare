@@ -240,7 +240,7 @@ export default function ChatAIManagement() {
         onLoadMore={handleLoadMore}
       />
       <OverlayLoader loading={loading} />
-      <DetailModal
+      <DetailModal className="persona-image-container"
         visible={modalOpen}
         onClose={() => setModalOpen(false)}
         data={selected}
@@ -270,7 +270,7 @@ export default function ChatAIManagement() {
           { label: "Updated At", key: "updatedAt" },
         ]}
       />
-      <FormModal
+      <FormModal className="create-image-container"
         visible={createModalOpen}
         onCancel={() => setCreateModalOpen(false)}
         onSubmit={handleCreate}
@@ -306,7 +306,7 @@ export default function ChatAIManagement() {
           },
         ]}
       />
-      <FormModal
+      <FormModal className="update-image-container"
         visible={editModalOpen}
         onCancel={() => setEditModalOpen(false)}
         onSubmit={handleUpdate}

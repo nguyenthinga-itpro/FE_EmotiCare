@@ -34,20 +34,20 @@
 .ck.ck-toolbar .ck-button {
   color: var(--colorText) !important;
   transition: all 0.2s ease;
-    background: var(--sidebarHover) !important;
+  background: var(--sidebarHover) !important;
 
 }
 
 /* Hover */
 .ck.ck-toolbar .ck-button:hover {
-    background: var(--panelGradient) !important;
-  color: #000 !important;
+  background: var(--panelGradient) !important;
+  color: #ffffff !important;
   border-radius: 6px;
 }
 
 /* Khi click (Bold, Italic, v.v.) */
 .ck.ck-toolbar .ck-button.ck-on {
-    background: var(--sidebarHover) !important;
+  background: var(--panelGradient) !important;
   color: #fff !important;
   border-radius: 6px;
   box-shadow: 0 0 8px rgba(117, 77, 165, 0.6) !important;
