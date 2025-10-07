@@ -9,7 +9,7 @@ import {
 import { useDispatch } from "react-redux";
 import { doc, updateDoc } from "firebase/firestore";
 import { db } from "../../../config/firebase";
-import Api from "../../../api/api";
+import Api from "../../../Api/api";
 import { updateUserRealtime } from "../../../redux/Slices/UserSlice";
 import { logout } from "../../../redux/Slices/AuthSlice";
 import { toast } from "react-toastify";
