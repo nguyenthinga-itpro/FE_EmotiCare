@@ -13,8 +13,6 @@ const ExtraUserLayout = () => {
   const location = useLocation();
   const navigate = useNavigate();
 
-  // const pathSnippets = location.pathname.split("/").filter(Boolean);
-
 const canGoBack = window.history.length > 1 && location.pathname !== "/user";
 
 const pathSnippets = location.pathname.split("/").filter(Boolean);
