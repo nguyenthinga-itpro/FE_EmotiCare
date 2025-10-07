@@ -607,7 +607,7 @@ background: var(--BgPrimary);
 /* Áp dụng cho Select có class my-custom-select */
 .my-custom-select .ant-select-selector .ant-select-selection-item,
 .my-custom-select .ant-select-selector .ant-select-selection-placeholder {
-  color: var(--colorTexts) !important;
+  color: var(--colorText) !important;
 }
 /* Option chung */
 .ant-select-item-option {

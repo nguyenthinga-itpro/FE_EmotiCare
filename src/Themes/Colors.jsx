@@ -44,6 +44,8 @@ export const light = {
   sectionp: "#F3F0FF",
   socialicon: "#ffff",
   postcardssections: "#f3f0ff",
+  tabsdashboard:"#ffff",
+  buttondefault: "#dedada",
 };
 
 export const dark = {
@@ -88,8 +90,8 @@ export const dark = {
   sectionp: "#F3F0FF",
   socialicon: "#ffff",
   postcardssections: "#333",
-
-
+  tabsdashboard:"linear-gradient(90deg, #676972, #7c6b8f)",
+  buttondefault: "#333",
 };
 const colors = { light, dark };
 export default colors;

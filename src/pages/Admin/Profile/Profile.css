@@ -45,7 +45,6 @@
   background: var(--panelGradient);
   -webkit-background-clip: text;
   -webkit-text-fill-color: transparent;
-    display: inline-block;
    position: relative;
 font-size: 14px;
 }
@@ -64,7 +63,7 @@ font-size: 14px;
 }
 
 .ant-select-outlined:not(.ant-select-customize-input) .ant-select-selector{
-  border: 1px solid #754da5;
+  border: 1px solid #7c4dff ;
 }
 .ant-picker-outlined  {
   border: 1px solid #754da5 !important;
@@ -93,13 +92,10 @@ font-size: 14px;
 .ant-btn-color-default {
 background: var(--panelGradient);
 }
-.ant-btn-color-default span {
-color:  #ffffff !important;
 
-}
 /* Hover: sáng hơn một chút, hơi lớn nhẹ */
 .ant-btn-color-default:hover {
-   background: var(--panelGradient)!important;  
+  background: var(--panelGradient)!important;  
   transform: scale(1.05)!important;                /* phóng to nhẹ */
 }
 /* Xóa nền cho button text */

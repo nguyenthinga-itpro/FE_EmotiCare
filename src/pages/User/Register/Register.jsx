@@ -217,7 +217,7 @@ export default function RegisterPage() {
                       borderRadius: "8px",
                     }}
                   >
-                    <Text className="button-text">Register</Text>
+                    <Text  className="button-text-text" >Register</Text>
                   </Button>
                 </Form.Item>
               </Form>

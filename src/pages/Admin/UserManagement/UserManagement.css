@@ -7,7 +7,6 @@
 .ant-descriptions-item-content {
   color: var(--colorText)!important;        /* đổi màu chữ */
   background: transparent !important; /* hoặc #1f1f1f nếu muốn */
-  font-weight: 500;                 /* làm chữ rõ hơn */
 }
 .ant-modal .ant-modal-header {
   background: transparent !important;
@@ -37,7 +36,7 @@
   font-weight: bold;
   margin-top: 10px;    
     display: inline-block;
-
+margin-bottom: 20px;
 }
 
 .user-table .ant-table-thead > tr > th {
@@ -117,7 +116,7 @@
   background: var(--sidebarHover) !important;
 }
 
-.ant-btn-variant-outlined{
+/* .ant-btn-variant-outlined{
   border: 1px solid #754da5 !important;
   color: #754da5 !important;
-}
+} */
