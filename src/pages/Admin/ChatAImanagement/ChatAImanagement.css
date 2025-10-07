@@ -2,11 +2,11 @@
 .ant-btn-variant-dashed {
   border: none !important;
 }
-.ant-modal .ant-modal-close-x{
- color: var(--colorText) !important;
+.ant-modal .ant-modal-close-x {
+  color: var(--colorText) !important;
 }
 
-.modal-container .ant-btn-variant-outlined{
+.modal-container .ant-btn-variant-outlined {
   border: 1px solid #754da5 !important;
   background: transparent !important;
 }
@@ -17,15 +17,14 @@
   background: transparent !important;
 }
 
-
 .modal-container .button-select-file.ant-btn-variant-outlined {
-background: var(--panelGradient) !important;
+  background: var(--panelGradient) !important;
   border: 1px solid #754da5 !important;
   color: #fff !important;
   transition: 0.3s ease;
 }
 
 .modal-container .button-select-file.ant-btn-variant-outlined:hover {
-background: var(--panelGradient) !important;
+  background: var(--panelGradient) !important;
   color: #fff !important;
 }
