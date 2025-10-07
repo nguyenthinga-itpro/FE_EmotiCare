@@ -24,7 +24,7 @@ import { toast } from "react-toastify";
 import { getFirestore } from "firebase/firestore";
 import { Form, Switch } from "antd";
 import DOMPurify from "dompurify";
-import "./ChatAIManagement.css";
+import "./ChatAImanagement.css";
 import OverlayLoader from "../../../components/OverlayLoader/OverlayLoader";
 export default function ChatAIManagement() {
   const dispatch = useDispatch();
@@ -60,7 +60,6 @@ export default function ChatAIManagement() {
     value: c.id,
     label: c.name,
   }));
-  // Realtime
   useRealtimeListener({
     db,
     collectionName: "chatAIs",
