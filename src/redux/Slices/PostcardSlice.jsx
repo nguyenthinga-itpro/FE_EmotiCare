@@ -1,5 +1,5 @@
 import { createSlice, createAsyncThunk } from "@reduxjs/toolkit";
-import Api from "../../api/api";
+import Api from "../../Api/api"; 
 
 // === GET ALL Postcards (pagination) ===
 export const getAllPostcards = createAsyncThunk(

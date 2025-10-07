@@ -6,7 +6,7 @@ import {
   GoogleAuthProvider,
   signInWithPopup,
 } from "firebase/auth";
-import Api from "../../api/api"; // axios instance
+import Api from "../../Api/api"; // axios instance
 
 // === REGISTER ===
 export const register = createAsyncThunk(

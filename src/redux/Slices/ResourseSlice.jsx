@@ -1,6 +1,6 @@
 // src/redux/slices/resourceSlice.js
 import { createSlice, createAsyncThunk } from "@reduxjs/toolkit";
-import Api from "../../api/api";
+import Api from "../../Api/api"; 
 
 // === GET ALL RESOURCES (pagination) ===
 export const getAllResources = createAsyncThunk(

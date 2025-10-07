@@ -1,5 +1,5 @@
 import { createSlice, createAsyncThunk } from "@reduxjs/toolkit";
-import Api from "../../api/api";
+import Api from "../../Api/api"; 
 
 // === FETCH ALL FAVORITES ===
 // Trả về object: { postcardId1: totalFavorites, postcardId2: totalFavorites, ... }
