@@ -3,7 +3,7 @@
   -webkit-background-clip: text;
   -webkit-text-fill-color: transparent;
   font-weight: bold;
-  color: transparent !important; 
+  color: transparent !important;
 }
 
 /* gradient khi hover tab */
@@ -19,35 +19,35 @@
   height: 3px;
   border-radius: 3px;
 }
-.profile-texth2{
+.profile-texth2 {
   background: var(--panelGradient);
   -webkit-background-clip: text;
   -webkit-text-fill-color: transparent;
   display: flex;
   align-items: center;
-    justify-content: center;
+  justify-content: center;
 }
-.profile-h2{
+.profile-h2 {
   background: var(--panelGradient);
   height: 3px;
   border-radius: 3px;
 }
-.ant-card-head-title{
+.ant-card-head-title {
   background: var(--panelGradient);
   -webkit-background-clip: text;
   -webkit-text-fill-color: transparent;
-    display: inline-block;
+  display: inline-block;
 }
-.ant-card .ant-card-head{
-    border-bottom:1px solid var(--colorTitle) ;
+.ant-card .ant-card-head {
+  border-bottom: 1px solid var(--colorTitle);
 }
-.ant-descriptions .ant-descriptions-item-label{
+.ant-descriptions .ant-descriptions-item-label {
   background: var(--panelGradient);
   -webkit-background-clip: text;
   -webkit-text-fill-color: transparent;
-    display: inline-block;
-   position: relative;
-font-size: 14px;
+  display: inline-block;
+  position: relative;
+  font-size: 14px;
 }
 /* Khôi phục màu cho dấu ":" */
 .ant-descriptions .ant-descriptions-item-label::after {
@@ -55,65 +55,49 @@ font-size: 14px;
   -webkit-text-fill-color: initial;
 }
 
-.ant-form-item-vertical .ant-form-item-label > label{
+.ant-form-item-vertical .ant-form-item-label > label {
   background: var(--panelGradient);
   -webkit-background-clip: text;
   -webkit-text-fill-color: transparent;
-    display: inline-block;
-   position: relative;
+  position: relative;
+}
+.confirm-password-input-custom.ant-form-item .ant-form-item-label {
+  margin-bottom: -8px !important;
 }
 
-.ant-select-outlined:not(.ant-select-customize-input) .ant-select-selector{
+/* .ant-select-outlined:not(.ant-select-customize-input) .ant-select-selector{
   border: 1px solid #754da5;
+} */
+.option-gradient-container {
+  background: var(--postcardsSection) !important;
 }
-.ant-picker-outlined  {
-  border: 1px solid #754da5 !important;
+.option-gradient-container
+  .option-gradient-dropdown
+  .ant-select-item-option-active {
+  background: var(--postcardsSection) !important;
+}
+.gender-option-gradient .ant-select-item-option-content {
   color: var(--colorText) !important;
 }
-/* Áp dụng cho tất cả input của Ant Design */
-.ant-input-outlined {
-  border: 1px solid #7c4dff !important;
+.dateOfBirth-gradient .ant-picker-outlined {
+  color: var(--colorText) !important;
 }
-.ant-input-affix-wrapper{
-    border: 1px solid #754da5 !important;
+.detail-profile-button-container {
+  display: flex;
+  justify-content: center;
+  padding-top: 20px;
 }
-.ant-btn-variant-solid{
-  border: 1px solid #754da5 !important;
-  color:  #ffffff !important;
-   background: var(--panelGradient);
-    display: inline-block;
-    box-shadow: none !important;
+.detail-profile-button.ant-btn-color-default {
+  background: var(--panelGradient) !important;
 }
 
-/* Hover: sáng hơn một chút, hơi lớn nhẹ */
-.ant-btn-variant-solid:hover {
-   background: var(--panelGradient)!important;  
-  transform: scale(1.05)!important;                /* phóng to nhẹ */
+/* Màu chữ */
+.detail-profile-button.ant-btn-color-default span {
+  color: #ffffff !important;
 }
-.ant-btn-color-default {
-background: var(--panelGradient);
-}
-.ant-btn-color-default span {
-color:  #ffffff !important;
-
-}
-/* Hover: sáng hơn một chút, hơi lớn nhẹ */
-.ant-btn-color-default:hover {
-   background: var(--panelGradient)!important;  
-  transform: scale(1.05)!important;                /* phóng to nhẹ */
-}
-/* Xóa nền cho button text */
-.ant-btn.ant-btn-text.ant-btn-color-default.ant-btn-variant-text {
-  background: transparent !important;
+.ant-picker-focused,
+.ant-picker-outlined:focus,
+.ant-picker-outlined:focus-within {
   box-shadow: none !important;
-  border: none !important;
-  transition: all 0.2s ease;
-}
-
-/* Xóa nền khi hover, focus, active */
-.ant-btn.ant-btn-text.ant-btn-color-default.ant-btn-variant-text:hover,
-.ant-btn.ant-btn-text.ant-btn-color-default.ant-btn-variant-text:focus,
-.ant-btn.ant-btn-text.ant-btn-color-default.ant-btn-variant-text:active {
-  background: transparent !important;
-  box-shadow: none !important;
+  outline: none !important;
 }

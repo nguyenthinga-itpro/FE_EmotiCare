@@ -49,31 +49,34 @@ export default function AccountForm({ user, loading }) {
         <Input />
       </Form.Item>
       <Form.Item className="gender-gradient" label="Gender" name="gender">
-        <Select>
-          <Option className="option-gradient" value="male">Male</Option>
-          <Option className="option-gradient" value="female">Female</Option>
-          <Option className="option-gradient" value="other">Other</Option>
+        <Select dropdownClassName="option-gradient-container">
+          <Option className="gender-option-gradient" value="male">
+            Male
+          </Option>
+          <Option className="gender-option-gradient" value="female">
+            Female
+          </Option>
+          <Option className="gender-option-gradient" value="other">
+            Other
+          </Option>
         </Select>
       </Form.Item>
-      <Form.Item className="dateOfBirth-gradient" label="Date of Birth" name="dateOfBirth">
+      <Form.Item
+        className="dateOfBirth-gradient"
+        label="Date of Birth"
+        name="dateOfBirth"
+      >
         <DatePicker style={{ width: "100%" }} />
       </Form.Item>
-      <Button
-        type="primary"
-        htmlType="submit"
-        disabled={loading}
-        style={{
-          background: "linear-gradient(135deg, #6e8efb, #a777e3)",
-          border: "none",
-          color: "#fff",
-          fontWeight: "bold",
-          borderRadius: "8px",
-          opacity: loading ? 0.6 : 1, // mờ khi disable
-          cursor: loading ? "not-allowed" : "pointer",
-        }}
-      >
-        Update Account
-      </Button>
+      <div className="detail-profile-button-container">
+        <Button
+          htmlType="submit"
+          disabled={loading}
+          className="detail-profile-button"
+        >
+          Update Account
+        </Button>
+      </div>
     </Form>
   );
 }

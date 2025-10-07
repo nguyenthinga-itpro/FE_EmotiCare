@@ -49,8 +49,8 @@ export default function PasswordForm() {
           <Spin size="large" />
         </div>
       )}
-      <Form.Item       className="confirm-password-input-custom"
-
+      <Form.Item
+        className="confirm-password-input-custom"
         label="Current Password"
         name="currentPassword"
         rules={[{ required: true, message: "Please enter current password" }]}
@@ -58,27 +58,29 @@ export default function PasswordForm() {
         <Input.Password />
       </Form.Item>
 
-      <Form.Item       className="confirm-password-input-custom"
-
+      <Form.Item
+        className="confirm-password-input-custom"
         label="New Password"
         name="newPassword"
         rules={[{ required: true, message: "Please enter new password" }]}
       >
         <Input.Password />
       </Form.Item>
-
-      <Button
-        type="primary"
-        htmlType="submit"
-        disabled={loading}
-        style={{
-          background: "linear-gradient(135deg, #6e8efb, #a777e3)",
-          border: "none",
-          color: "#fff",
-        }}
-      >
-        Change Password
-      </Button>
+      <div className="detail-profile-button-container">
+        <Button
+          type="primary"
+          htmlType="submit"
+          disabled={loading}
+          style={{
+            marginTop: "20px",
+            background: "linear-gradient(135deg, #6e8efb, #a777e3)",
+            border: "none",
+            color: "#fff",
+          }}
+        >
+          Change Password
+        </Button>
+      </div>
     </Form>
   );
 }

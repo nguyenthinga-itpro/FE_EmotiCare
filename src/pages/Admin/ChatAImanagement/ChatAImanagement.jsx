@@ -218,6 +218,19 @@ export default function ChatAIManagement() {
     null,
     paginatedCategories
   );
+  const formatTimestamp = (v) => {
+    if (!v) return "N/A";
+    if (typeof v.toDate === "function") return v.toDate().toLocaleString();
+    if (v._seconds) {
+      const date = new Date(
+        v._seconds * 1000 + Math.floor(v._nanoseconds / 1e6)
+      );
+      return date.toLocaleString();
+    }
+    if (v instanceof Date) return v.toLocaleString();
+    return String(v);
+  };
+
   return (
     <div className="users-management ">
       <h3 className="title-users-management">Chat Personas Management</h3>
@@ -244,7 +257,7 @@ export default function ChatAIManagement() {
         visible={modalOpen}
         onClose={() => setModalOpen(false)}
         data={selected}
-        title="Persona Detail"
+        title="AIs Detail"
         fields={[
           { label: "Name", key: "name" },
           { label: "System Prompt", key: "systemPrompt" },
@@ -266,8 +279,16 @@ export default function ChatAIManagement() {
             key: "isDisabled",
             render: (r) => (r.isDisabled ? "Yes" : "No"),
           },
-          { label: "Created At", key: "createdAt" },
-          { label: "Updated At", key: "updatedAt" },
+          {
+            label: "Created At",
+            key: "createdAt",
+            render: (r) => formatTimestamp(r.createdAt),
+          },
+          {
+            label: "Updated At",
+            key: "updatedAt",
+            render: (r) => formatTimestamp(r.updatedAt),
+          },
         ]}
       />
       <FormModal

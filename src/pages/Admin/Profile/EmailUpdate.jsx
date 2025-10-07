@@ -150,8 +150,8 @@ export default function EmailUpdateFlow({ userDetail }) {
           layout="vertical"
           onFinish={handleVerifyPassword}
         >
-          <Form.Item       className="confirm-password-input-custom"
-
+          <Form.Item
+            className="confirm-password-input-custom"
             label="Current Password"
             name="currentPassword"
             rules={[
@@ -160,18 +160,20 @@ export default function EmailUpdateFlow({ userDetail }) {
           >
             <Input.Password />
           </Form.Item>
-          <Button
-            type="primary"
-            htmlType="submit"
-            disabled={loading}
-            style={{
-              background: "linear-gradient(135deg, #6e8efb, #a777e3)",
-              border: "none",
-              color: "#fff",
-            }}
-          >
-            Verify Password
-          </Button>
+          <div className="detail-profile-button-container">
+            <Button
+              type="primary"
+              htmlType="submit"
+              disabled={loading}
+              style={{
+                background: "linear-gradient(135deg, #6e8efb, #a777e3)",
+                border: "none",
+                color: "#fff",
+              }}
+            >
+              Verify Password
+            </Button>
+          </div>
         </Form>
       )}
 
@@ -192,18 +194,20 @@ export default function EmailUpdateFlow({ userDetail }) {
           >
             <Input />
           </Form.Item>
-          <Button
-            type="primary"
-            htmlType="submit"
-            disabled={loading}
-            style={{
-              background: "linear-gradient(135deg, #6e8efb, #a777e3)",
-              border: "none",
-              color: "#fff",
-            }}
-          >
-            Send Verification Email
-          </Button>
+          <div className="detail-profile-button-container">
+            <Button
+              type="primary"
+              htmlType="submit"
+              disabled={loading}
+              style={{
+                background: "linear-gradient(135deg, #6e8efb, #a777e3)",
+                border: "none",
+                color: "#fff",
+              }}
+            >
+              Send Verification Email
+            </Button>
+          </div>
         </Form>
       )}
 
@@ -221,18 +225,20 @@ export default function EmailUpdateFlow({ userDetail }) {
             Check Email Verified
           </Button>
           {emailVerified && (
-            <Button
-              type="primary"
-              onClick={handleFinalizeEmailUpdate}
-              style={{
-                marginLeft: 16,
-                background: "linear-gradient(135deg, #6e8efb, #a777e3)",
-                border: "none",
-                color: "#fff",
-              }}
-            >
-              Finalize Email Update
-            </Button>
+            <div className="detail-profile-button-container">
+              <Button
+                type="primary"
+                onClick={handleFinalizeEmailUpdate}
+                style={{
+                  marginLeft: 16,
+                  background: "linear-gradient(135deg, #6e8efb, #a777e3)",
+                  border: "none",
+                  color: "#fff",
+                }}
+              >
+                Finalize Email Update
+              </Button>
+            </div>
           )}
         </div>
       )}

@@ -106,13 +106,17 @@
 .menu-container .menu-container {
   background: var(--gradientPrimary) !important;
 }
-
+.menu-container .ant-drawer-body {
+  background: var(--BgPrimary) !important;
+}
 .menu-container .ant-drawer-header {
   background: var(--gradientPrimary) !important;
   color: var(--textTopStatictis) !important;
   padding: 16px 0px !important;
 }
-
+.menu-container .ant-drawer-close {
+  color: var(--textTopStatictis) !important;
+}
 .menu-container .menu-mobile a:hover {
   color: var(--menuHover) !important;
 }
@@ -145,18 +149,17 @@
   color: inherit !important;
 }
 
-
 /* Responsive cho màn hình rất nhỏ (mobile < 480px) */
 @media (max-width: 540px) {
   .menu-mobile {
-    gap: 12px;             /* giảm khoảng cách giữa các link */
-    margin-top: 10px;      /* thu nhỏ khoảng cách trên */
+    gap: 12px; /* giảm khoảng cách giữa các link */
+    margin-top: 10px; /* thu nhỏ khoảng cách trên */
   }
-.language-toggle {
-  margin-left: 8px;
-}
+  .language-toggle {
+    margin-left: 8px;
+  }
   .menu-mobile a {
-    font-size: 14px;       /* chữ nhỏ hơn */
+    font-size: 14px; /* chữ nhỏ hơn */
   }
 
   .ant-drawer-header {
@@ -164,7 +167,7 @@
   }
 
   .menu-btn {
-    font-size: 20px;       /* icon hamburger nhỏ hơn */
+    font-size: 20px; /* icon hamburger nhỏ hơn */
     padding: 4px;
   }
 }
