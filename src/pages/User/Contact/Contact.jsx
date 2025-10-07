@@ -6,8 +6,6 @@ import {
   EnvironmentOutlined,
 } from "@ant-design/icons";
 import "./Contact.css";
-import Images from "../../../Constant/Images";
-import Videos from "../../../Constant/Videos";
 
 export default function Contact() {
   return (
