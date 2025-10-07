@@ -1,5 +1,5 @@
 import { createSlice, createAsyncThunk } from "@reduxjs/toolkit";
-import Api from "../../api/api";
+import Api from "../../Api/api"; 
 import {
   getAuth,
   updatePassword,
