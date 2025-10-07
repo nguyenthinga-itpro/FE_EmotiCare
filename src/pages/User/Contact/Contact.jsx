@@ -5,7 +5,7 @@ import {
   PhoneOutlined,
   EnvironmentOutlined,
 } from "@ant-design/icons";
-import "./Contact.css";
+import "./ContactFix.css";
 
 export default function Contact() {
   return (
