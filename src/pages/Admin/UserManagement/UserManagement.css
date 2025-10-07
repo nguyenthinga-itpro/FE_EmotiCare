@@ -5,7 +5,7 @@
   font-weight: 600 !important; /* in đậm nếu muốn nổi bật hơn */
 }
 .ant-descriptions-item-content {
-  color: var(--colorText)!important;        /* đổi màu chữ */
+  color: var(--colorText) !important; /* đổi màu chữ */
   background: transparent !important; /* hoặc #1f1f1f nếu muốn */
 }
 .ant-modal .ant-modal-header {
@@ -14,8 +14,8 @@
   box-shadow: none !important;
 }
 
-.ant-modal-title{
-   background: var(--panelGradient); /* màu gradient */
+.ant-modal-title {
+  background: var(--panelGradient); /* màu gradient */
   -webkit-background-clip: text;
   -webkit-text-fill-color: transparent;
   display: inline-block;
@@ -25,7 +25,7 @@
   font-weight: bold !important;
 }
 
-.ant-modal .ant-modal-content{
+.ant-modal .ant-modal-content {
   background: var(--sidebarHoverBg) !important;
 }
 
@@ -34,9 +34,9 @@
   -webkit-background-clip: text;
   -webkit-text-fill-color: transparent;
   font-weight: bold;
-  margin-top: 10px;    
-    display: inline-block;
-margin-bottom: 20px;
+  margin-top: 10px;
+  display: inline-block;
+  margin-bottom: 20px;
 }
 
 .user-table .ant-table-thead > tr > th {
@@ -51,13 +51,6 @@ margin-bottom: 20px;
   border-radius: 8px; /* bo góc nếu cần */
 }
 
-.user-table .ant-table-tbody > tr:nth-child(odd) > td {
-  background: var(--BgPrimary) !important; /* màu xen kẽ */
-}
-
-.user-table .ant-table-tbody > tr:nth-child(even) > td {
-  background: var(--sidebarHoverBg) !important; /* màu xen kẽ */
-}
 /* Đổi màu icon Filter */
 .user-table .ant-table-filter-trigger {
   color: var(--textTopStatictis) !important; /* xanh dương */
@@ -106,10 +99,8 @@ margin-bottom: 20px;
 }
 
 
-
-.ant-table-cell .ant-table-tbody{
-      background: var(--sidebarBorder) !important;
-
+.ant-table-cell .ant-table-tbody {
+  background: var(--sidebarBorder) !important;
 }
 
 .user-table .ant-table-tbody > tr:nth-child(odd) > td {

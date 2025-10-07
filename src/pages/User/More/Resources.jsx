@@ -6,7 +6,6 @@ import { useDispatch, useSelector } from "react-redux";
 import { getAllResources } from "../../../redux/Slices/ResourseSlice";
 import { getAllCategories } from "../../../redux/Slices/CategorySlice";
 import "./More.css";
-import { Navigate } from "react-router-dom";
 
 const { Option } = Select;
 
@@ -59,38 +58,40 @@ export default function Resources() {
         {/* Filters */}
         <div className="resources-filters">
           {/* Type selector luôn hoạt động */}
-<Select
-  className="my-custom-select"
-  placeholder="Select Type"
-  style={{ width: 200, marginRight: 10 }}
-  onChange={(value) => setSelectedType(value)}
-  value={selectedType}
->
-  <Option value="news" className="option-news">
-    Articles / Tips & Guides
-  </Option>
-  <Option value="youtube" className="option-youtube">
-    Videos
-  </Option>
-</Select>
+          <Select
+            className="my-custom-select"
+            placeholder="Select Type"
+            style={{ width: 200, marginRight: 10 }}
+            onChange={(value) => setSelectedType(value)}
+            value={selectedType}
+          >
+            <Option value="news" className="option-news">
+              Articles / Tips & Guides
+            </Option>
+            <Option value="youtube" className="option-youtube">
+              Videos
+            </Option>
+          </Select>
 
+          <Select
+            placeholder="Filter by Category"
+            style={{ width: 200, marginRight: 10 }}
+            allowClear
+            onChange={(value) => setSelectedCategory(value)}
+          >
+            {paginatedCategories.map((cat) => (
+              <Option
+                key={cat.id}
+                value={cat.id}
+                className={`option-${cat.id}`}
+              >
+                {cat.name}
+              </Option>
+            ))}
+          </Select>
 
-<Select
-  className="my-custom-select"
-  placeholder="Filter by Category"
-  style={{ width: 200, marginRight: 10 }}
-  allowClear
-  onChange={(value) => setSelectedCategory(value)}
->
-  {paginatedCategories.map((cat) => (
-    <Option  key={cat.id} value={cat.id} className={`option-${cat.id}`}>
-      {cat.name}
-    </Option>
-  ))}
-</Select>
-
-
-          <Input className="option-search"
+          <Input
+            className="option-search"
             placeholder="Search by title"
             style={{ width: 200, height: 32 }}
             value={searchText}
@@ -141,6 +142,7 @@ export default function Resources() {
         {nextCursor && (
           <div className="button-resource-container">
             <Button
+              type="primary"
               className="button-resource"
               onClick={handleLoadMore}
               loading={loading}

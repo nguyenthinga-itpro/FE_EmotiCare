@@ -1,4 +1,4 @@
-import React, { useEffect } from "react";
+import React from "react";
 import { Form, Input, Button } from "antd";
 import {
   MailOutlined,
@@ -14,7 +14,6 @@ export default function Contact() {
     <main>
       <section className="contact-section">
         <div className="contact-container">
-          
           {/* Form liên hệ */}
           <div className="contact-form">
             <h1 className="gradient-texts">
@@ -26,6 +25,7 @@ export default function Contact() {
 
             <Form layout="vertical">
               <Form.Item
+                className="form-style-contact"
                 label={<span className="gradient-textt">Your Name</span>}
                 required
               >
@@ -36,6 +36,7 @@ export default function Contact() {
               </Form.Item>
 
               <Form.Item
+                className="form-style-contact"
                 label={<span className="gradient-textt">Your Email</span>}
                 required
               >
@@ -46,6 +47,7 @@ export default function Contact() {
               </Form.Item>
 
               <Form.Item
+                className="form-style-contact"
                 label={<span className="gradient-textt">Message</span>}
                 required
               >
@@ -68,10 +70,12 @@ export default function Contact() {
               <span className="highlightt">Contact Information</span>
             </h1>
             <p className="gradient-textts">
-              <EnvironmentOutlined className="contact-icon-gradient" /> Cần Thơ, Việt Nam
+              <EnvironmentOutlined className="contact-icon-gradient" /> Cần Thơ,
+              Việt Nam
             </p>
             <p className="gradient-textts">
-              <PhoneOutlined className="contact-icon-gradient" /> +84 78 8890 998
+              <PhoneOutlined className="contact-icon-gradient" /> +84 78 8890
+              998
             </p>
             <p className="gradient-textts">
               <MailOutlined className="contact-icon-gradient" />

@@ -1,11 +1,13 @@
 import React, { useState } from "react";
 import { Form, Input, Button, Typography, Card } from "antd";
 import { sendPasswordResetEmail } from "firebase/auth";
-import { auth } from "../../config/firebase"; //nhớ import từ config firebase của bạn
+import { auth } from "../../config/firebase";
 import { useTheme } from "../../Themes/ThemeContext";
 import { gradientButtonStyle } from "../../Constant/Colors";
 import "./ForgotPassword.css";
 import OverlayLoader from "../../components/OverlayLoader/OverlayLoader";
+import { useNavigate } from "react-router-dom"; // ✅ thêm dòng này
+
 const { Title, Text } = Typography;
 
 export default function ForgotPassword() {
@@ -13,6 +15,7 @@ export default function ForgotPassword() {
   const [loading, setLoading] = useState(false);
   const [message, setMessage] = useState(null);
   const { theme } = useTheme();
+  const navigate = useNavigate(); // ✅ khởi tạo navigate
 
   const onFinish = async (values) => {
     setLoading(true);
@@ -36,7 +39,7 @@ export default function ForgotPassword() {
 
   return (
     <div className="forgotPassword-container">
-      <div className=" d-flex justify-content-center align-items-center vh-100">
+      <div className="d-flex justify-content-center align-items-center vh-100">
         <Card
           style={{
             maxWidth: 400,
@@ -47,18 +50,32 @@ export default function ForgotPassword() {
             background: "var(--postcardssections)",
           }}
         >
+          {/* ✅ Nút quay lại */}
+          <Button
+            type="link"
+            onClick={() => navigate("/login")}
+            // quay lại trang trước
+            style={{
+              marginBottom: 12,
+              padding: 0,
+              color: theme.primarycolors,
+              fontWeight: 500,
+            }}
+          >
+            ← Back
+          </Button>
+
           <Title level={3}>
             <div className="title-forgot-password">Forgot Password</div>
           </Title>
 
-          <Text
-            className="title-text-password"
-            style={{ display: "block", textAlign: "center", marginBottom: 20 }}
-          >
+          <Text className="title-text-password" style={{}}>
             Enter your email address and we’ll send you a link to reset your
             password.
           </Text>
+
           <OverlayLoader loading={loading} />
+
           <Form form={form} layout="vertical" onFinish={onFinish}>
             <Form.Item
               label={<span className="title-email-password">Email</span>}

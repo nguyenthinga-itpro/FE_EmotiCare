@@ -246,7 +246,7 @@ section ul li {
   text-align: center;
   max-width: 280px;
   height: 400px;
-  box-shadow: 0 4px 6px rgba(0, 0, 0, 0.3);
+  box-shadow: 0 4px 6px rgba(0, 0, 0, 0.2) !important;
 }
 
 .video-wrapper {
@@ -290,8 +290,7 @@ section ul li {
   -webkit-box-orient: vertical;
   overflow: hidden;
 }
-.article-card{
-  
+.article-card {
 }
 .card-text {
   font-size: 14px;
@@ -332,27 +331,7 @@ section ul li {
   padding: 10px 16px;
   font-size: 15px;
   font-weight: 500;
-  border: 2px solid #7b2ff7;
-  border-radius: 8px;
-  background: var(--panelGradient) !important;
-  -webkit-background-clip: text !important;
-  -webkit-text-fill-color: transparent !important;
-
-  outline: 0;
-  appearance: none;
-  background-repeat: no-repeat;
-  background-position: right 12px center;
-  background-size: 14px;
-  cursor: pointer;
-  transition: all 0.3s ease;
-}
-.mobile-dropdowns {
-  width: 30%;
-  max-width: 300px;
-  padding: 10px 16px;
-  font-size: 15px;
-  font-weight: 500;
-  border: 2px solid #7b2ff7;
+  border: 1px solid #7b2ff7;
   border-radius: 8px;
   background: var(--panelGradient) !important;
   -webkit-background-clip: text !important;
@@ -364,17 +343,6 @@ section ul li {
   background-size: 14px;
   cursor: pointer;
   transition: all 0.3s ease;
-  padding-left: 20px;
-  margin-right: 150px;
-}
-.mobile-dropdowns:focus,
-.mobile-dropdowns:hover {
-  border-color: #4096ff;
-  box-shadow: 0 0 6px rgba(123, 47, 247, 0.4);
-}
-.mobile-dropdowns option {
-  padding: 10px;
-  font-size: 14px;
 }
 .menu-navbar {
   display: flex;
@@ -489,10 +457,9 @@ section ul li {
 
 .faq-menu.ant-menu-light.ant-menu-root.ant-menu-inline {
   border-inline-end: none !important;
-
 }
 .ant-menu-light.ant-menu-root.ant-menu-inline {
-  background: none !important
+  background: none !important;
 }
 .faq-menu .ant-menu-item {
   background: var(--sectionp) !important;
@@ -572,41 +539,39 @@ section ul li {
   background: var(--panelGradient);
   -webkit-background-clip: text;
   -webkit-text-fill-color: transparent;
-    display: inline-block;
+  display: inline-block;
 }
-.faq-lines .ant-menu-submenu-title{
-background: var(--BgPrimary);
-
+.faq-lines .ant-menu-submenu-title {
+  background: var(--BgPrimary);
 }
-.faq-lines .ant-menu-inline.ant-menu-root .ant-menu-item{
+.faq-lines .ant-menu-inline.ant-menu-root .ant-menu-item {
   background: var(--BgPrimary) !important;
   padding-left: 20px !important;
- display : flex;
- 
+  display: flex;
 }
 .general-line-container.ant-menu-inline {
   border-inline-end: none !important; /* Tắt viền phải mặc định */
-  box-shadow: none !important;        /* Nếu có bóng mờ */
+  box-shadow: none !important; /* Nếu có bóng mờ */
 }
 
-.ant-menu-light.ant-menu-inline .ant-menu-sub.ant-menu-inline{
+.ant-menu-light.ant-menu-inline .ant-menu-sub.ant-menu-inline {
   background: none !important;
 }
 .faq-lines .ant-menu-light .ant-menu-item-selected span {
   background: var(--panelGradient) !important;
   -webkit-background-clip: text !important;
-  -webkit-text-fill-color: transparent !important;  display: inline-block;
+  -webkit-text-fill-color: transparent !important;
+  display: inline-block;
 }
-.faq-lines p{
+.faq-lines p {
   background: var(--panelGradient) !important;
   -webkit-background-clip: text !important;
   -webkit-text-fill-color: transparent !important;
   display: inline-block;
-  
 }
 /* Áp dụng cho Select có class my-custom-select */
-.my-custom-select .ant-select-selector .ant-select-selection-item,
-.my-custom-select .ant-select-selector .ant-select-selection-placeholder {
+.resources-filters .ant-select-selector .ant-select-selection-item,
+.resources-filters .ant-select-selector .ant-select-selection-placeholder {
   color: var(--colorText) !important;
 }
 /* Option chung */
@@ -617,9 +582,9 @@ background: var(--BgPrimary);
 
 .ant-menu-title-content p {
   display: flex;
-  align-items: center;      /* Căn giữa theo chiều dọc */ /* Căn giữa theo chiều ngang */   /* Dự phòng nếu có text thuần */
-  height: 100%;             /* Đảm bảo chiếm hết chiều cao container */
-  margin: 0;                /* Xóa margin mặc định của <p> */
+  align-items: center; /* Căn giữa theo chiều dọc */ /* Căn giữa theo chiều ngang */ /* Dự phòng nếu có text thuần */
+  height: 100%; /* Đảm bảo chiếm hết chiều cao container */
+  margin: 0; /* Xóa margin mặc định của <p> */
 }
 
 /* Hover effect cho tất cả */
@@ -628,13 +593,13 @@ background: var(--BgPrimary);
 }
 
 /* Option được chọn */
-.ant-select-item-option-selected {
+/* .ant-select-item-option-selected {
   border: 1px solid var(--colorPrimary) !important;
     background: var(--panelGradient)!important;
   font-weight: 600;
-}
+} */
 
-.ant-select .ant-select-arrow{
+.ant-select .ant-select-arrow {
   color: var(--colorText) !important;
 }
 /* Đổi màu chữ riêng cho từng option */
@@ -653,11 +618,9 @@ background: var(--BgPrimary);
   color: #754da5 !important;
 }
 
-  
-/* Màu placeholder */
 .option-search::placeholder {
-  color: #754da5 !important;
-  opacity: 1; /* giúp placeholder không bị mờ */
+  color: var(--colorText) !important;
+  opacity: 1;
 }
 
 .button-resource-container {
@@ -719,13 +682,19 @@ background: var(--BgPrimary);
     align-items: center;
     gap: 30px;
   }
-
   .mobile-dropdown {
     text-align: center;
     display: flex;
     justify-content: center;
     margin-left: 50px;
     width: 50%;
+  }
+  .mobile-dropdown option {
+    background: var(--BgPrimary) !important;
+    color: var(--colorText);
+  }
+  .mobile-dropdown option:hover {
+    background: #eee !important;
   }
   .mobile-menu {
     text-align: center;
@@ -751,11 +720,24 @@ background: var(--BgPrimary);
     margin-left: 150px;
     width: 50%;
   }
+  .mobile-dropdown option {
+    background: var(--BgPrimary) !important;
+    color: var(--colorText);
+  }
+  .mobile-dropdown option:hover {
+    background: #eee !important;
+  }
+
   .resources-title {
     font-size: 1.5rem;
   }
   .section-subtitle {
     font-size: 0.9rem;
+  }
+  .resources-filters {
+    display: grid;
+    justify-content: center;
+    gap: 10px;
   }
   .card-text {
     font-size: 13px;
@@ -763,10 +745,5 @@ background: var(--BgPrimary);
   .card-btn {
     font-size: 14px;
     padding: 8px 0;
-  }
-  .postcards-settings {
-    max-width: 1500px;
-    margin: 0 auto;
-    padding-left: inherit;
   }
 }

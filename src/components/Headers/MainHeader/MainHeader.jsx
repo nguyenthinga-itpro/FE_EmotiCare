@@ -186,7 +186,7 @@ const HeaderBar = () => {
         placement="right"
         onClose={() => setOpen(false)}
         open={open}
-        className="menu-container "
+        className="menu-container"
         width={100}
       >
         <nav className="menu-mobile">

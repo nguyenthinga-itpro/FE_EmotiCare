@@ -195,7 +195,12 @@
   margin-right: 0 !important;
   row-gap: 0;
 }
-
+.search-postcard .ant-input::placeholder {
+  color: var(--colorText) !important;
+}
+.favorite-check-box {
+  color: var(--anticonSvg) !important;
+}
 /* .ant-row ant-row-center css-dev-only-do-not-override-1euw7h0 */
 /* Responsive cho tablet */
 @media (max-width: 1024px) {

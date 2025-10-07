@@ -25,16 +25,16 @@
 
 /* Body với background xen kẽ */
 .user-table .ant-table-tbody > tr:nth-child(odd) > td {
-  background-color: #ffffff;
+  background-color: var(--BgPrimary) !important;
 }
 
 .user-table .ant-table-tbody > tr:nth-child(even) > td {
-  background-color: #fafafa;
+  background-color:var(--colorBgContainer) !important;
 }
 
 /* Đổ bóng cho từng row khi hover (tùy chọn) */
 .user-table .ant-table-tbody > tr:hover > td {
-  box-shadow: inset 0 0 10px rgba(0, 0, 0, 0.05);
+  box-shadow: inset 0 0 10px rgba(151, 148, 148, 0.3);
   transition: all 0.3s ease;
 }
 
@@ -88,7 +88,7 @@
 
 /* Button Edit */
 .edit-button {
-  background: linear-gradient(90deg,#00c853,#64dd17);
+  background: linear-gradient(90deg, #00c853, #64dd17);
   border: none;
   color: #fff;
   padding: 4px 18px;

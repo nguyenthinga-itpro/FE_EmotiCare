@@ -1,7 +1,7 @@
 .fullscreen {
   display: flex;
   align-items: center;
-      height: 700px;
+  height: 700px;
 }
 
 .title-login .title-lg {
@@ -10,10 +10,9 @@
   text-align: center;
   font-weight: 600 !important;
   font-size: 32px;
-  background: var(--panelGradient) !important;  /* Gradient từ biến */
-  -webkit-background-clip: text !important;     /* Dùng gradient cho text */
-  -webkit-text-fill-color: transparent !important; /* Làm chữ trong suốt để thấy gradient */
-;                /* Fallback */
+  background: var(--panelGradient) !important; /* Gradient từ biến */
+  -webkit-background-clip: text !important; /* Dùng gradient cho text */
+  -webkit-text-fill-color: transparent !important; /* Làm chữ trong suốt để thấy gradient */ /* Fallback */
 }
 /* Target icon con mắt trong Input.Password */
 .password-input-custom .anticon {
@@ -24,14 +23,14 @@
 .password-input-custom .anticon:hover {
   color: #722ed1 !important; /* đổi màu khi hover */
 }
-.button-text .ant-btn.ant-btn-default.ant-btn-color-default.ant-btn-variant-outlined.ant-btn-block{
-  background: var(--panelGradient) !important;  /* Gradient từ biến */
+.button-text
+  .ant-btn.ant-btn-default.ant-btn-color-default.ant-btn-variant-outlined.ant-btn-block {
+  background: var(--panelGradient) !important; /* Gradient từ biến */
 }
 .button-text-text {
-   font-weight: bold;
+  font-weight: bold;
+  color: #fff;
 }
-
-
 
 .link-register {
   text-align: center;
@@ -47,7 +46,6 @@
   border-radius: 10px;
   box-shadow: 0 8px 12px rgba(0, 0, 0, 0.3) !important;
 }
-
 
 /* Input chung */
 .input-gradient {
@@ -70,7 +68,6 @@
   width: 100%;
   height: 48px;
 }
-
 
 .custom-checkbox .ant-checkbox-inner {
   border: none;
@@ -96,7 +93,7 @@
   -webkit-text-fill-color: transparent;
   background-clip: text;
 }
-.forgot-password{
+.forgot-password {
   font-weight: 500 !important;
   background: var(--panelGradient) !important;
   -webkit-background-clip: text !important;
@@ -104,26 +101,28 @@
   background-clip: text !important;
 }
 .ant-btn.ant-btn-default.ant-btn-color-default.ant-btn-variant-outlined.ant-btn-block {
-  background: var(--sidebarHover) !important;  
+  background: var(--sidebarHover) !important;
 }
 
-
-
-
 .google-gradientTextStyle {
-  background: linear-gradient(90deg, #4285F4, #34A853, #FBBC05, #EA4335) !important; /* gradient Google */
+  background: linear-gradient(
+    90deg,
+    #4285f4,
+    #34a853,
+    #fbbc05,
+    #ea4335
+  ) !important; /* gradient Google */
   -webkit-background-clip: text !important;
   -webkit-text-fill-color: transparent !important;
   font-weight: 600;
 }
 
-
-.link-register-for-free{
+.link-register-for-free {
   margin-left: 5px;
-    font-weight: 500;
-  background: var(--panelGradient) ;
-  -webkit-background-clip: text ;
-  -webkit-text-fill-color: transparent ;
+  font-weight: 500;
+  background: var(--panelGradient);
+  -webkit-background-clip: text;
+  -webkit-text-fill-color: transparent;
   background-clip: text;
 }
 /* Label Birthday */
@@ -153,13 +152,12 @@
   font-weight: 500;
 }
 .form-label-gradient {
-  background: var(--panelGradient) ;
+  background: var(--panelGradient);
   -webkit-background-clip: text;
   -webkit-text-fill-color: transparent;
   background-clip: text;
   font-weight: 600;
-    color: var(--colorText) !important;                /* cho nổi trên gradient */
-
+  color: var(--colorText) !important; /* cho nổi trên gradient */
 }
 
 /* chỉnh placeholder cho Select */
@@ -171,43 +169,38 @@
   font-weight: 500;
 }
 
-
-
-
 .form-name-gender .ant-select-selection-placeholder {
   color: #722ed1 !important;
 }
 
 /* Bao ngoài input password */
 .form-name-password .ant-input-affix-wrapper {
-  padding: 0;                /* bỏ padding ngoài */
+  padding: 0; /* bỏ padding ngoài */
   border-radius: 6px;
-  overflow: hidden;           /* bo gọn */
-color: #000000;
+  overflow: hidden; /* bo gọn */
+  color: #000000;
 }
 
 /* Phần text input bên trong */
 .form-name-password .ant-input {
-  padding: 10px 5px !important;         /* padding text */
-  border: none;               /* bỏ viền */
+  padding: 10px 5px !important; /* padding text */
+  border: none; /* bỏ viền */
   font-size: 14px !important;
   padding-left: 14px !important;
 }
 
 /* Icon con mắt */
-.form-name-password 
-.ant-input-affix-wrapper .anticon.ant-input-password-icon {
-  color: var(--anticonSvg) !important;                /* cho nổi trên gradient */
+.form-name-password .ant-input-affix-wrapper .anticon.ant-input-password-icon {
+  color: var(--anticonSvg) !important; /* cho nổi trên gradient */
   cursor: pointer;
   transition: all 0.3s;
-  margin-right: 12px;         /* chỉnh vị trí bên phải */
- 
+  margin-right: 12px; /* chỉnh vị trí bên phải */
 }
 
-.login-container{
+.login-container {
   height: 100%;
-    height: 100vh; /* full chiều cao màn hình */
-   display: flex;
+  height: 100vh; /* full chiều cao màn hình */
+  display: flex;
   justify-content: center !important;
   align-items: center !important;
   background: var(--colorBgContainer);
@@ -219,7 +212,7 @@ color: #000000;
   padding: 1rem; /* tương đương p-4 */
   border-radius: 0.375rem; /* tương đương rounded */
   background: var(--postcardssections); /* đổi màu nền sang biến bạn muốn */
-  box-shadow: 0 0 10px rgba(255, 255, 255, 0.3) !important;
+  box-shadow: 0 4px 8px rgba(0, 0, 0, 0.2) !important;
   opacity: 0.8; /* tương đương bg-opacity-80 */
 }
 
@@ -227,10 +220,9 @@ color: #000000;
   border-color: transparent !important;
   box-shadow: none !important;
 }
-.ant-input-affix-wrapper >input.ant-input{
-  color: var(--colorText) !important;                /* cho nổi trên gradient */
+.ant-input-affix-wrapper > input.ant-input {
+  color: var(--colorText) !important; /* cho nổi trên gradient */
 }
-
 
 /* 📱 Mobile (≤576px) */
 @media (max-width: 576px) {
@@ -240,7 +232,7 @@ color: #000000;
 
   .input-gradient-wrapper input,
   .input-gradient-wrapper-password .ant-input-password {
-    height: 42px;   /* giảm chiều cao input */
+    height: 42px; /* giảm chiều cao input */
     font-size: 13px;
   }
 
@@ -260,22 +252,22 @@ color: #000000;
 }
 
 @media (max-width: 768px) {
-.fullscreen {
+  .fullscreen {
     align-items: flex-start !important; /* bám trên */
-    justify-content: center;            /* vẫn canh ngang */
-    padding-top: 40px;                  /* cách top một chút */
+    justify-content: center; /* vẫn canh ngang */
+    padding-top: 40px; /* cách top một chút */
   }
   .login-container {
-    height: auto !important;   /* bỏ height cố định */
-    min-height: 100dvh;        /* vẫn đảm bảo đủ chiều cao màn hình */
+    height: auto !important; /* bỏ height cố định */
+    min-height: 100dvh; /* vẫn đảm bảo đủ chiều cao màn hình */
 
     display: flex;
     justify-content: center !important;
     align-items: flex-start !important; /* để form bám lên trên */
-    padding-top: 40px;         /* cách trên một chút */
+    padding-top: 40px; /* cách trên một chút */
   }
-  .img-fluid{
-    height: auto;     
+  .img-fluid {
+    height: auto;
   }
 }
 /* 📱📲 Tablet (576px – 992px) */
@@ -295,8 +287,6 @@ color: #000000;
     height: 18px;
   }
 }
-
-
 
 /* 💻 Desktop (≥992px) */
 @media (min-width: 993px) {

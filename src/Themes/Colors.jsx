@@ -90,7 +90,7 @@ export const dark = {
   sectionp: "#F3F0FF",
   socialicon: "#ffff",
   postcardssections: "#333",
-  tabsdashboard:"linear-gradient(90deg, #676972, #7c6b8f)",
+  tabsdashboard:"linear-gradient(90deg, #eaeaeaff, #dbd2d216)",
   buttondefault: "#333",
 };
 const colors = { light, dark };

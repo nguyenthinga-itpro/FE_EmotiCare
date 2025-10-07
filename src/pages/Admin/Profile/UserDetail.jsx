@@ -28,7 +28,7 @@ export default function UserDetail({ user }) {
 
   return (
     <Card
-      title="User Details"
+      title="Profile Details"
       bordered={false}
       style={{
         width: "100%",
@@ -44,9 +44,20 @@ export default function UserDetail({ user }) {
         labelStyle={{
           fontWeight: "600",
           color: theme.labelStyleProfileDeatail,
+          whiteSpace: "nowrap",
+          overflow: "hidden",
+          textOverflow: "ellipsis",
+          maxWidth: "200px",
+          display: "inline-block",
         }}
         contentStyle={{
           color: theme.contentStyleProfileDeatail,
+          whiteSpace: "nowrap",
+          overflow: "hidden",
+          textOverflow: "ellipsis",
+          maxWidth: "200px",
+          display: "inline-block",
+          fontWeight: "normal",
         }}
       >
         {Object.entries(fields).map(([key, label]) => (

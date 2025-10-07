@@ -26,6 +26,7 @@ export default function FilterBar({
       </Button>
 
       <Input.Search
+        className="search-postcard"
         placeholder="Search music..."
         value={searchText}
         onChange={(e) => setSearchText(e.target.value)}
@@ -46,6 +47,7 @@ export default function FilterBar({
               <Checkbox
                 checked={favoriteFilter}
                 onChange={(e) => setFavoriteFilter(e.target.checked)}
+                className="favorite-check-box"
               >
                 Only Favorites
               </Checkbox>
