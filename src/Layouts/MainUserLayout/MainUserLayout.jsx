@@ -15,8 +15,10 @@ const MainUserLayout = () => {
       className={`main-user-layout ${mode}`}
       style={{ minHeight: "100vh", background: theme.colorBgContainer }}
     >
-      {/* Header */}
-      <MainHeader />
+      <div className="main-header-container">
+        {/* Header */}
+        <MainHeader />
+      </div>
 
       {/* Breadcrumb */}
       {/* <Breadcrumb style={{ margin: "16px 24px" }} items={breadcrumbItems} /> */}

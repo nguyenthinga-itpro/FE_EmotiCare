@@ -1,5 +1,5 @@
 import { createSlice, createAsyncThunk } from "@reduxjs/toolkit";
-import Api from "../../Api/api"; 
+import Api from "../../Api/api";
 
 // === GET ALL Postcards (pagination) ===
 export const getAllPostcards = createAsyncThunk(
@@ -47,7 +47,7 @@ export const updatePostcard = createAsyncThunk(
     { rejectWithValue }
   ) => {
     try {
-      const res = await Api.patch(`/postcard/${id}`, {
+      const res = await Api.patch(`/postcard/${id}/update`, {
         title,
         description,
         image,

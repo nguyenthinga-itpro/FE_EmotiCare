@@ -81,13 +81,17 @@ export const fetchMe = createAsyncThunk(
   "auth/fetchMe",
   async (_, { rejectWithValue }) => {
     try {
+      const token = localStorage.getItem("token");
+      if (!token) throw new Error("No token in localStorage");
+
       const res = await Api.get("/auth/me", {
-        headers: { Authorization: `Bearer ${localStorage.getItem("token")}` },
+        headers: { Authorization: `Bearer ${token}` },
       });
 
       console.log("fetchMe response:", res.data);
       return res.data; // { user }
     } catch (err) {
+      console.error("fetchMe error:", err);
       return rejectWithValue(err.response?.data?.message || err.message);
     }
   }
