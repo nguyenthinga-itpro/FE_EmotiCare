@@ -35,7 +35,7 @@ export const updateCategory = createAsyncThunk(
   "category/updateCategory",
   async ({ id, name, description, image }, { rejectWithValue }) => {
     try {
-      const res = await Api.patch(`/category/${id}/catagory`, {
+      const res = await Api.patch(`/category/${id}/category`, {
         name,
         description,
         image,

@@ -1,5 +1,5 @@
 import { createSlice, createAsyncThunk } from "@reduxjs/toolkit";
-import Api from "../../Api/api"; 
+import Api from "../../Api/api";
 
 // === GET ALL EMOTIONS (pagination) ===
 export const getAllEmotions = createAsyncThunk(
@@ -37,7 +37,7 @@ export const updateEmotion = createAsyncThunk(
   "emotion/updateEmotion",
   async ({ id, name, categoryId, emoji, description }, { rejectWithValue }) => {
     try {
-      const res = await Api.patch(`/emotion/${id}/emoti`, {
+      const res = await Api.patch(`/emotion/${id}/emotion`, {
         name,
         categoryId,
         emoji,

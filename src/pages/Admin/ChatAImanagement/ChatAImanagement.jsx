@@ -141,7 +141,12 @@ export default function ChatAIManagement() {
 
       const values = await form.validateFields();
       await dispatch(
-        updateChat({ id: selected.id, ...values, image: imageUrl })
+        updateChat({
+          id: selected.id,
+          ...values,
+          image: imageUrl,
+          categoryId: values.category,
+        })
       ).unwrap();
 
       setEditModalOpen(false);
