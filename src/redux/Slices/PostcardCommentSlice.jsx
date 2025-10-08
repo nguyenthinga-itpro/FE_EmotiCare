@@ -35,7 +35,7 @@ export const editComment = createAsyncThunk(
   "comment/editComment",
   async ({ id, userId, content }, { rejectWithValue }) => {
     try {
-      const res = await Api.put(`/comment/${id}`, {
+      const res = await Api.put(`/comment/${id}/comment`, {
         userId,
         content,
       });

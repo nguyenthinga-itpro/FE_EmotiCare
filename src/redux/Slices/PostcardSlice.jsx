@@ -47,7 +47,7 @@ export const updatePostcard = createAsyncThunk(
     { rejectWithValue }
   ) => {
     try {
-      const res = await Api.patch(`/postcard/${id}/update`, {
+      const res = await Api.patch(`/postcard/${id}/postcard`, {
         title,
         description,
         image,
