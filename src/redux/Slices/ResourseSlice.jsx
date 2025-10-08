@@ -1,6 +1,6 @@
 // src/redux/slices/resourceSlice.js
 import { createSlice, createAsyncThunk } from "@reduxjs/toolkit";
-import Api from "../../Api/api"; 
+import Api from "../../Api/api";
 
 // === GET ALL RESOURCES (pagination) ===
 export const getAllResources = createAsyncThunk(
@@ -64,9 +64,13 @@ export const createResource = createAsyncThunk(
 // === UPDATE RESOURCE ===
 export const updateResource = createAsyncThunk(
   "resource/updateResource",
-  async ({ id, url, updateVideo = false }, { rejectWithValue }) => {
+  async ({ id, updateVideo = false, ...payload }, { rejectWithValue }) => {
     try {
-      const res = await Api.patch(`/resource/${id}/resource`, { url, updateVideo });
+      // ✅ sửa endpoint
+      const res = await Api.patch(`/resource/${id}/resource`, {
+        ...payload,
+        updateVideo,
+      });
       return res.data.resource;
     } catch (err) {
       return rejectWithValue(err.response?.data?.error || err.message);

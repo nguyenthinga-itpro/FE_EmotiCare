@@ -126,8 +126,14 @@ export default function ResourceManagement() {
     try {
       const values = await form.validateFields();
       await dispatch(
-        updateResource({ id: selected.id, updateVideo: true, ...values })
+        updateResource({
+          id: selected.id,
+          updateVideo: true,
+          ...values,
+          categoryId: values.category,
+        })
       ).unwrap();
+
       setEditModalOpen(false);
       form.resetFields();
       setSelected(null);

@@ -1,6 +1,6 @@
 // src/redux/slices/faqSlice.js
 import { createSlice, createAsyncThunk } from "@reduxjs/toolkit";
-import Api from "../../Api/api"; 
+import Api from "../../Api/api";
 
 // === GET ALL FAQs (pagination) ===
 export const getAllFaqs = createAsyncThunk(
@@ -20,9 +20,9 @@ export const getAllFaqs = createAsyncThunk(
 // === CREATE FAQ ===
 export const createFaq = createAsyncThunk(
   "faq/createFaq",
-  async ({ question, answer, categoryId }, { rejectWithValue }) => {
+  async ({ question, answer, category }, { rejectWithValue }) => {
     try {
-      const res = await Api.post("/faq", { question, answer, categoryId });
+      const res = await Api.post("/faq", { question, answer, category });
       return res.data.faq;
     } catch (err) {
       return rejectWithValue(err.response?.data?.error || err.message);
@@ -33,9 +33,13 @@ export const createFaq = createAsyncThunk(
 // === UPDATE FAQ ===
 export const updateFaq = createAsyncThunk(
   "faq/updateFaq",
-  async ({ id, question, answer, categoryId }, { rejectWithValue }) => {
+  async ({ id, question, answer, category }, { rejectWithValue }) => {
     try {
-      const res = await Api.patch(`/faq/${id}/faq`, { question, answer, categoryId });
+      const res = await Api.patch(`/faq/${id}/faq`, {
+        question,
+        answer,
+        category,
+      });
       return res.data.faq;
     } catch (err) {
       return rejectWithValue(err.response?.data?.error || err.message);

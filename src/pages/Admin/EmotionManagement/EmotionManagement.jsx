@@ -121,7 +121,13 @@ export default function EmotionManagement() {
     if (!selected) return;
     try {
       const values = await form.validateFields();
-      await dispatch(updateEmotion({ id: selected.id, ...values })).unwrap();
+      await dispatch(
+        updateEmotion({
+          id: selected.id,
+          ...values,
+          categoryId: values.category,
+        })
+      ).unwrap();
       setEditModalOpen(false);
       form.resetFields();
       setSelected(null);

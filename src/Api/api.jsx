@@ -1,14 +1,14 @@
 import axios from "axios";
 
 const Api = axios.create({
-  baseURL: "https://be-emoticare.onrender.com",
+  // baseURL: "https://be-emoticare.onrender.com",
+  baseURL: "http://127.0.0.1:3001",
   headers: { "Content-Type": "application/json" },
   withCredentials: true,
 });
 
-// Tạo instance riêng cho refresh, KHÔNG có interceptor
 const RefreshApi = axios.create({
-  baseURL: "https://be-emoticare.onrender.com",
+  baseURL: "http://127.0.0.1:3001",
   headers: { "Content-Type": "application/json" },
   withCredentials: true,
 });
