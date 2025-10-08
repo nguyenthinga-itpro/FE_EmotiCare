@@ -6,9 +6,9 @@
 } */
 
 .right-wrapper {
-  display: flex;
-  align-items: center;
-  justify-content: flex-end;
+  position: absolute;
+  right: 0;
+  top: -20px;
   /* gap: 10px; */
   height: 40px;
   width: 100px;
@@ -30,6 +30,9 @@
 }
 .text-login-btns {
   color: #000;
+  position: relative;
+  /* position: absolute; */
+  top: -12px;
 }
 @media (max-width: 768px) {
   .menu-desktop {

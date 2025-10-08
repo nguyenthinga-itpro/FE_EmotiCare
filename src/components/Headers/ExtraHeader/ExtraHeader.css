@@ -7,6 +7,10 @@
   height: 50px;
   /* background: linear-gradient(0deg, #667ce7, #754da5); */
   color: #fff;
+  position: sticky;
+  top: 0;
+  z-index: 1000;
+  box-shadow: 0 2px 8px rgba(0, 0, 0, 0.15);
 }
 
 /* Logo */
@@ -40,7 +44,7 @@
 }
 
 .login-btn {
-  background: linear-gradient(0deg, #7273EE, #7350AB);
+  background: linear-gradient(0deg, #7273ee, #7350ab);
   border: none;
   padding: 6px 14px;
   border-radius: 8px;
