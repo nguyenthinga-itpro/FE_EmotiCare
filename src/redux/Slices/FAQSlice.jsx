@@ -35,7 +35,7 @@ export const updateFaq = createAsyncThunk(
   "faq/updateFaq",
   async ({ id, question, answer, categoryId }, { rejectWithValue }) => {
     try {
-      const res = await Api.patch(`/faq/${id}`, { question, answer, categoryId });
+      const res = await Api.patch(`/faq/${id}/faq`, { question, answer, categoryId });
       return res.data.faq;
     } catch (err) {
       return rejectWithValue(err.response?.data?.error || err.message);

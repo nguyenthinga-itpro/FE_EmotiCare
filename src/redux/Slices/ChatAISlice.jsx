@@ -47,7 +47,7 @@ export const updateChat = createAsyncThunk(
     { rejectWithValue }
   ) => {
     try {
-      const res = await Api.patch(`/chat/${id}`, {
+      const res = await Api.patch(`/chat/${id}/chatai`, {
         name,
         systemPrompt,
         description,

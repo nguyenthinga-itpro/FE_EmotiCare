@@ -52,7 +52,7 @@ export const updateUser = createAsyncThunk(
   "users/updateUser",
   async ({ id, ...updates }, { rejectWithValue }) => {
     try {
-      const res = await Api.patch(`/user/${id}`, updates);
+      const res = await Api.patch(`/user/${id}/user`, updates);
       return res.data;
     } catch (err) {
       return rejectWithValue(err.response?.data?.error || err.message);

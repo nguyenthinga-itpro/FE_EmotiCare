@@ -37,7 +37,7 @@ export const updateEmotion = createAsyncThunk(
   "emotion/updateEmotion",
   async ({ id, name, categoryId, emoji, description }, { rejectWithValue }) => {
     try {
-      const res = await Api.patch(`/emotion/${id}`, {
+      const res = await Api.patch(`/emotion/${id}/emoti`, {
         name,
         categoryId,
         emoji,

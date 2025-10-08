@@ -66,7 +66,7 @@ export const updateResource = createAsyncThunk(
   "resource/updateResource",
   async ({ id, url, updateVideo = false }, { rejectWithValue }) => {
     try {
-      const res = await Api.patch(`/resource/${id}`, { url, updateVideo });
+      const res = await Api.patch(`/resource/${id}/resource`, { url, updateVideo });
       return res.data.resource;
     } catch (err) {
       return rejectWithValue(err.response?.data?.error || err.message);
