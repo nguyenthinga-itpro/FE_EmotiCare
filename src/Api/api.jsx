@@ -4,13 +4,13 @@ const Api = axios.create({
   baseURL:
     import.meta.env.MODE === "development"
       ? "http://127.0.0.1:3001"
-      : "https://emoticare-a3co.onrender.com",
+      : "https://be-emoticare.onrender.com",
   headers: { "Content-Type": "application/json" },
   withCredentials: true, // ✅ gửi cookie sang backend
 });
 
 const RefreshApi = axios.create({
-  baseURL: "https://emoticare-a3co.onrender.com",
+  baseURL: "https://be-emoticare.onrender.com",
   headers: { "Content-Type": "application/json" },
   withCredentials: true,
 });
