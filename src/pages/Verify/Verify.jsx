@@ -12,7 +12,7 @@ export default function Verify() {
   const navigate = useNavigate();
   const dispatch = useDispatch();
   const { message, error } = useSelector((state) => state.user);
-
+  const currentUser = useSelector((s) => s.user?.currentUser);
   const [bubbles, setBubbles] = useState([]);
   const [activeBubbles, setActiveBubbles] = useState(new Set());
 
@@ -43,7 +43,7 @@ export default function Verify() {
     setBubbles(newBubbles);
 
     // gọi redux verifyEmail
-    const email = localStorage.getItem("users.email");
+    const email = currentUser?.email;
     if (email) {
       dispatch(verifyEmail({ email }));
     }
