@@ -40,7 +40,7 @@ import Category from "./pages/Admin/CategoryManagement/CategoryManagement.jsx";
 import Login from "./pages/Login/Login.jsx";
 import Register from "./pages/User/Register/Register.jsx";
 import ForgotPassword from "./pages/ForgotPassword/ForgotPassword.jsx";
-import Verify from "./pages/User/Verify/Verify.jsx";
+import Verify from "./pages/Verify/Verify.jsx";
 
 function App() {
   const dispatch = useDispatch();
