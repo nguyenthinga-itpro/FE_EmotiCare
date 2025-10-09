@@ -1,14 +1,22 @@
 import axios from "axios";
 
+// const Api = axios.create({
+//   // baseURL: "https://be-emoticare.onrender.com",
+//   baseURL: "http://127.0.0.1:3001",
+//   headers: { "Content-Type": "application/json" },
+//   withCredentials: true,
+// });
 const Api = axios.create({
-  baseURL: "https://be-emoticare.onrender.com",
-  // baseURL: "http://127.0.0.1:3001",
+  baseURL:
+    import.meta.env.MODE === "development"
+      ? "http://127.0.0.1:3001"
+      : "https://be-emoticare.onrender.com",
   headers: { "Content-Type": "application/json" },
-  withCredentials: true,
+  withCredentials: true, // ✅ gửi cookie sang backend
 });
 
 const RefreshApi = axios.create({
-  baseURL: "https://be-emoticare.onrender.com",
+  baseURL: "http://127.0.0.1:3001",
   headers: { "Content-Type": "application/json" },
   withCredentials: true,
 });
