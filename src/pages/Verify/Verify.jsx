@@ -3,7 +3,7 @@ import React, { useEffect, useState } from "react";
 import { useNavigate } from "react-router-dom";
 import { Typography, Card } from "antd";
 import { useDispatch, useSelector } from "react-redux";
-import { verifyEmail } from "../../../redux/Slices/AuthSlice";
+import { verifyEmail } from "../../redux/Slices/AuthSlice";
 import "./Verify.css";
 
 const { Title } = Typography;
