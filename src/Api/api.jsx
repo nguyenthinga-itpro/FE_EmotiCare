@@ -1,22 +1,16 @@
 import axios from "axios";
 
-// const Api = axios.create({
-//   // baseURL: "https://be-emoticare.onrender.com",
-//   baseURL: "http://127.0.0.1:3001",
-//   headers: { "Content-Type": "application/json" },
-//   withCredentials: true,
-// });
 const Api = axios.create({
   baseURL:
     import.meta.env.MODE === "development"
       ? "http://127.0.0.1:3001"
-      : "https://be-emoticare.onrender.com",
+      : "https://emoticare-a3co.onrender.com",
   headers: { "Content-Type": "application/json" },
   withCredentials: true, // ✅ gửi cookie sang backend
 });
 
 const RefreshApi = axios.create({
-  baseURL: "http://127.0.0.1:3001",
+  baseURL: "https://emoticare-a3co.onrender.com",
   headers: { "Content-Type": "application/json" },
   withCredentials: true,
 });
