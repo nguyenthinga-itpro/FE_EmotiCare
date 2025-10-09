@@ -16,13 +16,15 @@ import "bootstrap/dist/css/bootstrap.min.css";
 import "./Register.css";
 import { Link } from "react-router-dom";
 import { toast } from "react-toastify";
+import moment from "moment";
+import OverlayLoader from "../../../components/OverlayLoader/OverlayLoader";
 import {
   gradientTextStyle,
   gradientButtonStyle,
 } from "../../../Constant/Colors";
-import moment from "moment";
-import OverlayLoader from "../../../components/OverlayLoader/OverlayLoader";
+
 const { Text } = Typography;
+const { Option } = Select;
 
 export default function RegisterPage() {
   const dispatch = useDispatch();
@@ -38,17 +40,18 @@ export default function RegisterPage() {
         email: values.email,
         password: values.password,
         gender: values.gender,
-        birthday: values.birthday,
+        birthday: values.birthday ? values.birthday.format("YYYY-MM-DD") : null,
       })
     )
-      .unwrap() // nếu dùng createAsyncThunk
+      .unwrap()
       .then(() => {
         toast.success(
-          "Account registration successful! Please check your email!"
+          "Account registration successful! Please check your email for verification."
         );
+        form.resetFields(); // reset form nếu muốn
       })
       .catch((err) => {
-        toast.error(`Register fail: ${err}`);
+        toast.error(`Register failed: ${err}`);
       });
   };
 
@@ -66,7 +69,6 @@ export default function RegisterPage() {
                 background: "var(--postcardssections) !important",
               }}
             >
-              {/* Title */}
               <div className="title-login text-center mb-4">
                 <Text
                   className="title-lg"
@@ -81,14 +83,14 @@ export default function RegisterPage() {
                   Please enter your information to register an account.
                 </Text>
               </div>
+
               <OverlayLoader loading={loading} />
-              {/* Form */}
+
               <Form form={form} layout="vertical" onFinish={onFinish}>
                 <div className="row">
-                  {/* Cột 1 */}
                   <div className="col-md-6">
+                    {/* Username */}
                     <Form.Item
-                      className="form-name-username"
                       name="username"
                       label={
                         <span className="form-label-gradient">Username</span>
@@ -106,8 +108,8 @@ export default function RegisterPage() {
                       />
                     </Form.Item>
 
+                    {/* Gender */}
                     <Form.Item
-                      className="form-name-gender"
                       name="gender"
                       label={
                         <span className="form-label-gradient">Gender</span>
@@ -123,20 +125,14 @@ export default function RegisterPage() {
                         className="input-gradient"
                         placeholder="Select your gender"
                       >
-                        <Option className="option-gradient" value="male">
-                          Male
-                        </Option>
-                        <Option className="option-gradient" value="female">
-                          Female
-                        </Option>
-                        <Option className="option-gradient" value="other">
-                          Other
-                        </Option>
+                        <Option value="male">Male</Option>
+                        <Option value="female">Female</Option>
+                        <Option value="other">Other</Option>
                       </Select>
                     </Form.Item>
 
+                    {/* Password */}
                     <Form.Item
-                      className="form-name-password"
                       name="password"
                       label={
                         <span className="form-label-gradient">Password</span>
@@ -155,10 +151,9 @@ export default function RegisterPage() {
                     </Form.Item>
                   </div>
 
-                  {/* Cột 2 */}
                   <div className="col-md-6">
+                    {/* Email */}
                     <Form.Item
-                      className="form-name-email"
                       name="email"
                       label={<span className="form-label-gradient">Email</span>}
                       rules={[
@@ -171,8 +166,8 @@ export default function RegisterPage() {
                       />
                     </Form.Item>
 
+                    {/* Birthday */}
                     <Form.Item
-                      className="form-name-birthday"
                       name="birthday"
                       label={
                         <span className="form-label-birthday">Birthday</span>
@@ -186,7 +181,6 @@ export default function RegisterPage() {
                     >
                       <DatePicker
                         className="form-label-birthday-years"
-                        dropdownClassName="birthday-dropdown"
                         style={{ width: "100%" }}
                         format="YYYY-MM-DD"
                         disabledDate={(current) =>
@@ -195,8 +189,8 @@ export default function RegisterPage() {
                       />
                     </Form.Item>
 
+                    {/* Confirm Password */}
                     <Form.Item
-                      className="form-name-confirmPassword"
                       name="confirmPassword"
                       label={
                         <span className="form-label-gradient">
@@ -211,9 +205,8 @@ export default function RegisterPage() {
                         },
                         ({ getFieldValue }) => ({
                           validator(_, value) {
-                            if (!value || getFieldValue("password") === value) {
+                            if (!value || getFieldValue("password") === value)
                               return Promise.resolve();
-                            }
                             return Promise.reject(
                               new Error("The two passwords do not match!")
                             );
@@ -230,7 +223,7 @@ export default function RegisterPage() {
                 </div>
 
                 {/* Submit Button */}
-                <Form.Item className="button-text">
+                <Form.Item>
                   <Button
                     htmlType="submit"
                     block
@@ -248,15 +241,12 @@ export default function RegisterPage() {
               </Form>
 
               <Space direction="vertical" style={{ width: "100%" }}>
-                {/* Login Link */}
                 <div className="link-register text-center mt-3">
                   <Text className="account-wrapper">
                     <div className="account-text">You have an account.</div>
                     <Link
                       to="/login"
-                      style={{
-                        ...gradientTextStyle(theme.primarycolors, 180),
-                      }}
+                      style={{ ...gradientTextStyle(theme.primarycolors, 180) }}
                     >
                       <span className="link-register-for-free">
                         Login here!
